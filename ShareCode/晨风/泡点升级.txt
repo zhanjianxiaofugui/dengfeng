@@ -1,0 +1,130 @@
+[@main]
+#IF
+!EQUAL <$HUMAN(泡点状态)> 免费泡点开启中
+!EQUAL <$HUMAN(泡点状态)> 元宝泡点开启中
+#ACT
+CalcVar Human 泡点状态 = 暂未开启
+
+
+#IF
+EQUAL $CLIENTFLAG 1
+#ACT
+GOTO @pc界面
+#IF
+!EQUAL $CLIENTFLAG 1
+#ACT
+GOTO @手游界面
+
+[@pc界面] NPC(50016)
+#IF
+true
+#SAY
+
+<@@!BTN 3,63206,3,63206,3,63217,580,-25,关闭/@EXIT>\
+
+;----标题
+<offx=|180|y=|-27|fontsize=|18||font=|0|><color=ffd400  随身泡经验 打怪升级两不误><|off>\
+
+;----按钮
+<@@!BTN 3,50027,3,50026,3,50026,10,20,/@免费泡点开启>\
+<@@!BTN 3,50027,3,50026,3,50026,10,20,/@元宝泡点开启>\
+<@@!BTN 3,50027,3,50026,3,50026,10,20,/@元宝泡点关闭>\
+
+;----纯文本
+<offx=|18|y=|-162|fontsize=|16|font=|0|><color=1d953f 开启免费泡点><|off>\
+<offx=|18|y=|-95|fontsize=|16|font=|0|><color=f58220 开启元宝泡点><|off>\
+<offx=|18|y=|-32|fontsize=|16|font=|0|><color=ffd400 停止元宝泡点><|off>\
+<offx=|130|y=|-165|fontsize=|18|font=|0|><color=1d953f 免费：><color=fffffb 开启后每秒获得><color=ffd400 5000经验><|off>\
+<offx=|130|y=|-105|fontsize=|18|font=|0|><color=ed1941 收费：><color=fffffb 开启后每秒消耗><color=f58220 100元宝><color=fffffb 每秒获得><color=ffd400 50万经验><color=ffd400 （限58级）><|off>\
+<offx=|130|y=|-35|fontsize=|18|font=|0|><color=ed1941 提示：><color=fffffb 泡点只能二选一，随身经验不能叠加获得><|off>\
+<offx=|18|y=|30|fontsize=|18|font=|0|><color=ffd400 关于等级说明：><color=fffffb 免费泡点最高５３级，元宝泡点最高５８级><|off>\
+<offx=|130|y=|30|fontsize=|18|font=|0|><color=fffffb ５８级后只能通过：><color=1d953f 经验活动，装备回收，开启经验丹><|off>\
+<offx=|230|y=|30|fontsize=|18|font=|0|><color=fffffb 的方式升级><|off>\
+<offx=|200|y=|15|fontsize=|18|font=|0|><color=ffd400 当前状态：<$HUMAN(泡点状态)>><|off>\
+
+;<Hot~/SCOLOR=254>       <为您省去繁琐的打怪过程.轻松泡点升级/SCOLOR=242>\ \
+;<        ><本服散人好混.物价保值.随身泡经验.打怪升级两不误/SCOLOR=70> \
+;------------------------------------------------------------\
+;<[免费随身泡点]/@sspd> - <５０００/SCOLOR=94><随身经验*秒/SCOLOR=250> <赞助越好获得经验越高/SCOLOR=243>\
+;<------------------------------------------------------------/SCOLOR=12>\
+;<[元宝随身泡点]/@ybpd> - <收费：/SCOLOR=249><100元宝/SCOLOR=70>  <５０万/SCOLOR=243>  <随身经验*秒/SCOLOR=250>  <限55级/SCOLOR=253>\
+;<------------------------------------------------------------/SCOLOR=12>\
+;<[等级经验查询]/@查询> - <提示：/SCOLOR=249><泡点只能二选一.随身经验不能叠加获得.../SCOLOR=146>\
+
+[@手游界面]
+#IF
+true
+#SAY
+<Img|x=199.0|y=81.0|width=437|height=245|scale=1.1|bg=1|img=public/048.png|esc=0>
+<RText|x=331.0|y=95.0|color=251|size=18|text=<随身泡经验.打怪升级两不误/FCOLOR=251>>
+<Button|x=213.0|y=126.0|width=110|height=30|nimg=public/028.png|pimg=public/029.png|mimg=public/029.png|color=250|size=16|text=开启免费泡点|link=@免费泡点开启>
+<Button|x=631.0|y=78.0|nimg=public/025.png|size=18|color=255|link=@exit>
+<Button|x=213.0|y=206.0|width=110|height=30|pimg=public/029.png|nimg=public/028.png|mimg=public/029.png|color=248|size=16|text=停止元宝泡点|link=@元宝泡点关闭>
+<Button|x=213.0|y=165.0|width=110|height=30|pimg=public/029.png|nimg=public/028.png|mimg=public/029.png|color=70|size=16|text=开启元宝泡点|link=@元宝泡点开启>
+<RText|x=335.0|y=128.0|color=255|size=16|text=<免费：开启/FCOLOR=250> <每秒/FCOLOR=250><５０００经验/FCOLOR=94>>
+<RText|x=335.0|y=168.0|color=255|size=16|text=<收费：/FCOLOR=249><100元宝/FCOLOR=70> <每秒/FCOLOR=250><５０万经验/FCOLOR=243> <限５８级/FCOLOR=253>>
+<RText|x=335.0|y=208.0|size=16|color=255|text=<提示：/FCOLOR=249><泡点只能二选一，经验不能叠加获得.../FCOLOR=146>>
+<RText|x=305.0|y=312.0|size=16|color=255|text=<当前状态：/FCOLOR=255><<$HUMAN(泡点状态)>/FCOLOR=215>>
+<Img|x=324.0|y=234.0|scale=1|img=public/024.png|esc=0>
+<RText|x=215.0|y=242.0|color=255|size=16|text=<关于等级说明：/FCOLOR=251>>
+<RText|x=331.0|y=241.0|color=255|size=16|text=<免费泡点最高５３级，元宝泡点最高５８级/FCOLOR=255>>
+<RText|x=332.0|y=263.0|color=255|size=16|text=<５８级后只能通过/FCOLOR=255><经验活动，装备回收/FCOLOR=250>>
+<RText|x=332.0|y=285.0|color=255|size=16|text=<开启经验丹/FCOLOR=250><的方式升级/FCOLOR=255>>
+
+
+
+
+[@查询]
+ \ \
+43-44级  <5千万经验/SCOLOR=254>\
+44-45级  <8千万经验/SCOLOR=254>\
+45-46级  <1  亿经验/SCOLOR=254>\
+46-47级  <2  亿经验/SCOLOR=254>\
+47-48级  <3  亿经验/SCOLOR=254>\
+48-49级  <5  亿经验/SCOLOR=254>\
+49-50级  <8  亿经验/SCOLOR=254>\
+
+[@元宝泡点关闭]
+#if
+#act
+SETOFFTIMER 5
+SETONTIMER 4 1
+CalcVar Human 泡点状态 = 免费泡点开启中
+SENDMSG 15 你停止了元宝泡点，自动切换为免费泡点
+SENDMSG 0 %S开启了免费随身泡点，经验快速飞涨
+goto @main
+
+[@免费泡点开启]
+#if
+checklevelex > 52
+#act
+SENDMSG 15 当前等级，不能使用免费泡点升级
+BREAK
+#IF
+#ACT
+SETONTIMER 4 1
+SETOFFTIMER 5
+CalcVar Human 泡点状态 = 免费泡点开启中
+SENDMSG 15 你成功开启了免费随身泡点，经验快速飞涨
+SENDMSG 0 %S开启了免费随身泡点，经验快速飞涨
+goto @main
+
+[@元宝泡点开启]
+#if
+checklevelex > 57
+#act
+SENDMSG 15 等级已经达到58级，无法使用泡点升级
+BREAK
+#if
+checkgamegold ? 100
+#elseact
+SENDMSG 15 你的元宝不足，开启泡点失败
+BREAK
+#IF
+#ACT
+SETONTIMER 5 1
+SETOFFTIMER 4
+CalcVar Human 泡点状态 = 元宝泡点开启中
+SENDMSG 15 你成功开启了元宝随身泡点，经验飞速猛涨
+SENDMSG 0 %S开启了元宝随身泡点，经验飞速猛涨
+goto @main

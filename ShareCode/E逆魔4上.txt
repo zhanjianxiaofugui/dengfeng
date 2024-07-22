@@ -1,0 +1,9 @@
+[@main]
+#IF
+CheckUserGap < 5
+#ACT
+MAPMOVE S025 54 56
+Break
+#ELSEACT
+SENDMSG 19 ÄãÀëµÄÌ«Ô¶ÁË£¬´«ËÍÊ§°Ü£¡
+BREAK

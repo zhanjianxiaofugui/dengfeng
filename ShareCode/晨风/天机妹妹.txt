@@ -1,0 +1,492 @@
+[@main]
+#IF
+EQUAL $CLIENTFLAG 1
+#ACT
+GOTO @PC界面
+#IF
+!EQUAL $CLIENTFLAG 1
+#ACT
+GOTO @手游界面
+
+
+[@PC界面] NPC(13997)
+#IF
+CheckLevelEx < 50
+#ACT
+MESSAGEBOX 妹妹我很孤单哦，哥哥你不要走！~
+#IF
+CheckLevelEx > 49
+#SAY
+<@@!BTN 3,63206,3,63206,3,63217,610,-25,关闭/@EXIT>\
+<offx=|255|y=|10|fontsize=|18||font=|0|><color=ffe600  天机妹妹><|off>\
+
+;----道具框_1
+<offx=|30|y=|40|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|30|y=|40|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|30|y=|40|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|30|y=|40|><@@!PIC2 3,60316,0,0><|off>\
+
+;----〓_1 245
+<offx=|75|y=|-305|fontsize=|18||font=|0|><color=ffd400  〓><|off>\
+<offx=|75|y=|-215|fontsize=|18||font=|0|><color=ffd400  〓><|off>\
+<offx=|75|y=|-125|fontsize=|18||font=|0|><color=ffd400  〓><|off>\
+<offx=|75|y=|-35|fontsize=|18||font=|0|><color=ffd400  〓><|off>\
+
+;----道具框_2  260
+<offx=|110|y=|-320|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|110|y=|-230|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|110|y=|-140|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|110|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+
+;----╋_1
+<offx=|155|y=|-305|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+<offx=|155|y=|-215|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+<offx=|155|y=|-125|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+<offx=|155|y=|-35|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+
+;----道具框_3
+<offx=|180|y=|-320|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|180|y=|-230|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|180|y=|-140|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|180|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+
+;----╋_2
+<offx=|225|y=|-305|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+<offx=|225|y=|-215|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+<offx=|225|y=|-125|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+<offx=|225|y=|-35|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+
+;----道具框_4
+<offx=|255|y=|-320|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|255|y=|-230|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|255|y=|-140|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|255|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+
+;----文本
+<offx=|340|y=|-315|fontsize=|16||font=|0|><color=00ff00  我打你，你掉血><|off>\
+<offx=|340|y=|-295|fontsize=|16||font=|0|><color=00ff00  我回血同等级单挑必赢><|off>\
+
+<offx=|340|y=|-225|fontsize=|16||font=|0|><color=00ff00  PK越激烈越能抗><|off>\
+<offx=|340|y=|-205|fontsize=|16||font=|0|><color=00ff00  我是打不死的小强。><|off>\
+
+<offx=|340|y=|-135|fontsize=|16||font=|0|><color=00ff00  一不小心被我加成><|off>\
+<offx=|340|y=|-115|fontsize=|16||font=|0|><color=00ff00  你小子别想活命。><|off>\
+
+<offx=|340|y=|-35|fontsize=|18||font=|0|><color=00ff00  100%成功><|off>\
+
+;----按钮
+<@@!BTN 3,64202,3,64201,3,64201,525,-320,开始锻造/@锻造王者勋章>\
+<@@!BTN 3,64202,3,64201,3,64201,525,-230,开始锻造/@锻造王者靴子>\
+<@@!BTN 3,64202,3,64201,3,64201,525,-140,开始锻造/@锻造王者腰带>\
+<@@!BTN 3,64202,3,64201,3,64201,525,-50,开始锻造/@锻造王者战盾>\
+
+;----物品 255
+<offx=|40|y=|-310|></@@!PIC 王者勋章,1,0,0> <|off>\
+<offx=|40|y=|-220|></@@!PIC 王者靴子,1,0,0> <|off>\
+<offx=|40|y=|-130|></@@!PIC 王者腰带,1,0,0> <|off>\
+<offx=|40|y=|-40|></@@!PIC 王者战盾,1,0,0> <|off>\
+
+<offx=|120|y=|-310|></@@!PIC 2.0倍爆率牌,1,0,0> <|off>\
+<offx=|120|y=|-220|></@@!PIC 神武战靴,1,0,0> <|off>\
+<offx=|120|y=|-130|></@@!PIC 神武腰带,1,0,0> <|off>\
+<offx=|120|y=|-40|></@@!PIC 至尊战盾,1,0,0> <|off>\
+
+<offx=|190|y=|-310|></@@!PIC 星空云母,1,0,0> <|off>\
+<offx=|190|y=|-220|></@@!PIC 星空云母,1,0,0> <|off>\
+<offx=|190|y=|-130|></@@!PIC 星空晶石,1,0,0> <|off>\
+<offx=|190|y=|-40|></@@!PIC 星空晶石,1,0,0> <|off>\
+
+<offx=|265|y=|-310|></@@!PIC 元宝,1,0,0> <|off>\
+<offx=|265|y=|-220|></@@!PIC 元宝,1,0,0> <|off>\
+<offx=|265|y=|-130|></@@!PIC 元宝,1,0,0> <|off>\
+<offx=|265|y=|-40|></@@!PIC 元宝,1,0,0> <|off>\
+
+;----物品数量 220
+<offx=|150|y=|-280|fontsize=|12||font=|0|><color=fffffb  1><|off>\
+<offx=|150|y=|-190|fontsize=|12||font=|0|><color=fffffb  3><|off>\
+<offx=|150|y=|-100|fontsize=|12||font=|0|><color=fffffb  3><|off>\
+<offx=|150|y=|-10|fontsize=|12||font=|0|><color=fffffb  1><|off>\
+
+<offx=|215|y=|-280|fontsize=|12||font=|0|><color=fffffb  600><|off>\
+<offx=|215|y=|-190|fontsize=|12||font=|0|><color=fffffb  150><|off>\
+<offx=|215|y=|-100|fontsize=|12||font=|0|><color=fffffb  300><|off>\
+<offx=|215|y=|-10|fontsize=|12||font=|0|><color=fffffb  600><|off>\
+
+<offx=|280|y=|-288|fontsize=|12||font=|0|><color=fffffb  120万><|off>\
+<offx=|280|y=|-198|fontsize=|12||font=|0|><color=fffffb  20万><|off>\
+<offx=|280|y=|-108|fontsize=|12||font=|0|><color=fffffb  30万><|off>\
+<offx=|280|y=|-18|fontsize=|12||font=|0|><color=fffffb  150万><|off>\
+
+;----按钮字
+<offx=|550|y=|-320|fontsize=|14||font=|0|><color=ffd400  锻造><|off>\
+<offx=|550|y=|-230|fontsize=|14||font=|0|><color=ffd400  锻造><|off>\
+<offx=|550|y=|-140|fontsize=|14||font=|0|><color=ffd400  锻造><|off>\
+<offx=|550|y=|-50|fontsize=|14||font=|0|><color=ffd400  锻造><|off>\
+
+[@手游界面]
+#IF
+CheckLevelEx < 50
+#ACT
+MESSAGEBOX 妹妹我很孤单哦，哥哥你不要走！~
+#IF
+CheckLevelEx > 49
+#SAY
+<Img|id=0|children={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29}|a=0|x=0.0|y=0.0|width=800|height=400|scale9l=10|reset=1|scale9r=10|bg=1|move=0|scale9t=10|scale9b=10|img=public/bg_npc1.png|esc=1>
+<Button|id=1|x=763.0|y=-5.0|nimg=public/025.png|color=255|scale=1|link=@exit>
+<Text|id=2|a=0|x=355.0|y=18.0|tipsx=10|tipsy=80|color=253|size=18|text=天机妹妹>
+
+<ListView|id=3|children={a1,a2,a3,a4,a5,a6,a7,a8,a9}|a=4|ay=0|x=24.0|y=343.0|width=760.0|height=275|color=x|img=public/down.png|direction=1|margin=1|bounce=1>
+<Img|id=a1|children={a11,a12,a13,a14,a15,a16,a17,a18,a19,a20}|x=0.0|y=0.0|width=70|height=70|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a11|x=0.0|y=0.0|width=70|height=70|itemid=26|itemcount=1|showtips=1|bgtype=1|color=250|name=王者勋章>
+<RText|id=a12|a=0|x=65.0|y=18.0|tipsx=10|tipsy=80|color=253|size=20|text=<〓/FCOLOR=243>>
+<Img|id=a13|children={a13a}|x=83.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a13a|x=0.0|y=0.0|width=70|height=70|itemid=1|itemcount=1|bgtype=1|showtips=1|name=2.0倍爆率牌>
+<RText|id=a14|x=168.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=a15|children={a15a}|x=199.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a15a|x=0.0|y=0.0|width=70|height=70|itemid=2045|itemcount=600|bgtype=1|showtips=1|name=星空云母>
+<RText|id=a16|x=282.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=a17|children={a17a}|x=315.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a17a|x=0.0|y=0.0|width=70|height=70|itemid=5401|itemcount=1200000|bgtype=1|showtips=1|name=元宝>
+<Text|id=a18|a=0|x=410.0|y=15.0|tipsx=10|tipsy=80|color=250|size=16|text=我打你，你掉血>
+<Text|id=a20|a=0|x=410.0|y=35.0|tipsx=10|tipsy=80|color=250|size=16|text=我回血同等级单挑必赢。>
+
+<Button|id=a19|a=4|x=649.0|y=32.0|width=90|height=34|pimg=public/an_npc2.png|outlinecolor=0|nimg=public/an_npc1.png|outline=2|size=16|color=251|text=锻造王者勋章|link=@锻造王者勋章>
+
+
+<Img|id=a2|children={a21,a22,a23,a24,a25,a26,a27,a28,a29,a30}|x=0.0|y=0.0|width=70|height=70|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a21|x=0.0|y=0.0|width=70|height=70|itemid=28|itemcount=1|showtips=1|bgtype=1|color=250|name=王者靴子>
+<RText|id=a22|a=0|x=65.0|y=18.0|tipsx=10|tipsy=80|color=253|size=20|text=<〓/FCOLOR=243>>
+
+<RText|id=a24|x=168.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=a25|children={a25a}|x=199.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a25a|x=0.0|y=0.0|width=70|height=70|itemid=2045|itemcount=150|bgtype=1|showtips=1|name=星空云母>
+<RText|id=a26|x=282.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=a27|children={a27a}|x=315.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a27a|x=0.0|y=0.0|width=70|height=70|itemid=5401|itemcount=200000|bgtype=1|showtips=1|name=元宝>
+<Text|id=a28|a=0|x=410.0|y=15.0|tipsx=10|tipsy=80|color=250|size=16|text=PK越激烈越能抗>
+<Text|id=a30|a=0|x=410.0|y=35.0|tipsx=10|tipsy=80|color=250|size=16|text=我是打不死的小强。>
+
+<Button|id=a29|a=4|x=649.0|y=32.0|width=90|height=34|pimg=public/an_npc2.png|outlinecolor=0|nimg=public/an_npc1.png|outline=2|size=16|color=251|text=锻造王者靴子|link=@锻造王者靴子>
+
+
+<Img|id=a3|children={a31,a32,a33,a34,a35,a36,a37,a38,a39,a40}|x=0.0|y=0.0|width=70|height=70|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a31|x=0.0|y=0.0|width=70|height=70|itemid=493|itemcount=1|showtips=1|bgtype=1|color=250|name=王者腰带>
+<RText|id=a32|a=0|x=65.0|y=18.0|tipsx=10|tipsy=80|color=253|size=20|text=<〓/FCOLOR=243>>
+<RText|id=a34|x=168.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=a35|children={a35a}|x=199.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a35a|x=0.0|y=0.0|width=70|height=70|itemid=2045|itemcount=300|bgtype=1|showtips=1|name=星空晶石>
+<RText|id=a36|x=282.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=a37|children={a37a}|x=315.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a37a|x=0.0|y=0.0|width=70|height=70|itemid=5401|itemcount=300000|bgtype=1|showtips=1|name=元宝>
+<Text|id=a38|a=0|x=410.0|y=15.0|tipsx=10|tipsy=80|color=250|size=16|text=一不小心被我加成>
+<Text|id=a40|a=0|x=410.0|y=35.0|tipsx=10|tipsy=80|color=250|size=16|text=你小子别想活命。>
+<Button|id=a39|a=4|x=649.0|y=32.0|width=90|height=34|pimg=public/an_npc2.png|outlinecolor=0|nimg=public/an_npc1.png|outline=2|size=16|color=251|text=锻造王者腰带|link=@锻造王者腰带>
+
+
+<Img|id=a4|children={3a,3b,3c,3d,3e,3f,3g,3h,3j,3k,3l,3m}|x=0.0|y=0.0|width=70|height=70|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=3a|x=0.0|y=0.0|width=70|height=70|itemid=8136|itemcount=1|showtips=1|bgtype=1|color=250|name=王者战盾>
+<RText|id=3b|a=0|x=65.0|y=18|tipsx=10|tipsy=80|color=253|size=20|text=<〓/FCOLOR=243>>
+<Text|id=3c|a=0|x=550.0|y=20.0|tipsx=10|tipsy=80|color=250|size=16|text=100%成功>
+<Button|id=3d|a=4|x=649.8|y=32.4|width=90|height=34|pimg=public/an_npc2.png|outlinecolor=0|nimg=public/an_npc1.png|outline=2|size=16|color=251|text=锻造王者战盾|link=@锻造王者战盾>
+<Img|id=3e|children={3ee}|x=83.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=3ee|x=0.0|y=0.0|width=70|height=70|itemid=26|itemcount=1|bgtype=1|showtips=1|name=至尊战盾>
+<RText|id=3f|x=168.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=3g|children={3gg}|x=199.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=3gg|x=0.0|y=0.0|width=70|height=70|itemid=2045|itemcount=600|bgtype=1|showtips=1|name=星空晶石>
+<RText|id=3h|x=282.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=3k|children={3kk}|x=315.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=3kk|x=0.0|y=0.0|width=70|height=70|itemid=5401|itemcount=1500000|bgtype=1|showtips=1|name=元宝>
+
+#IF
+CHECKJOB Warrior
+CheckLevelEx > 49
+#SAY
+;战士
+<Img|id=a23|children={a23a}|x=83.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a23a|x=0.0|y=0.0|width=70|height=70|itemid=26|itemcount=3|bgtype=1|showtips=1|name=神武战靴>
+
+<Img|id=a33|children={a33a}|x=83.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a33a|x=0.0|y=0.0|width=70|height=70|itemid=26|itemcount=3|bgtype=1|showtips=1|name=神武腰带>
+#IF
+CHECKJOB Wizard
+CheckLevelEx > 49
+#SAY
+;法师
+<Img|id=a23|children={a23a}|x=83.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a23a|x=0.0|y=0.0|width=70|height=70|itemid=26|itemcount=3|bgtype=1|showtips=1|name=幻魔法靴>
+
+<Img|id=a33|children={a33a}|x=83.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a33a|x=0.0|y=0.0|width=70|height=70|itemid=26|itemcount=3|bgtype=1|showtips=1|name=幻魔腰带>
+#IF
+CHECKJOB Taoist
+CheckLevelEx > 49
+#SAY
+;道士
+<Img|id=a23|children={a23a}|x=83.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a23a|x=0.0|y=0.0|width=70|height=70|itemid=26|itemcount=3|bgtype=1|showtips=1|name=天玄道靴>
+
+<Img|id=a33|children={a33a}|x=83.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a33a|x=0.0|y=0.0|width=70|height=70|itemid=26|itemcount=3|bgtype=1|showtips=1|name=天玄腰带>
+
+[@锻造王者勋章]
+#IF
+!CheckBagSize 2
+#ACT
+SENDMSG 19 对不起，你的包裹空间不足，请先整理后再来。
+BREAK
+
+
+#IF
+TRUE
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+
+#IFONE
+SMALL N$货币 1200000
+!checkitem 2.0倍爆率牌 1
+!checkitem 星空云母 600
+#ACT
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 1200000
+#ACT
+MONEY 绑定元宝 - 1200000
+#ELSEACT
+MOV N$剩余 1200000
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+#if
+TRUE
+#ACT
+take 2.0倍爆率牌 1
+take 星空云母 600
+give 王者勋章 1
+SENDMSG 26 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{天机妹妹[11,13]}处，成功锻造出【王者勋章】！！ 243
+sendmsg 14 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{天机妹妹[11,13]}处，成功锻造出【王者勋章】！！
+break
+
+[@锻造王者靴子]
+#IF
+!CheckBagSize 2
+#ACT
+SENDMSG 19 对不起，你的包裹空间不足，请先整理后再来。
+BREAK
+
+
+#IF
+TRUE
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+
+
+#IF
+CHECKJOB Warrior
+!checkitem 神武战靴 3
+#ACT
+;战士
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+#IF
+CHECKJOB Wizard
+!checkitem 幻魔法靴 3
+#ACT
+;法师
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+#IF
+CHECKJOB Taoist
+!checkitem 天玄道靴 3
+#ACT
+;道士
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+
+
+
+
+#IFONE
+SMALL N$货币 200000
+!checkitem 星空云母 150
+#ACT
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 200000
+#ACT
+MONEY 绑定元宝 - 200000
+#ELSEACT
+MOV N$剩余 200000
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+#IF
+CHECKJOB Warrior
+#ACT
+;战士
+take 神武战靴 3
+#IF
+CHECKJOB Wizard
+#ACT
+;法师
+take 幻魔法靴 3
+#IF
+CHECKJOB Taoist
+#ACT
+;道士
+take 天玄道靴 3
+
+#if
+TRUE
+#ACT
+take 2.0倍爆率牌 1
+take 星空云母 150
+give 王者靴子 1
+SENDMSG 26 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{天机妹妹[11,13]}处，成功锻造出【王者靴子】！！ 243
+sendmsg 14 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{天机妹妹[11,13]}处，成功锻造出【王者靴子】！！
+break
+
+
+[@锻造王者腰带]
+#IF
+!CheckBagSize 2
+#ACT
+SENDMSG 19 对不起，你的包裹空间不足，请先整理后再来。
+BREAK
+#IF
+CheckLevelEx < 54
+#ACT
+SENDMSG 19 对不起，你的等级不足54级。
+BREAK
+
+#IF
+TRUE
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+
+
+#IF
+CHECKJOB Warrior
+!checkitem 神武腰带 3
+#ACT
+;战士
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+#IF
+CHECKJOB Wizard
+!checkitem 幻魔腰带 3
+#ACT
+;法师
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+#IF
+CHECKJOB Taoist
+!checkitem 天玄腰带 3
+#ACT
+;道士
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+
+
+
+
+#IFONE
+SMALL N$货币 300000
+!checkitem 星空晶石 300
+#ACT
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 300000
+#ACT
+MONEY 绑定元宝 - 300000
+#ELSEACT
+MOV N$剩余 300000
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+#IF
+CHECKJOB Warrior
+#ACT
+;战士
+take 神武腰带 3
+#IF
+CHECKJOB Wizard
+#ACT
+;法师
+take 幻魔腰带 3
+#IF
+CHECKJOB Taoist
+#ACT
+;道士
+take 天玄腰带 3
+
+#if
+TRUE
+#ACT
+take 2.0倍爆率牌 1
+take 星空晶石 300
+give 王者腰带 1
+SENDMSG 26 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{天机妹妹[11,13]}处，成功锻造出【王者靴子】！！ 243
+sendmsg 14 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{天机妹妹[11,13]}处，成功锻造出【王者靴子】！！
+break
+
+
+[@锻造王者战盾]
+#IF
+!CheckBagSize 2
+#ACT
+SENDMSG 19 对不起，你的包裹空间不足，请先整理后再来。
+BREAK
+#IF
+CheckLevelEx < 58
+#ACT
+SENDMSG 19 对不起，你的等级不足58级。
+BREAK
+
+#IF
+TRUE
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+#IFONE
+SMALL N$货币 1500000
+!checkitem 至尊战盾 1
+!checkitem 星空晶石 600
+#ACT
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 1500000
+#ACT
+MONEY 绑定元宝 - 1500000
+#ELSEACT
+MOV N$剩余 1500000
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+#if
+TRUE
+#ACT
+take 至尊战盾 1
+take 星空晶石 600
+give 王者战盾 1
+SENDMSG 26 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{天机妹妹[11,13]}处，成功锻造出【王者战盾】！！ 243
+sendmsg 14 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{天机妹妹[11,13]}处，成功锻造出【王者战盾】！！
+break

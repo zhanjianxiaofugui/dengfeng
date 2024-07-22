@@ -1,0 +1,5 @@
+[@main]
+#IF
+TRUE
+#ACT
+#CALL [\大哥新加\附件合成.txt] @附件合成

@@ -1,0 +1,844 @@
+[@main]
+#IF
+Equal $CLIENTFLAG 1
+#ACT
+;----变量声明
+MOV N$页码 1
+MOV S$合成配置1
+MOV S$合成配置2
+MOV S$合成配置3
+MOV S$合成配置4
+MOV S$物品数量1
+MOV S$物品数量2
+MOV S$物品数量3
+MOV S$物品数量4
+GOTO @pc界面
+BREAK
+#ELSEACT
+GOTO @手游界面
+BREAK
+
+[@pc界面]
+#IF
+Equal N$页码 3
+#ACT
+ReadConfigFileItem ..\QuestDiary\配置文件\天机阁配置.ini <$STR(N$页码)> 合成配置1 S$合成配置1
+ReadConfigFileItem ..\QuestDiary\配置文件\天机阁配置.ini <$STR(N$页码)> 物品数量1 S$物品数量1
+split <$STR(S$合成配置1)> | S$合成配置1
+split <$STR(S$物品数量1)> | S$物品数量1
+goto @最后一页
+#ELSEACT
+ReadConfigFileItem ..\QuestDiary\配置文件\天机阁配置.ini <$STR(N$页码)> 合成配置1 S$合成配置1
+ReadConfigFileItem ..\QuestDiary\配置文件\天机阁配置.ini <$STR(N$页码)> 合成配置2 S$合成配置2
+ReadConfigFileItem ..\QuestDiary\配置文件\天机阁配置.ini <$STR(N$页码)> 合成配置3 S$合成配置3
+ReadConfigFileItem ..\QuestDiary\配置文件\天机阁配置.ini <$STR(N$页码)> 合成配置4 S$合成配置4
+ReadConfigFileItem ..\QuestDiary\配置文件\天机阁配置.ini <$STR(N$页码)> 物品数量1 S$物品数量1
+ReadConfigFileItem ..\QuestDiary\配置文件\天机阁配置.ini <$STR(N$页码)> 物品数量2 S$物品数量2
+ReadConfigFileItem ..\QuestDiary\配置文件\天机阁配置.ini <$STR(N$页码)> 物品数量3 S$物品数量3
+ReadConfigFileItem ..\QuestDiary\配置文件\天机阁配置.ini <$STR(N$页码)> 物品数量3 S$物品数量4
+
+split <$STR(S$合成配置1)> | S$合成配置1
+split <$STR(S$合成配置2)> | S$合成配置2
+split <$STR(S$合成配置3)> | S$合成配置3
+split <$STR(S$合成配置4)> | S$合成配置4
+split <$STR(S$物品数量1)> | S$物品数量1
+split <$STR(S$物品数量2)> | S$物品数量2
+split <$STR(S$物品数量3)> | S$物品数量3
+split <$STR(S$物品数量4)> | S$物品数量4
+GOTO @其他页
+
+[@最后一页] NPC(17694)
+#IF
+true
+#ACT
+#SAY
+<@@!BTN 3,63206,3,63206,3,63217,560,-25,关闭/@EXIT>\
+;----标题
+<offx=|245|y=|-33|fontsize=|18||font=|0|><color=8552a1  剑甲初章><|off>\
+<offx=|25|y=|-11|fontsize=|16||font=|0|><color=ffd400  【提示】：锻造以上武器，衣服都100%成功,不建议锻造,打怪都可爆><|off>\
+<offx=|130|y=|10|fontsize=|16||font=|0|><color=33a3dc  各种高级BOSS，活动BOSS都可爆出><|off>\
+
+;----道具框_1
+<offx=|30|y=|30|><@@!PIC2 3,60316,0,0><|off>\
+
+;----〓_1
+<offx=|75|y=|-38|fontsize=|18||font=|0|><color=ffd400  〓><|off>\
+
+;----道具框_2
+<offx=|110|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+
+;----╋_1
+<offx=|155|y=|-38|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+
+;----道具框_3
+<offx=|180|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+
+;----╋_2
+<offx=|225|y=|-38|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+
+;----道具框_4
+<offx=|255|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+
+;----文本
+<offx=|310|y=|-38|fontsize=|18||font=|0|><color=00ff00  100%成功><|off>\
+
+;----按钮
+<@@!BTN 3,64202,3,64201,3,64201,420,-50,开始锻造/@pc端合成&<$STR(S$合成配置1_0)>&<$STR(S$合成配置1_1)>&<$STR(S$合成配置1_2)>&<$STR(S$合成配置1_3)>>\
+
+;----物品
+<offx=|35|y=|-38|></@@!PIC <$STR(S$合成配置1_0)>,1,0,0> <|off>\
+<offx=|120|y=|-38|></@@!PIC <$STR(S$合成配置1_1)>,1,0,0> <|off>\
+<offx=|190|y=|-38|></@@!PIC <$STR(S$合成配置1_2)>,1,0,0> <|off>\
+<offx=|265|y=|-38|></@@!PIC <$STR(S$合成配置1_3)>,1,0,0> <|off>\
+
+;----物品数量
+<offx=|150|y=|-10|fontsize=|12||font=|0|><color=fffffb  <$STR(S$物品数量1_1)>><|off>\
+<offx=|215|y=|-15|fontsize=|12||font=|0|><color=fffffb  <$STR(S$物品数量1_2)>><|off>\
+<offx=|280|y=|-17|fontsize=|12||font=|0|><color=fffffb  <$STR(S$物品数量1_3)>><|off>\
+
+;----翻页
+<offx=|180|y=|224|><@@!PIC2 3,33048,0,0><|off>\
+<offx=|290|y=|-20|><@@!PIC2 3,33048,0,0><|off>\
+<@@!BTN 3,11330,3,11331,3,11332,190,-17,开始锻造/@上一页>\
+<@@!BTN 3,11333,3,11334,3,11335,300,-17,开始锻造/@下一页>\
+<offx=|235|y=|-20|fontsize=|16||font=|0|><color=00ff00  第<$STR(N$页码)>页><|off>\
+
+;----按钮字
+<offx=|442|y=|-290|fontsize=|14||font=|0|><color=ffd400  锻造><|off>\
+
+[@其他页] NPC(17694)
+#IF
+true
+#ACT
+#SAY
+<@@!BTN 3,63206,3,63206,3,63217,560,-25,关闭/@EXIT>\
+;----标题
+<offx=|245|y=|-33|fontsize=|18||font=|0|><color=8552a1  剑甲初章><|off>\
+<offx=|25|y=|-11|fontsize=|16||font=|0|><color=ffd400  【提示】：锻造以上武器，衣服都100%成功,不建议锻造,打怪都可爆><|off>\
+<offx=|130|y=|10|fontsize=|16||font=|0|><color=33a3dc  各种高级BOSS，活动BOSS都可爆出><|off>\
+
+;----道具框_1
+<offx=|30|y=|30|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|30|y=|20|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|30|y=|20|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|30|y=|20|><@@!PIC2 3,60316,0,0><|off>\
+
+;----〓_1
+<offx=|75|y=|-245|fontsize=|18||font=|0|><color=ffd400  〓><|off>\
+<offx=|75|y=|-175|fontsize=|18||font=|0|><color=ffd400  〓><|off>\
+<offx=|75|y=|-105|fontsize=|18||font=|0|><color=ffd400  〓><|off>\
+<offx=|75|y=|-35|fontsize=|18||font=|0|><color=ffd400  〓><|off>\
+
+;----道具框_2
+<offx=|110|y=|-260|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|110|y=|-190|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|110|y=|-120|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|110|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+
+;----╋_1
+<offx=|155|y=|-245|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+<offx=|155|y=|-175|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+<offx=|155|y=|-105|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+<offx=|155|y=|-35|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+
+;----道具框_3
+<offx=|180|y=|-260|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|180|y=|-190|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|180|y=|-120|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|180|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+
+;----╋_2
+<offx=|225|y=|-245|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+<offx=|225|y=|-175|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+<offx=|225|y=|-105|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+<offx=|225|y=|-35|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+
+;----道具框_4
+<offx=|255|y=|-260|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|255|y=|-190|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|255|y=|-120|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|255|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+
+;----文本
+<offx=|310|y=|-245|fontsize=|18||font=|0|><color=00ff00  100%成功><|off>\
+<offx=|310|y=|-175|fontsize=|18||font=|0|><color=00ff00  100%成功><|off>\
+<offx=|310|y=|-105|fontsize=|18||font=|0|><color=00ff00  100%成功><|off>\
+<offx=|310|y=|-35|fontsize=|18||font=|0|><color=00ff00  100%成功><|off>\
+
+;----按钮
+<@@!BTN 3,64202,3,64201,3,64201,420,-260,开始锻造/@pc端合成&<$STR(S$合成配置1_0)>&<$STR(S$合成配置1_1)>&<$STR(S$合成配置1_2)>&<$STR(S$合成配置1_3)>>\
+<@@!BTN 3,64202,3,64201,3,64201,420,-190,开始锻造/@pc端合成&<$STR(S$合成配置2_0)>&<$STR(S$合成配置2_1)>&<$STR(S$合成配置2_2)>&<$STR(S$合成配置2_3)>>\
+<@@!BTN 3,64202,3,64201,3,64201,420,-120,开始锻造/@pc端合成&<$STR(S$合成配置3_0)>&<$STR(S$合成配置3_1)>&<$STR(S$合成配置3_2)>&<$STR(S$合成配置3_3)>>\
+<@@!BTN 3,64202,3,64201,3,64201,420,-50,开始锻造/@pc端合成&<$STR(S$合成配置4_0)>&<$STR(S$合成配置4_1)>&<$STR(S$合成配置4_2)>&<$STR(S$合成配置4_3)>>\
+
+;----物品
+<offx=|35|y=|-255|></@@!PIC <$STR(S$合成配置1_0)>,1,0,0> <|off>\
+<offx=|35|y=|-180|></@@!PIC <$STR(S$合成配置2_0)>,1,0,0> <|off>\
+<offx=|35|y=|-105|></@@!PIC <$STR(S$合成配置3_0)>,1,0,0> <|off>\
+<offx=|35|y=|-35|></@@!PIC <$STR(S$合成配置4_0)>,1,0,0> <|off>\
+
+<offx=|120|y=|-255|></@@!PIC <$STR(S$合成配置1_1)>,1,0,0> <|off>\
+<offx=|120|y=|-180|></@@!PIC <$STR(S$合成配置2_1)>,1,0,0> <|off>\
+<offx=|120|y=|-115|></@@!PIC <$STR(S$合成配置3_1)>,1,0,0> <|off>\
+<offx=|120|y=|-40|></@@!PIC <$STR(S$合成配置4_1)>,1,0,0> <|off>\
+
+<offx=|190|y=|-255|></@@!PIC <$STR(S$合成配置1_2)>,1,0,0> <|off>\
+<offx=|190|y=|-180|></@@!PIC <$STR(S$合成配置2_2)>,1,0,0> <|off>\
+<offx=|190|y=|-115|></@@!PIC <$STR(S$合成配置3_2)>,1,0,0> <|off>\
+<offx=|190|y=|-40|></@@!PIC <$STR(S$合成配置4_2)>,1,0,0> <|off>\
+
+<offx=|265|y=|-255|></@@!PIC <$STR(S$合成配置1_3)>,1,0,0> <|off>\
+<offx=|265|y=|-180|></@@!PIC <$STR(S$合成配置2_3)>,1,0,0> <|off>\
+<offx=|265|y=|-115|></@@!PIC <$STR(S$合成配置3_3)>,1,0,0> <|off>\
+<offx=|265|y=|-40|></@@!PIC <$STR(S$合成配置4_3)>,1,0,0> <|off>\
+
+;----物品数量
+<offx=|150|y=|-220|fontsize=|12||font=|0|><color=fffffb  <$STR(S$物品数量1_1)>><|off>\
+<offx=|150|y=|-150|fontsize=|12||font=|0|><color=fffffb  <$STR(S$物品数量2_1)>><|off>\
+<offx=|150|y=|-80|fontsize=|12||font=|0|><color=fffffb  <$STR(S$物品数量3_1)>><|off>\
+<offx=|150|y=|-10|fontsize=|12||font=|0|><color=fffffb  <$STR(S$物品数量4_1)>><|off>\
+
+<offx=|215|y=|-228|fontsize=|12||font=|0|><color=fffffb  <$STR(S$物品数量1_2)>><|off>\
+<offx=|215|y=|-158|fontsize=|12||font=|0|><color=fffffb  <$STR(S$物品数量2_2)>><|off>\
+<offx=|215|y=|-88|fontsize=|12||font=|0|><color=fffffb  <$STR(S$物品数量3_2)>><|off>\
+<offx=|215|y=|-18|fontsize=|12||font=|0|><color=fffffb  <$STR(S$物品数量4_2)>><|off>\
+
+<offx=|280|y=|-228|fontsize=|12||font=|0|><color=fffffb  <$STR(S$物品数量1_3)>><|off>\
+<offx=|280|y=|-158|fontsize=|12||font=|0|><color=fffffb  <$STR(S$物品数量2_3)>><|off>\
+<offx=|280|y=|-88|fontsize=|12||font=|0|><color=fffffb  <$STR(S$物品数量3_3)>><|off>\
+<offx=|280|y=|-18|fontsize=|12||font=|0|><color=fffffb  <$STR(S$物品数量4_3)>><|off>\
+
+;----翻页
+<offx=|180|y=|15|><@@!PIC2 3,33048,0,0><|off>\
+<offx=|290|y=|-20|><@@!PIC2 3,33048,0,0><|off>\
+<@@!BTN 3,11330,3,11331,3,11332,190,-17,开始锻造/@上一页>\
+<@@!BTN 3,11333,3,11334,3,11335,300,-17,开始锻造/@下一页>\
+<offx=|235|y=|-20|fontsize=|16||font=|0|><color=00ff00  第<$STR(N$页码)>页><|off>\
+
+;----按钮字
+<offx=|442|y=|-290|fontsize=|14||font=|0|><color=ffd400  锻造><|off>\
+<offx=|442|y=|-220|fontsize=|16||font=|0|><color=ffd400  锻造><|off>\
+<offx=|442|y=|-150|fontsize=|16||font=|0|><color=ffd400  锻造><|off>\
+<offx=|442|y=|-80|fontsize=|16||font=|0|><color=ffd400  锻造><|off>\
+
+[@上一页]
+#IF
+Equal N$页码 1
+#ACT
+goto @pc界面
+#ELSEACT
+Dec N$页码 1
+goto @pc界面
+
+[@下一页]
+#IF
+Equal N$页码 3
+#ACT
+goto @pc界面
+#ELSEACT
+Inc N$页码 1
+goto @pc界面
+
+[@手游界面]
+#IF
+True
+#SAY
+<Img|id=0|children={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29}|a=0|x=0.0|y=0.0|width=800|height=400|scale9l=10|reset=1|scale9r=10|bg=1|move=0|scale9t=10|scale9b=10|img=public/bg_npc1.png|esc=1>
+<Button|id=1|x=763.0|y=-5.0|nimg=public/025.png|color=255|scale=1|link=@exit>
+<Text|id=2|a=0|x=355.0|y=18.0|tipsx=10|tipsy=80|color=253|size=18|text=剑甲初章>
+
+<ListView|id=3|children={a1,a2,a3,a4,a5,a6,a7,a8,a9}|a=4|ay=0|x=24.0|y=343.0|width=760.0|height=275|color=x|img=public/down.png|direction=1|margin=1|bounce=1>
+<Img|id=a1|children={a11,a12,a13,a14,a15,a16,a17,a18,a19}|x=0.0|y=0.0|width=70|height=70|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a11|x=0.0|y=0.0|width=70|height=70|itemid=26|itemcount=1|showtips=1|bgtype=1|color=250|name=屠龙刀>
+<RText|id=a12|a=0|x=65.0|y=18.0|tipsx=10|tipsy=80|color=253|size=20|text=<〓/FCOLOR=243>>
+<Img|id=a13|children={a13a}|x=83.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a13a|x=0.0|y=0.0|width=70|height=70|itemid=1|itemcount=5|bgtype=1|showtips=1|name=雷霆怒斩>
+<RText|id=a14|x=168.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=a15|children={a15a}|x=199.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a15a|x=0.0|y=0.0|width=70|height=70|itemid=2045|itemcount=188|bgtype=1|showtips=1|name=星空晶石>
+<RText|id=a16|x=282.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=a17|children={a17a}|x=315.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a17a|x=0.0|y=0.0|width=70|height=70|itemid=5401|itemcount=180000|bgtype=1|showtips=1|name=元宝>
+<Text|id=a18|a=0|x=550.0|y=20.0|tipsx=10|tipsy=80|color=250|size=18|text=100%成功>
+<Button|id=a19|a=4|x=649.0|y=32.0|width=90|height=34|pimg=public/an_npc2.png|outlinecolor=0|nimg=public/an_npc1.png|outline=2|size=16|color=251|text=锻造屠龙刀|link=@屠龙T>
+
+
+<Img|id=a2|children={a21,a22,a23,a24,a25,a26,a27,a28,a29}|x=0.0|y=0.0|width=70|height=70|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a21|x=0.0|y=0.0|width=70|height=70|itemid=28|itemcount=1|showtips=1|bgtype=1|color=250|name=嗜魂>
+<RText|id=a22|a=0|x=65.0|y=18.0|tipsx=10|tipsy=80|color=253|size=20|text=<〓/FCOLOR=243>>
+<Img|id=a23|children={a23a}|x=83.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a23a|x=0.0|y=0.0|width=70|height=70|itemid=26|itemcount=5|bgtype=1|showtips=1|name=龙牙利刃>
+<RText|id=a24|x=168.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=a25|children={a25a}|x=199.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a25a|x=0.0|y=0.0|width=70|height=70|itemid=2045|itemcount=188|bgtype=1|showtips=1|name=星空晶石>
+<RText|id=a26|x=282.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=a27|children={a27a}|x=315.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a27a|x=0.0|y=0.0|width=70|height=70|itemid=5401|itemcount=180000|bgtype=1|showtips=1|name=元宝>
+<Text|id=a28|a=0|x=550.0|y=20.0|tipsx=10|tipsy=80|color=250|size=18|text=100%成功>
+<Button|id=a29|a=4|x=649.0|y=32.0|width=90|height=34|pimg=public/an_npc2.png|outlinecolor=0|nimg=public/an_npc1.png|outline=2|size=16|color=251|text=锻造嗜魂|link=@嗜魂S>
+
+
+<Img|id=a3|children={a31,a32,a33,a34,a35,a36,a37,a38,a39}|x=0.0|y=0.0|width=70|height=70|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a31|x=0.0|y=0.0|width=70|height=70|itemid=493|itemcount=1|showtips=1|bgtype=1|color=250|name=倚天剑>
+<RText|id=a32|a=0|x=65.0|y=18.0|tipsx=10|tipsy=80|color=253|size=20|text=<〓/FCOLOR=243>>
+<Img|id=a33|children={a33a}|x=83.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a33a|x=0.0|y=0.0|width=70|height=70|itemid=26|itemcount=5|bgtype=1|showtips=1|name=逍遥无极扇>
+<RText|id=a34|x=168.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=a35|children={a35a}|x=199.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a35a|x=0.0|y=0.0|width=70|height=70|itemid=2045|itemcount=188|bgtype=1|showtips=1|name=星空晶石>
+<RText|id=a36|x=282.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=a37|children={a37a}|x=315.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=a37a|x=0.0|y=0.0|width=70|height=70|itemid=5401|itemcount=180000|bgtype=1|showtips=1|name=元宝>
+
+<Text|id=a38|a=0|x=550.0|y=20.0|tipsx=10|tipsy=80|color=250|size=18|text=100%成功>
+<Button|id=a39|a=4|x=649.0|y=32.0|width=90|height=34|pimg=public/an_npc2.png|outlinecolor=0|nimg=public/an_npc1.png|outline=2|size=16|color=251|text=锻造倚天剑|link=@倚天Y>
+
+
+
+
+<Img|id=a4|children={3a,3b,3c,3d,3e,3f,3g,3h,3j,3k,3l,3m}|x=0.0|y=0.0|width=70|height=70|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=3a|x=0.0|y=0.0|width=70|height=70|itemid=8136|itemcount=1|showtips=1|bgtype=1|color=250|name=神武战甲>
+<RText|id=3b|a=0|x=65.0|y=18|tipsx=10|tipsy=80|color=253|size=20|text=<〓/FCOLOR=243>>
+<Text|id=3c|a=0|x=550.0|y=20.0|tipsx=10|tipsy=80|color=250|size=18|text=100%成功>
+<Button|id=3d|a=4|x=649.8|y=32.4|width=90|height=34|pimg=public/an_npc2.png|outlinecolor=0|nimg=public/an_npc1.png|outline=2|size=16|color=251|text=锻造神武战甲|link=@神武战甲合成>
+<Img|id=3e|children={3ee}|x=83.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=3ee|x=0.0|y=0.0|width=70|height=70|itemid=26|itemcount=5|bgtype=1|showtips=1|name=天魔战甲>
+<RText|id=3f|x=168.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=3g|children={3gg}|x=199.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=3gg|x=0.0|y=0.0|width=70|height=70|itemid=2045|itemcount=188|bgtype=1|showtips=1|name=星空晶石>
+<RText|id=3h|x=282.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=3k|children={3kk}|x=315.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=3kk|x=0.0|y=0.0|width=70|height=70|itemid=5401|itemcount=180000|bgtype=1|showtips=1|name=元宝>
+
+
+<Img|id=a5|children={4a,4b,4c,4d,4e,4f,4g,4h,4j,4k,4l,4m}|x=0.0|y=0.0|width=70|height=70|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=4a|x=0.0|y=0.0|width=70|height=70|itemid=8136|itemcount=1|showtips=1|bgtype=1|color=250|name=神武战袍>
+<RText|id=4b|a=0|x=65.0|y=18|tipsx=10|tipsy=80|color=253|size=20|text=<〓/FCOLOR=243>>
+<Text|id=4c|a=0|x=550.0|y=20.0|tipsx=10|tipsy=80|color=250|size=18|text=100%成功>
+<Button|id=4d|a=4|x=649.8|y=32.4|width=90|height=34|pimg=public/an_npc2.png|outlinecolor=0|nimg=public/an_npc1.png|outline=2|size=16|color=251|text=锻造神武战袍|link=@神武战袍合成>
+<Img|id=4e|children={4ee}|x=83.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=4ee|x=0.0|y=0.0|width=70|height=70|itemid=26|itemcount=5|bgtype=1|showtips=1|name=圣战战甲>
+<RText|id=4f|x=168.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=4g|children={4gg}|x=199.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=4gg|x=0.0|y=0.0|width=70|height=70|itemid=2045|itemcount=188|bgtype=1|showtips=1|name=星空晶石>
+<RText|id=4h|x=282.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=4k|children={4kk}|x=315.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=4kk|x=0.0|y=0.0|width=70|height=70|itemid=5401|itemcount=180000|bgtype=1|showtips=1|name=元宝>
+
+
+
+<Img|id=a6|children={5a,5b,5c,5d,5e,5f,5g,5h,5j,5k,5l,5m}|x=0.0|y=0.0|width=70|height=70|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=5a|x=0.0|y=0.0|width=70|height=70|itemid=8136|itemcount=1|showtips=1|bgtype=1|color=250|name=幻魔披风>
+<RText|id=5b|a=0|x=65.0|y=18|tipsx=10|tipsy=80|color=253|size=20|text=<〓/FCOLOR=243>>
+<Text|id=5c|a=0|x=550.0|y=20.0|tipsx=10|tipsy=80|color=250|size=18|text=100%成功>
+<Button|id=5d|a=4|x=649.8|y=32.4|width=90|height=34|pimg=public/an_npc2.png|outlinecolor=0|nimg=public/an_npc1.png|outline=2|size=16|color=251|text=锻造幻魔披风|link=@幻魔披风合成>
+<Img|id=5e|children={5ee}|x=83.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=5ee|x=0.0|y=0.0|width=70|height=70|itemid=26|itemcount=5|bgtype=1|showtips=1|name=法神披风>
+<RText|id=5f|x=168|y=18|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=5g|children={5gg}|x=199.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=5gg|x=0.0|y=0.0|width=70|height=70|itemid=2045|itemcount=188|bgtype=1|showtips=1|name=星空晶石>
+<RText|id=5h|x=282.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=5k|children={5kk}|x=315.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=5kk|x=0.0|y=0.0|width=70|height=70|itemid=5401|itemcount=180000|bgtype=1|showtips=1|name=元宝>
+
+<Img|id=a7|children={6a,6b,6c,6d,6e,6f,6g,6h,6j,6k,6l,6m}|x=30.0|y=245.0|width=70|height=70|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=6a|x=0.0|y=0.0|width=70|height=70|itemid=8136|itemcount=1|showtips=1|bgtype=1|color=250|name=幻魔羽衣>
+<RText|id=6b|a=0|x=65.0|y=16.9|tipsx=10|tipsy=80|color=253|size=20|text=<〓/FCOLOR=243>>
+<Text|id=6c|a=0|x=546.0|y=20.0|tipsx=10|tipsy=80|color=250|size=18|text=100%成功>
+<Button|id=6d|a=4|x=649.8|y=32.4|width=90|height=34|pimg=public/an_npc2.png|outlinecolor=0|nimg=public/an_npc1.png|outline=2|size=16|color=251|text=锻造幻魔羽衣|link=@幻魔羽衣合成>
+<Img|id=6e|children={6ee}|x=83.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=6ee|x=0.0|y=0.0|width=70|height=70|itemid=26|itemcount=5|bgtype=1|showtips=1|name=法神羽衣>
+<RText|id=6f|x=168|y=18|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=6g|children={6gg}|x=199.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=6gg|x=0.0|y=0.0|width=70|height=70|itemid=2045|itemcount=188|bgtype=1|showtips=1|name=星空晶石>
+<RText|id=6h|x=282.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=6k|children={6kk}|x=315.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=6kk|x=0.0|y=0.0|width=70|height=70|itemid=5401|itemcount=180000|bgtype=1|showtips=1|name=元宝>
+
+
+
+<Img|id=a8|children={7a,7b,7c,7d,7e,7f,7g,7h,7j,7k,7l,7m}|x=30.0|y=300.0|width=70|height=70|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=7a|x=0.0|y=0.0|width=70|height=70|itemid=8136|itemcount=1|showtips=1|bgtype=1|color=250|name=天玄道袍>
+<RText|id=7b|a=0|x=65.0|y=16.9|tipsx=10|tipsy=80|color=253|size=20|text=<〓/FCOLOR=243>>
+<Text|id=7c|a=0|x=546.0|y=20.0|tipsx=10|tipsy=80|color=250|size=18|text=100%成功>
+<Button|id=7d|a=4|x=649.8|y=32.4|width=90|height=34|pimg=public/an_npc2.png|outlinecolor=0|nimg=public/an_npc1.png|outline=2|size=16|color=251|text=锻造天玄道袍|link=@天玄道袍合成>
+<Img|id=7e|children={7ee}|x=83.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=7ee|x=0.0|y=0.0|width=70|height=70|itemid=26|itemcount=5|bgtype=1|showtips=1|name=天尊道袍>
+<RText|id=7f|x=168|y=18|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=7g|children={7gg}|x=199.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=7gg|x=0.0|y=0.0|width=70|height=70|itemid=2045|itemcount=188|bgtype=1|showtips=1|name=星空晶石>
+<RText|id=7h|x=282.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=7k|children={7kk}|x=315.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=7kk|x=0.0|y=0.0|width=70|height=70|itemid=5401|itemcount=180000|bgtype=1|showtips=1|name=元宝>
+
+
+
+<Img|id=a9|children={8a,8b,8c,8d,8e,8f,8g,8h,8j,8k,8l,8m}|x=30.0|y=355.0|width=70|height=70|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=8a|x=0.0|y=0.0|width=70|height=70|itemid=8136|itemcount=1|showtips=1|bgtype=1|color=250|name=天玄道衣>
+<RText|id=8b|a=0|x=65.0|y=16.9|tipsx=10|tipsy=80|color=253|size=20|text=<〓/FCOLOR=243>>
+<Text|id=8c|a=0|x=546.0|y=20.0|tipsx=10|tipsy=80|color=250|size=18|text=100%成功>
+<Button|id=8d|a=4|x=649.8|y=32.4|width=90|height=34|pimg=public/an_npc2.png|outlinecolor=0|nimg=public/an_npc1.png|outline=2|size=16|color=251|text=锻造天玄道衣|link=@天玄道衣合成>
+<Img|id=8e|children={8ee}|x=83.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=8ee|x=0.0|y=0.0|width=70|height=70|itemid=26|itemcount=5|bgtype=1|showtips=1|name=天师道袍>
+<RText|id=8f|x=168|y=18|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=8g|children={8gg}|x=199.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=8gg|x=0.0|y=0.0|width=70|height=70|itemid=2045|itemcount=188|bgtype=1|showtips=1|name=星空晶石>
+<RText|id=8h|x=282.0|y=18.0|size=16|color=253|text=<╋/FCOLOR=243>>
+<Img|id=8k|children={8kk}|x=315.0|y=0.0|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=8kk|x=0.0|y=0.0|width=70|height=70|itemid=5401|itemcount=180000|bgtype=1|showtips=1|name=元宝>
+
+
+
+<Text|a=0|x=34.0|y=338.0|tipsx=10|tipsy=80|color=251|size=16|text=【提示】：锻造以上武器，衣服都100%成功,不建议锻造,打怪都可爆>
+<Text|a=0|x=114.0|y=358.0|tipsx=10|tipsy=80|color=254|size=16|text=各种高级BOSS，活动BOSS都可爆出>
+
+
+[@pc端合成]
+#IF
+CHECKBAGSIZE 2
+#ACT
+#ELSEACT
+SENDMSG 19 对不起，你的包裹空间不足，请先整理后再来。
+BREAK
+
+#IF
+true
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+
+#IFONE
+SMALL N$货币 180000
+!checkitem <$SCRIPTPARAM(2)> 5
+!checkitem <$SCRIPTPARAM(3)> 188
+#ACT
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 180000
+#ACT
+MONEY 绑定元宝 - 180000
+#ELSEACT
+MOV N$剩余 180000
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+#if
+TRUE
+#ACT
+take <$SCRIPTPARAM(2)> 5
+take <$SCRIPTPARAM(3)> 188
+give <$SCRIPTPARAM(1)> 1
+SENDMSG 26 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{星空神甲[5,22]}处，成功锻造出【<$SCRIPTPARAM(1)>】！！ 243
+sendmsg 14 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{星空神甲[5,22]}处，成功锻造出【<$SCRIPTPARAM(1)>】！！
+break
+;-------------------
+
+[@神武战甲合成]
+#IF
+!CheckBagSize 2
+#ACT
+SENDMSG 19 对不起，你的包裹空间不足，请先整理后再来。
+BREAK
+
+
+#IF
+TRUE
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+
+#IFONE
+SMALL N$货币 180000
+!checkitem 天魔战甲 5
+!checkitem 星空晶石 188
+#ACT
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 180000
+#ACT
+MONEY 绑定元宝 - 180000
+#ELSEACT
+MOV N$剩余 180000
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+#if
+TRUE
+#ACT
+take 天魔战甲 5
+take 星空晶石 188
+give 神武战甲 1
+SENDMSG 26 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{星空神甲[5,22]}处，成功锻造出【神甲{神武战甲}】！！ 243
+sendmsg 14 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{星空神甲[5,22]}处，成功锻造出【神甲{神武战甲}】！！
+break
+
+[@神武战袍合成]
+#IF
+!CheckBagSize 2
+#ACT
+SENDMSG 19 对不起，你的包裹空间不足，请先整理后再来。
+BREAK
+
+
+#IF
+TRUE
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+
+#IFONE
+SMALL N$货币 180000
+!checkitem 圣战战甲 5
+!checkitem 星空晶石 188
+#ACT
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 180000
+#ACT
+MONEY 绑定元宝 - 180000
+#ELSEACT
+MOV N$剩余 180000
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+#if
+TRUE
+#ACT
+take 圣战战甲 5
+take 星空晶石 188
+give 神武战袍 1
+SENDMSG 26 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{星空神甲[5,22]}处，成功锻造出【神甲{神武战袍}】！！ 243
+sendmsg 14 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{星空神甲[5,22]}处，成功锻造出【神甲{神武战袍}】！！
+break
+
+
+[@幻魔披风合成]
+#IF
+!CheckBagSize 2
+#ACT
+SENDMSG 19 对不起，你的包裹空间不足，请先整理后再来。
+BREAK
+
+
+#IF
+TRUE
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+
+#IFONE
+SMALL N$货币 180000
+!checkitem 法神披风 5
+!checkitem 星空晶石 188
+#ACT
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 180000
+#ACT
+MONEY 绑定元宝 - 180000
+#ELSEACT
+MOV N$剩余 180000
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+#if
+TRUE
+#ACT
+take 法神披风 5
+take 星空晶石 188
+give 幻魔披风 1
+SENDMSG 26 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{星空神甲[5,22]}处，成功锻造出【神甲{幻魔披风}】！！ 243
+sendmsg 14 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{星空神甲[5,22]}处，成功锻造出【神甲{幻魔披风}】！！
+break
+
+[@幻魔羽衣合成]
+#IF
+!CheckBagSize 2
+#ACT
+SENDMSG 19 对不起，你的包裹空间不足，请先整理后再来。
+BREAK
+
+
+#IF
+TRUE
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+
+#IFONE
+SMALL N$货币 180000
+!checkitem 法神羽衣 5
+!checkitem 星空晶石 188
+#ACT
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 180000
+#ACT
+MONEY 绑定元宝 - 180000
+#ELSEACT
+MOV N$剩余 180000
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+#if
+TRUE
+#ACT
+take 法神羽衣 5
+take 星空晶石 188
+give 幻魔羽衣 1
+SENDMSG 26 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{星空神甲[5,22]}处，成功锻造出【神甲{幻魔羽衣}】！！ 243
+sendmsg 14 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{星空神甲[5,22]}处，成功锻造出【神甲{幻魔羽衣}】！！
+break
+
+
+[@天玄道袍合成]
+#IF
+!CheckBagSize 2
+#ACT
+SENDMSG 19 对不起，你的包裹空间不足，请先整理后再来。
+BREAK
+
+
+#IF
+TRUE
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+
+#IFONE
+SMALL N$货币 180000
+!checkitem 天尊道袍 5
+!checkitem 星空晶石 188
+#ACT
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 180000
+#ACT
+MONEY 绑定元宝 - 180000
+#ELSEACT
+MOV N$剩余 180000
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+#if
+TRUE
+#ACT
+take 天尊道袍 5
+take 星空晶石 188
+give 天玄道袍 1
+SENDMSG 26 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{星空神甲[5,22]}处，成功锻造出【神甲{天玄道袍}】！！ 243
+sendmsg 14 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{星空神甲[5,22]}处，成功锻造出【神甲{天玄道袍}】！！
+break
+
+[@天玄道衣合成]
+#IF
+!CheckBagSize 2
+#ACT
+SENDMSG 19 对不起，你的包裹空间不足，请先整理后再来。
+BREAK
+
+
+#IF
+TRUE
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+
+#IFONE
+SMALL N$货币 180000
+!checkitem 天师道袍 5
+!checkitem 星空晶石 188
+#ACT
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 180000
+#ACT
+MONEY 绑定元宝 - 180000
+#ELSEACT
+MOV N$剩余 180000
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+#if
+TRUE
+#ACT
+take 天师道袍 5
+take 星空晶石 188
+give 天玄道衣 1
+SENDMSG 26 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{星空神甲[5,22]}处，成功锻造出【神甲{天玄道衣}】！！ 243
+sendmsg 14 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{星空神甲[5,22]}处，成功锻造出【神甲{天玄道衣}】！！
+break
+
+[@屠龙T]
+#IF
+!CheckBagSize 2
+#ACT
+SENDMSG 19 对不起，你的包裹空间不足，请先整理后再来。
+BREAK
+
+#IF
+TRUE
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+
+#IFONE
+SMALL N$货币 180000
+!checkitem 雷霆怒斩 5
+!checkitem 星空晶石 188
+#ACT
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 180000
+#ACT
+MONEY 绑定元宝 - 180000
+#ELSEACT
+MOV N$剩余 180000
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+#if
+; checkitem 雷霆怒斩 5
+; checkitem 星空晶石 188
+; CHECKGAMEGOLD > 179999
+TRUE
+#ACT
+take 雷霆怒斩 5
+take 星空晶石 188
+; GAMEGOLD - 180000
+give 屠龙刀 1
+SENDMSG 26 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{神兵利器[7,24]}处，成功锻造出{屠龙刀}！！ 243
+sendmsg 14 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{神兵利器[7,24]}处，成功锻造出{屠龙刀}！！
+; #ELSEACT
+; sendmsg 19 [提示]：你的材料或元宝不够！
+; break
+
+[@嗜魂S]
+#IF
+!CheckBagSize 2
+#ACT
+SENDMSG 19 对不起，你的包裹空间不足，请先整理后再来。
+BREAK
+
+
+#IF
+TRUE
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+
+#IFONE
+SMALL N$货币 180000
+!checkitem 龙牙利刃 5
+!checkitem 星空晶石 188
+#ACT
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 180000
+#ACT
+MONEY 绑定元宝 - 180000
+#ELSEACT
+MOV N$剩余 180000
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+#if
+; checkitem 龙牙利刃 5
+; checkitem 星空晶石 188
+; CHECKGAMEGOLD > 179999
+TRUE
+#ACT
+take 龙牙利刃 5
+take 星空晶石 188
+; GAMEGOLD - 180000
+give 嗜魂 1
+SENDMSG 26 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{神兵利器[7,24]}处，成功锻造出{嗜魂}！！ 243
+sendmsg 14 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{神兵利器[7,24]}处，成功锻造出{嗜魂}！！
+; #ELSEACT
+; sendmsg 19 [提示]：你的材料或元宝不够！
+; break
+
+[@倚天Y]
+#IF
+!CheckBagSize 2
+#ACT
+SENDMSG 19 对不起，你的包裹空间不足，请先整理后再来。
+BREAK
+
+
+#IF
+TRUE
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+
+#IFONE
+SMALL N$货币 180000
+!checkitem 逍遥无极扇 5
+!checkitem 星空晶石 188
+#ACT
+sendmsg 19 [提示]：你的材料或元宝不够！
+break
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 180000
+#ACT
+MONEY 绑定元宝 - 180000
+#ELSEACT
+MOV N$剩余 180000
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+#if
+; checkitem 逍遥无极扇 5
+; checkitem 星空晶石 188
+; CHECKGAMEGOLD > 179999
+TRUE
+#ACT
+take 逍遥无极扇 5
+take 星空晶石 188
+; GAMEGOLD - 180000
+give 倚天剑 1
+SENDMSG 26 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{神兵利器[7,24]}处，成功锻造出{倚天剑}！！ 243
+sendmsg 14 【系统】：恭喜玩家{[<$USERNAME>]}在天机阁NPC{神兵利器[7,24]}处，成功锻造出{倚天剑}！！
+; #ELSEACT
+; sendmsg 19 [提示]：你的材料或元宝不够！
+; break

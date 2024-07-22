@@ -1,0 +1,99 @@
+[@main]
+#If
+equal <$STR(A50)>
+#ACT
+MOV S$沙城所有者 ？？？
+MOV S$沙城所有者行会 ？？？
+#elseACT
+MOV S$沙城所有者 <$STR(A50)>
+MOV S$沙城所有者行会 <$STR(A51)>
+#If
+equal $CLIENTFLAG 1
+#act
+goto @端游界面
+#elseact
+goto @手游界面
+
+[@端游界面] NPC(65106)
+#IF
+true
+#ACT
+#SAY
+<@@!BTN 3,63206,3,63206,3,63217,535,-25,关闭/@EXIT>\
+<offx=|180|y=|-5|fontsize=|20|font=|0|><color=FFAE00      沙城争霸><|off>\
+<offx=|20|y=|35|fontsize=|18|font=|0|><color=FFAE00 传奇世界，群雄逐鹿。每一次的沙城争霸战都将铭记于史册！><|off>\
+<offx=|20|y=|10|fontsize=|18|font=|0|><color=FFAE00 当前沙城归属于：由<$STR(S$沙城所有者)>领导的<$STR(S$沙城所有者行会)>><|off>\
+<offx=|20|y=|10|fontsize=|18|font=|0|><color=FFAE00 攻城时间：新区第二天合区，第三天集体攻城><|off>\
+<offx=|20|y=|10|fontsize=|18|font=|0|><color=FFAE00 二合区合区后的第二天，集体攻城，其后每天攻城至三合区><|off>\
+<offx=|20|y=|10|fontsize=|18|font=|0|><color=FFAE00 三合区后，每周一、三、五、六自动攻城><|off>\
+<offx=|20|y=|10|fontsize=|18|font=|0|><color=FFAE00 注意：攻城当天，19:00后创建的行会无法参与攻占沙城><|off>\
+
+<@@!BTN 3,65012,3,65013,3,65013,25,100,/@沙城门口>\
+<@@!BTN 3,65012,3,65013,3,65013,200,-43,/@沙城复活点>\
+<@@!BTN 3,65012,3,65013,3,65013,375,-43,/@端游攻城规则>\
+<offx=|0|y=|-30|fontsize=|20|font=|0|><color=FFAE00      沙城门口><|off>\
+<offx=|175|y=|-30|fontsize=|20|font=|0|><color=FFAE00      沙城复活点><|off>\
+<offx=|350|y=|-30|fontsize=|20|font=|0|><color=FFAE00      攻城规则><|off>\
+
+[@手游界面]
+#IF
+TRUE
+#SAY
+<Button|id=0|x=483.0|y=0.0|nimg=public/025.png|color=255|scale=1|link=@exit>
+<Img|x=0.0|y=1.0|width=510|height=400|reset=1|esc=1|bg=1|move=0|img=public/hecheng/60259.png|loadDelay=1|_localZOrder=-2|show=0>
+<RText|id=10|x=200.0|y=20.0|color=161|size=15|text=　 沙城争霸>
+<RText|id=11|x=20.0|y=50.0|color=161|size=15|text=传奇世界，群雄逐鹿。每一次的沙城争霸战都将铭记于史册！>
+<RText|id=12|x=20.0|y=80.0|color=161|size=15|text=当前沙城归属于：由<$STR(S$沙城所有者)>领导的<$STR(S$沙城所有者行会)>>
+<RText|id=13|x=20.0|y=140.0|color=161|size=15|text=攻城时间：新区第二天合区，第三天集体攻城>
+<RText|id=14|x=95.0|y=170.0|color=161|size=15|text=二合区合区后的第二天，集体攻城，其后每天攻城至三合区>
+<RText|id=15|x=95.0|y=200.0|color=161|size=15|text=三合区后，每周一、三、五、六自动攻城>
+<RText|id=16|x=20.0|y=230.0|color=161|size=15|text=注意：攻城当天，19:00后创建的行会无法参与攻占沙城>
+<Button|id=17|a=4|x=20|y=300|width=100|height=34|pimg=public/an_npc2.png|outlinecolor=0|nimg=public/an_npc1.png|outline=2|size=16|color=251|text=沙城门口|link=@沙城门口>
+<Button|id=18|a=4|x=180|y=300|width=100|height=34|pimg=public/an_npc2.png|outlinecolor=0|nimg=public/an_npc1.png|outline=2|size=16|color=251|text=沙城复活点|link=@沙城复活点>
+<Button|id=19|a=4|x=340|y=300|width=100|height=34|pimg=public/an_npc2.png|outlinecolor=0|nimg=public/an_npc1.png|outline=2|size=16|color=251|text=攻城规则|link=@攻城规则>
+
+[@沙城门口]
+#IF
+true
+#ACT        
+mapmove 3 213 424 3		
+[@沙城复活点]			
+#IF
+true
+#ACT		
+MAPMOVE 3 178 384 3			     
+[@攻城规则]					     
+#IF
+true
+#say			
+<Button|id=0|x=483.0|y=0.0|nimg=public/025.png|color=255|scale=1|link=@exit>
+<Img|x=0.0|y=1.0|width=510|height=400|reset=1|esc=1|bg=1|move=0|img=public/hecheng/60259.png|loadDelay=1|_localZOrder=-2|show=0>
+<RText|id=10|x=20.0|y=20.0|color=161|size=15|text=攻城规则内容如下>
+<RText|id=11|x=20.0|y=50.0|color=161|size=15|text=奖励说明：>
+<RText|id=12|x=20.0|y=80.0|color=161|size=15|text=1、同一天新区合区攻城，奖励10万元宝>
+<RText|id=13|x=20.0|y=110.0|color=161|size=15|text=2、二合区合区后第二天攻城，奖励5万元宝>
+<RText|id=14|x=20.0|y=140.0|color=161|size=15|text=3、三合区及后续战区合区攻城，奖励5万元宝>
+<RText|id=15|x=20.0|y=200.0|color=161|size=15|text=奖励发放：>
+<RText|id=16|x=20.0|y=230.0|color=161|size=15|text=攻城结束后21:01~21:30分内行会老大在皇宫领取发放奖励，>
+<RText|id=17|x=20.0|y=260.0|color=161|size=15|text=所得奖励，皇宫内所有行会成员平分>
+<RText|id=18|x=20.0|y=290.0|color=161|size=15|text=奖励发放时间内，请确保行会会长及行会成员在线且在皇宫内，>
+<RText|id=19|x=20.0|y=320.0|color=161|size=15|text=不在皇宫的会长或成员将无法获得奖励！>
+
+[@端游攻城规则] NPC(65106)
+#IF
+true
+#ACT
+#SAY
+<@@!BTN 3,63206,3,63206,3,63217,535,-25,关闭/@EXIT>\
+<offx=|180|y=|-5|fontsize=|20|font=|0|><color=FFAE00      攻城规则><|off>\
+
+<offx=|10|y=|35|fontsize=|20|font=|0|><color=FFAE00 攻城规则内容如下><|off>\
+<offx=|10|y=|10|fontsize=|20|font=|0|><color=FFAE00   奖励说明：><|off>\
+<offx=|10|y=|10|fontsize=|20|font=|0|><color=FFAE00      1、同一天新区合区攻城，奖励10万元宝><|off>\
+<offx=|10|y=|10|fontsize=|20|font=|0|><color=FFAE00      2、二合区合区后第二天攻城，奖励5万元宝><|off>\
+<offx=|10|y=|10|fontsize=|20|font=|0|><color=FFAE00      3、三合区及后续战区合区攻城，奖励5万元宝><|off>\
+<offx=|10|y=|10|fontsize=|20|font=|0|><color=FFAE00   奖励发放：><|off>\
+<offx=|10|y=|10|fontsize=|20|font=|0|><color=FFAE00      攻城结束后21:01~21:30分内行会老大在皇宫领取发放><|off>\
+<offx=|10|y=|10|fontsize=|20|font=|0|><color=FFAE00      奖励，所得奖励，皇宫内所有行会成员平分><|off>\
+<offx=|10|y=|10|fontsize=|20|font=|0|><color=FFAE00      奖励发放时间内，请确保行会会长及行会成员在线且在><|off>\
+<offx=|10|y=|10|fontsize=|20|font=|0|><color=FFAE00      皇宫内，不在皇宫的会长或成员将无法获得奖励！><|off>\

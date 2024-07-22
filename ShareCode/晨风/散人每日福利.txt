@@ -1,0 +1,93 @@
+[@main]
+#IF
+equal $clientflag 1
+#Act
+goto @pc界面
+#elseact
+Goto @手游界面
+
+[@pc界面] NPC(65106)
+#IF
+true
+#ACT
+#SAY
+<@@!BTN 3,63206,3,63206,3,63217,535,-25,关闭/@EXIT>\
+<offx=|220|y=|-5|fontsize=|20|font=|0|><color=FFAE00 散人每日福利><|off>\
+
+<offx=|20|y=|40|fontsize=|16|font=|0|><color=fffffb 每日杀怪奖励：><color=00ff00 5000万经验>+<color=faa755 3000绑定元宝><|off>\
+<offx=|20|y=|10|fontsize=|16|font=|0|>  <color=fffffb 炼狱7层杀怪数量：><color=00ff00 <$HUMAN(炼狱7层杀怪数量)>>/100<|off>\
+<offx=|20|y=|10|fontsize=|16|font=|0|>  <color=fffffb 炼狱8层杀怪数量：><color=00ff00 <$HUMAN(炼狱8层杀怪数量)>>/100<|off>\
+<offx=|20|y=|10|fontsize=|16|font=|0|>  <color=fffffb 炼狱9层杀怪数量：><color=00ff00 <$HUMAN(炼狱9层杀怪数量)>>/100<|off>\
+<offx=|20|y=|10|fontsize=|16|font=|0|><color=fffffb 每日BOSS积分奖励：><color=00ff00 1亿经验>+<color=faa755 5000绑定元宝><|off>\
+<offx=|20|y=|10|fontsize=|16|font=|0|>  <color=fffffb 领取条件：><color=faa755 使用300积分兑换>(<color=00ff00 <$HUMAN(BOSS积分)>>/300)<|off>\
+<offx=|20|y=|10|fontsize=|16|font=|0|>  <color=fffffb 击杀>(<color=faa755 ★>)<color=fffffb BOSS:积分><color=00ff00 +20><|off>\
+<offx=|20|y=|10|fontsize=|16|font=|0|>  <color=fffffb 击杀>(<color=faa755 ★★>)<color=fffffb BOSS:积分><color=00ff00 +30><|off>\
+<offx=|20|y=|10|fontsize=|16|font=|0|>  <color=fffffb 击杀>(<color=faa755 ★★★>)<color=fffffb BOSS:积分><color=00ff00 +50><|off>\
+<offx=|20|y=|10|fontsize=|16|font=|0|>  <color=fffffb 击杀>(<color=faa755 ★★★★>)<color=fffffb BOSS:积分><color=00ff00 +80><|off>\
+<offx=|20|y=|10|fontsize=|16|font=|0|>  <color=fffffb 击杀>(<color=faa755 ★★★★★>)<color=fffffb BOSS:积分><color=00ff00 +150><|off>\
+
+<@@!BTN 3,60381,3,60382,3,60382,400,-230,/@领取杀怪奖励>\
+<@@!BTN 3,60381,3,60382,3,60382,400,-70,/@领取BOSS奖励>\
+<offx=|405|y=|-220|fontsize=|16|font=|0|><color=faa755 领取杀怪奖励><|off>\
+<offx=|405|y=|-60|fontsize=|16|font=|0|><color=faa755 兑换积分奖励><|off>\
+
+
+[@手游界面]
+#IF
+True
+#SAY
+<Button|id=0|x=433.0|y=0.0|nimg=public/025.png|color=255|scale=1|link=@exit>
+<Img|x=0.0|y=1.0|width=480|height=300|reset=1|esc=1|bg=1|move=0|img=public/hecheng/60259.png|loadDelay=1|_localZOrder=-2|show=0>
+<RText|id=18|x=20.0|y=20.0|color=161|size=15|text=每日杀怪奖励：          5000万经验+3000绑定元宝>
+<RText|id=10|x=40.0|y=50.0|color=161|size=15|text=<炼狱7层杀怪数量：/FCOLOR=161><<$HUMAN(炼狱7层杀怪数量)>/FCOLOR=249></100/FCOLOR=250>>
+<RText|id=11|x=40.0|y=80.0|color=161|size=15|text=<炼狱8层杀怪数量：/FCOLOR=161><<$HUMAN(炼狱8层杀怪数量)>/FCOLOR=249></100/FCOLOR=250>>
+<RText|id=12|x=40.0|y=110.0|color=161|size=15|text=<炼狱9层杀怪数量：/FCOLOR=161><<$HUMAN(炼狱9层杀怪数量)>/FCOLOR=249></100/FCOLOR=250>>
+<Button|id=13|a=4|x=311|y=100|width=110|height=34|pimg=public/an_npc2.png|outlinecolor=0|nimg=public/an_npc1.png|outline=2|size=16|color=251|text=领取杀怪奖励|link=@领取杀怪奖励>
+
+<RText|id=14|x=20.0|y=140.0|color=161|size=15|text=每日BOSS积分奖励：1亿经验+5000绑定元宝>
+<RText|id=15|x=40.0|y=170.0|color=161|size=15|text=<领取条件：/FCOLOR=161><<$HUMAN(BOSS积分)>/FCOLOR=249></300/FCOLOR=250><使用300积分兑换/FCOLOR=161>>
+<Button|id=16|a=4|x=311|y=190|width=110|height=34|pimg=public/an_npc2.png|outlinecolor=0|nimg=public/an_npc1.png|outline=2|size=16|color=251|text=兑换积分奖励|link=@领取BOSS奖励>
+<RText|id=1|x=20.0|y=210.0|color=161|size=15|text=<击杀(/FCOLOR=161><★/FCOLOR=254><)BOSS：积分+/FCOLOR=161><20/FCOLOR=250>>
+<RText|id=2|x=20.0|y=230.0|color=161|size=15|text=<击杀(/FCOLOR=161><★★/FCOLOR=253><)BOSS：积分+/FCOLOR=161><30/FCOLOR=250>>
+<RText|id=3|x=20.0|y=250.0|color=161|size=15|text=<击杀(/FCOLOR=161><★★★/FCOLOR=70><)BOSS：积分+/FCOLOR=161><50/FCOLOR=250>>
+<RText|id=4|x=220.0|y=210.0|color=161|size=15|text=<击杀(/FCOLOR=161><★★★★/FCOLOR=249><)BOSS：积分+/FCOLOR=161><80/FCOLOR=250>>
+<RText|id=5|x=220.0|y=230.0|color=161|size=15|text=<击杀(/FCOLOR=161><★★★★★/FCOLOR=18><)BOSS：积分+/FCOLOR=161><150/FCOLOR=250>>
+[@领取杀怪奖励]
+#IF
+large <$HUMAN(炼狱7层杀怪数量)> 99
+large <$HUMAN(炼狱8层杀怪数量)> 99
+large <$HUMAN(炼狱9层杀怪数量)> 99
+#elseact
+sendmsg 15 杀怪数量不足！
+Break
+#IF
+LARGE <$HUMAN(每日杀怪领取)> 0
+#Act
+SENDMSG 15 今日已领取过奖励，无法重复领取，请明日再来！
+Break
+#ELSEACT
+CHANGEEXP + 50000000
+MONEY 绑定元宝 + 3000
+Calcvar HUMAN 每日杀怪领取 + 1
+Savevar HUMAN 每日杀怪领取
+sendmsg 15 每日杀怪奖励已发送！
+delTask 20002
+[@领取BOSS奖励]
+#IF
+large <$HUMAN(BOSS积分)> 299
+#elseact
+sendmsg 15 BOSS积分不足！
+Break
+#IF
+LARGE <$HUMAN(每日BOSS领取)> 0
+#Act
+SENDMSG 15 今日已领取过奖励，无法重复领取，请明日再来！
+Break
+#ELSEACT
+CHANGEEXP + 100000000
+MONEY 绑定元宝 + 5000
+Calcvar HUMAN 每日BOSS领取 + 1
+Savevar HUMAN 每日BOSS领取
+Calcvar HUMAN BOSS积分 - 300
+Savevar HUMAN BOSS积分 
+sendmsg 15 每日BOSS积分奖励已发送！

@@ -1,0 +1,475 @@
+[@main]
+#IF
+EQUAL $CLIENTFLAG 1
+#ACT
+GOTO @pc界面
+#IF
+!EQUAL $CLIENTFLAG 1
+#ACT
+GOTO @手游界面
+
+
+[@pc界面] NPC(63632)
+#IF
+true
+#ACT
+MOV N$剩余名额45 70
+DEC N$剩余名额45 <$STR(G73)>
+MOV N$剩余名额48 55
+DEC N$剩余名额48 <$STR(G74)>
+MOV N$剩余名额51 42
+DEC N$剩余名额51 <$STR(G75)>
+MOV N$剩余名额54 32
+DEC N$剩余名额54 <$STR(G76)>
+MOV N$剩余名额57 16
+DEC N$剩余名额57 <$STR(G77)>
+MOV N$剩余名额60 8
+DEC N$剩余名额60 <$STR(G78)>
+MOV N$剩余名额63 3
+DEC N$剩余名额63 <$STR(G79)>
+#SAY
+<@@!BTN 3,63206,3,63206,3,63217,430,-25,关闭/@EXIT>\
+<offx=|180|y=|-16|fontsize=|18|font=|0|><color=FFAE00 等级奖励><|off>\
+;------字体底色
+<offx=|7|y=|35|><@@!PIC2 3,50316,0,0><|off>\
+<offx=|7|y=|35|><@@!PIC2 3,50316,0,0><|off>\
+<offx=|7|y=|35|><@@!PIC2 3,50316,0,0><|off>\
+<offx=|7|y=|35|><@@!PIC2 3,50316,0,0><|off>\
+<offx=|7|y=|35|><@@!PIC2 3,50316,0,0><|off>\
+<offx=|7|y=|35|><@@!PIC2 3,50316,0,0><|off>\
+<offx=|7|y=|35|><@@!PIC2 3,50316,0,0><|off>\
+;------内容
+<offx=|5|y=|-380|fontsize=|16|font=|0|><color=ef4136 条件:><color=00ff00 等级达到45级>  <|off>\
+<offx=|5|y=|-320|fontsize=|16|font=|0|><color=ef4136 条件:><color=00ff00 等级达到48级>  <|off>\
+<offx=|5|y=|-260|fontsize=|16|font=|0|><color=ef4136 条件:><color=00ff00 等级达到51级>  <|off>\
+<offx=|5|y=|-200|fontsize=|16|font=|0|><color=ef4136 条件:><color=00ff00 等级达到54级>  <|off>\
+<offx=|5|y=|-140|fontsize=|16|font=|0|><color=ef4136 条件:><color=00ff00 等级达到57级>  <|off>\
+<offx=|5|y=|-80|fontsize=|16|font=|0|><color=ef4136 条件:><color=00ff00 等级达到60级>  <|off>\
+<offx=|5|y=|-20|fontsize=|16|font=|0|><color=ef4136 条件:><color=00ff00 等级达到63级>  <|off>\
+;------道具框
+<offx=|170|y=|-398|><@@!PIC2 3,63309,0,0><|off>\
+<offx=|170|y=|-338|><@@!PIC2 3,63309,0,0><|off>\
+<offx=|170|y=|-277|><@@!PIC2 3,63309,0,0><|off>\
+<offx=|170|y=|-215|><@@!PIC2 3,63309,0,0><|off>\
+<offx=|170|y=|-155|><@@!PIC2 3,63309,0,0><|off>\
+<offx=|170|y=|-95|><@@!PIC2 3,63309,0,0><|off>\
+<offx=|170|y=|-35|><@@!PIC2 3,63309,0,0><|off>\
+;------物品
+<offx=|180|y=|-405|></@@!PIC 月光宝盒(大),1,0,0> <|off>\
+<offx=|180|y=|-345|></@@!PIC 点精石,1,0,0> <|off>\
+<offx=|180|y=|-285|></@@!PIC 绑定元宝,1,0,0> <|off>\
+<offx=|180|y=|-220|></@@!PIC 祝福神油,1,0,0> <|off>\
+<offx=|180|y=|-160|></@@!PIC 命魂宝箱,1,0,0> <|off>\
+<offx=|180|y=|-102|></@@!PIC 爆率勋章(1.5倍),1,0,0> <|off>\
+<offx=|180|y=|-40|></@@!PIC 天地宝石(臻),1,0,0> <|off>\
+;物品数量
+<offx=|205|y=|-385|fontsize=|14|font=|0|><color=green 3><|off>\
+<offx=|200|y=|-325|fontsize=|14|font=|0|><color=green 30><|off>\
+<offx=|190|y=|-262|fontsize=|14|font=|0|><color=green 1000><|off>\
+<offx=|200|y=|-202|fontsize=|14|font=|0|><color=green 15><|off>\
+<offx=|205|y=|-142|fontsize=|14|font=|0|><color=green 5><|off>\
+;------名额
+<offx=|245|y=|-395|fontsize=|16|font=|0|><color=ef4136 剩余名额:><color=00ff00 <$STR(N$剩余名额45)>>  <|off>\
+<offx=|245|y=|-338|fontsize=|16|font=|0|><color=ef4136 剩余名额:><color=00ff00 <$STR(N$剩余名额48)>>  <|off>\
+<offx=|245|y=|-275|fontsize=|16|font=|0|><color=ef4136 剩余名额:><color=00ff00 <$STR(N$剩余名额51)>>  <|off>\
+<offx=|245|y=|-215|fontsize=|16|font=|0|><color=ef4136 剩余名额:><color=00ff00 <$STR(N$剩余名额54)>>  <|off>\
+<offx=|245|y=|-155|fontsize=|16|font=|0|><color=ef4136 剩余名额:><color=00ff00 <$STR(N$剩余名额57)>>  <|off>\
+<offx=|245|y=|-95|fontsize=|16|font=|0|><color=ef4136 剩余名额:><color=00ff00 <$STR(N$剩余名额60)>>  <|off>\
+<offx=|245|y=|-35|fontsize=|16|font=|0|><color=ef4136 剩余名额:><color=00ff00 <$STR(N$剩余名额63)>>  <|off>\
+;------按钮
+<@@!BTN 3,64202,3,64202,3,64201,350,-410,领取奖励/@4J45>\
+<@@!BTN 3,64202,3,64202,3,64201,350,-350,领取奖励/@4J48>\
+<@@!BTN 3,64202,3,64202,3,64201,350,-285,领取奖励/@4J51>\
+<@@!BTN 3,64202,3,64202,3,64201,350,-225,领取奖励/@4J54>\
+<@@!BTN 3,64202,3,64202,3,64201,350,-165,领取奖励/@4J57>\
+<@@!BTN 3,64202,3,64202,3,64201,350,-105,领取奖励/@4J60>\
+<@@!BTN 3,64202,3,64202,3,64201,350,-45,领取奖励/@4J63>\
+;------纯文字
+<offx=|360|y=|-400|fontsize=|16|font=|0|><color=ffd400 领取奖励><|off>\
+<offx=|360|y=|-340|fontsize=|16|font=|0|><color=ffd400 领取奖励><|off>\
+<offx=|360|y=|-275|fontsize=|16|font=|0|><color=ffd400 领取奖励><|off>\
+<offx=|360|y=|-215|fontsize=|16|font=|0|><color=ffd400 领取奖励><|off>\
+<offx=|360|y=|-155|fontsize=|16|font=|0|><color=ffd400 领取奖励><|off>\
+<offx=|360|y=|-95|fontsize=|16|font=|0|><color=ffd400 领取奖励><|off>\
+<offx=|360|y=|-35|fontsize=|16|font=|0|><color=ffd400 领取奖励><|off>\
+
+<offx=|110|y=|10|fontsize=|14|font=|0|><color=33a3dc 等级奖励●仅限新区●合区后关闭><|off>\
+
+[@手游界面] 
+#IF 
+true
+#ACT
+#SAY
+; <Img|children={0,2,3,4}|x=1.0|y=1.0|width=600|loadDelay=1|reload=1|bg=1|move=0|esc=0|img=public/bg_npc1.png|reset=1>
+; <Button|id=0|x=555.0|y=-5.0|nimg=public/025.png|color=255|scale=1|link=@exit>
+<Img|children={a,0,1,2,3,4,5,6,7}|x=250.0|y=69.0|width=605|height=440|esc=1|loadDelay=0|bg=1|move=0|reset=1|img=public/frame/frame_squared_outside.png|show=0>
+<Button|id=0|x=560.0|y=-5.0|nimg=public/025.png|size=18|color=255|link=@exit>
+<Img|id=a|x=10.0|y=34.0|width=585|height=396|img=public/frame/bg_content_01.png|scale=1>
+; <Text|id=2|x=251.0|y=19.0|size=20|color=251|text=等级奖励>
+<Text|id=2|x=170.0|y=395.0|color=249|size=17|text=等级奖励●仅限新区●合区后关闭>
+<Layout|id=3|children={3a,3b,3c,3d}|x=70|y=40|color=255>
+<RText|id=3a|a=2|x=30|y=0|color=243|size=18|text=等级条件>
+<RText|id=3b|a=2|x=180|y=0|color=243|size=18|text=奖励>
+<RText|id=3c|a=2|x=290|y=0|color=243|size=18|text=名额>
+<RText|id=3d|a=2|x=440|y=0|color=243|size=18|text=领取>
+<ListView|id=4|children={90,91,92,93,94,95,96}|a=4|ay=0|x=23.0|y=382.0|width=552.0|height=310|color=x|img=public/down.png|direction=1|margin=1|bounce=1>
+<Img|id=90|children={10,11,12,13,15,16}|x=-1.0|y=0.0|width=556|height=60|scale9l=0|scale9b=0|scale=1|scale9r=0|esc=0|img=public/fuli/kuang.png|scale9t=0>
+; <Img|id=10|x=9.0|y=17.0|img=public/bg_npcgg1.png|scale=1|esc=0>
+<Button|id=11|x=438.0|y=9.0|width=100|height=43.0|nimg=public/016.png|color=255|size=18|pimg=public/017.png|scale=1|text=领    取|link=@4J45>
+<RText|id=12|x=23.0|y=16.0|size=18|color=255|text=<等级达到/FCOLOR=215><45/FCOLOR=251><级/FCOLOR=215>>
+<RText|id=13|x=320.0|y=19.0|color=69|size=18|text=<<$STR(G73)>/FCOLOR=249>/<70/FCOLOR=250>>
+<Img|id=15|x=196.0|y=-1.0|width=60|height=60|esc=0|img=public/fuli/w.png|scale=1>
+<ItemShow|id=16|x=193.0|y=-5.0|width=70|height=70|itemid=1029|itemcount=3|name=月光宝盒(大)|showtips=1|bgtype=1>
+<Img|id=91|children={20,21,22,23,25,26}|x=23.0|y=123.0|width=556|height=60|scale9t=0|scale9r=0|scale=1|esc=0|img=public/fuli/kuang.png|scale9b=0|scale9l=0>
+; <Img|id=20|x=9.0|y=17.0|img=public/bg_npcgg1.png|scale=1|esc=0>
+<Button|id=21|x=438.0|y=9.0|width=100|height=43.0|nimg=public/016.png|color=255|size=18|scale=1|pimg=public/017.png|text=领    取|link=@4J48>
+<RText|id=22|x=23.0|y=16.0|size=18|color=255|text=<等级达到/FCOLOR=215><48/FCOLOR=251><级/FCOLOR=215>>
+<RText|id=23|x=320.0|y=19.0|color=69|size=18|text=<<$STR(G74)>/FCOLOR=249>/<55/FCOLOR=250>>
+<Img|id=25|x=196.0|y=-1.0|width=60|height=60|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=26|x=193.0|y=-5.0|width=70|height=70|itemid=1022|itemcount=30|name=点精石|showtips=1|bgtype=1>
+<Img|id=92|children={30,31,32,33,35,36}|x=23.0|y=123.0|width=556|height=60|scale9t=0|scale9r=0|scale=1|esc=0|img=public/fuli/kuang.png|scale9b=0|scale9l=0>
+; <Img|id=30|x=9.0|y=17.0|img=public/bg_npcgg1.png|scale=1|esc=0>
+<Button|id=31|x=438.0|y=9.0|width=100|height=43.0|nimg=public/016.png|color=255|size=18|scale=1|pimg=public/017.png|text=领    取|link=@4J51>
+<RText|id=32|x=23.0|y=16.0|size=18|color=255|text=<等级达到/FCOLOR=215><51/FCOLOR=251><级/FCOLOR=215>>
+<RText|id=33|x=320.0|y=19.0|color=69|size=18|text=<<$STR(G75)>/FCOLOR=249>/<42/FCOLOR=250>>
+<Img|id=35|x=196.0|y=-1.0|width=60|height=60|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=36|x=193.0|y=-5.0|width=70|height=70|itemid=4|itemcount=1000|name=绑定元宝|showtips=1|bgtype=1>
+<Img|id=93|children={40,41,42,43,45,46}|x=23.0|y=123.0|width=556|height=60|scale9t=0|scale9r=0|scale=1|esc=0|img=public/fuli/kuang.png|scale9b=0|scale9l=0>
+; <Img|id=40|x=9.0|y=17.0|img=public/bg_npcgg1.png|scale=1|esc=0>
+<Button|id=41|x=438.0|y=9.0|width=100|height=43.0|nimg=public/016.png|color=255|size=18|scale=1|pimg=public/017.png|text=领    取|link=@4J54>
+<RText|id=42|x=23.0|y=16.0|size=18|color=255|text=<等级达到/FCOLOR=215><54/FCOLOR=251><级/FCOLOR=215>>
+<RText|id=43|x=320.0|y=19.0|color=69|size=18|text=<<$STR(G76)>/FCOLOR=249>/<32/FCOLOR=250>>
+<Img|id=45|x=196.0|y=-1.0|width=60|height=60|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=46|x=193.0|y=-5.0|width=70|height=70|itemid=106|itemcount=15|name=祝福神油|showtips=1|bgtype=1>
+<Img|id=94|children={50,51,52,53,55,56}|x=23.0|y=123.0|width=556|height=60|scale9t=0|scale9r=0|scale=1|esc=0|img=public/fuli/kuang.png|scale9b=0|scale9l=0>
+; <Img|id=50|x=9.0|y=17.0|img=public/bg_npcgg1.png|scale=1|esc=0>
+<Button|id=51|x=438.0|y=9.0|width=100|height=43.0|nimg=public/016.png|color=255|size=18|scale=1|pimg=public/017.png|text=领    取|link=@4J57>
+<RText|id=52|x=23.0|y=16.0|size=18|color=255|text=<等级达到/FCOLOR=215><57/FCOLOR=251><级/FCOLOR=215>>
+<RText|id=53|x=320.0|y=19.0|color=69|size=18|text=<<$STR(G77)>/FCOLOR=249>/<16/FCOLOR=250>>
+<Img|id=55|x=196.0|y=-1.0|width=60|height=60|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=56|x=193.0|y=-5.0|width=70|height=70|itemid=1166|itemcount=5|name=命魂宝箱|showtips=1|bgtype=1>
+<Img|id=95|children={60,61,62,63,65,66}|x=23.0|y=123.0|width=556|height=60|scale9t=0|scale9r=0|scale=1|esc=0|img=public/fuli/kuang.png|scale9b=0|scale9l=0>
+; <Img|id=60|x=9.0|y=17.0|img=public/bg_npcgg1.png|scale=1|esc=0>
+<Button|id=61|x=438.0|y=9.0|width=100|height=43.0|nimg=public/016.png|color=255|size=18|scale=1|pimg=public/017.png|text=领    取|link=@4J60>
+<RText|id=62|x=23.0|y=16.0|size=18|color=255|text=<等级达到/FCOLOR=215><60/FCOLOR=251><级/FCOLOR=215>>
+<RText|id=63|x=320.0|y=19.0|color=69|size=18|text=<<$STR(G78)>/FCOLOR=249>/<8/FCOLOR=250>>
+<Img|id=65|x=196.0|y=-1.0|width=60|height=60|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=66|x=195.0|y=-5.0|width=70|height=70|itemid=905|itemcount=1|name=爆率勋章(1.5倍)|showtips=1|bgtype=1>
+<Img|id=96|children={70,71,72,73,75,76}|x=23.0|y=123.0|width=556|height=60|scale9t=0|scale9r=0|scale=1|esc=0|img=public/fuli/kuang.png|scale9b=0|scale9l=0>
+; <Img|id=70|x=9.0|y=17.0|img=public/bg_npcgg1.png|scale=1|esc=0>
+<Button|id=71|x=438.0|y=9.0|width=100|height=43.0|nimg=public/016.png|color=255|size=18|scale=1|pimg=public/017.png|text=领    取|link=@4J63>
+<RText|id=72|x=23.0|y=16.0|size=18|color=255|text=<等级达到/FCOLOR=215><63/FCOLOR=251><级/FCOLOR=215>>
+<RText|id=73|x=320.0|y=19.0|color=69|size=18|text=<<$STR(G79)>/FCOLOR=249>/<3/FCOLOR=250>>
+<Img|id=75|x=196.0|y=-1.0|width=60|height=60|scale=1|img=public/fuli/w.png|esc=0>
+<ItemShow|id=76|x=193.0|y=-5.0|width=70|height=70|itemid=895|itemcount=1|name=天地宝石(臻)|showtips=1|bgtype=1>
+
+[@4J45]
+#if
+large <$HFCOUNT> 0
+#act
+SENDMSG 19 已合区，无法领取！
+break
+
+#IF
+CHECKBAGSIZE 3
+#ACT
+#ELSEACT
+SENDMSG 19 包裹空间不足
+BREAK
+
+#IF
+CHECKLEVELEX < 45
+#ACT
+SENDMSG 19 领取失败：你的等级还未达到45级呢！
+BREAK
+
+#IF
+large G73 69
+#ACT
+SENDMSG 19 领取失败：领取名额限制！
+BREAK
+
+#IF
+CHECK [44] 1
+#ACT
+SENDMSG 19 领取失败：你已经领取过本奖励！
+BREAK
+
+#IF
+CHECKLEVELEX > 44
+small G73 70
+check [44] 0
+#act
+set [44] 1
+INC G73 1
+give 月光宝盒(大) 3 1
+SENDMSG 7 恭喜你成功领取45级奖励【月光宝盒(大)】！
+SENDMSG 14 恭喜玩家【<$username>】成功领取45级奖励【月光宝盒(大)】！
+GOTO @MAIN
+BREAK
+
+
+[@4J48]
+#if
+large <$HFCOUNT> 0
+#act
+SENDMSG 19 已合区，无法领取！
+break
+
+#IF
+CHECKBAGSIZE 3
+#ACT
+#ELSEACT
+SENDMSG 19 包裹空间不足
+BREAK
+
+#IF
+CHECKLEVELEX < 48
+#ACT
+SENDMSG 19 领取失败：你的等级还未达到48级呢！
+BREAK
+
+#IF
+large G74 54
+#ACT
+SENDMSG 19 领取失败：领取名额限制！
+BREAK
+
+#IF
+CHECK [45] 1
+#ACT
+SENDMSG 19 领取失败：你已经领取过本奖励！
+BREAK
+
+#IF
+CHECKLEVELEX > 47
+small G74 55
+check [45] 0
+#act
+set [45] 1
+INC G74 1
+give 点精石 30 1
+SENDMSG 7 恭喜你成功领取48级奖励【点精石】！
+SENDMSG 14 恭喜玩家【<$username>】成功领取48级奖励【点精石】！
+GOTO @MAIN
+Break
+
+
+[@4J51]
+#if
+large <$HFCOUNT> 0
+#act
+SENDMSG 19 已合区，无法领取！
+break
+
+#IF
+CHECKLEVELEX < 51
+#ACT
+SENDMSG 19 领取失败：你的等级还未达到51级呢！
+BREAK
+
+#IF
+large G75 41
+#ACT
+SENDMSG 19 领取失败：领取名额限制！
+BREAK
+
+#IF
+CHECK [46] 1
+#ACT
+SENDMSG 19 领取失败：你已经领取过本奖励！
+BREAK
+
+#IF
+CHECKLEVELEX > 50
+small G75 42
+check [46] 0
+#act
+set [46] 1
+INC G75 1
+MONEY 绑定元宝 + 1000
+SENDMSG 7 恭喜你成功领取51级奖励【绑定元宝1000】！
+SENDMSG 14 恭喜玩家【<$username>】成功领取51级奖励【绑定元宝1000】！
+GOTO @MAIN
+Break
+
+
+[@4J54]
+#if
+large <$HFCOUNT> 0
+#act
+SENDMSG 19 已合区，无法领取！
+break
+
+#IF
+CHECKBAGSIZE 3
+#ACT
+#ELSEACT
+SENDMSG 19 包裹空间不足
+BREAK
+
+#IF
+CHECKLEVELEX < 54
+#ACT
+SENDMSG 19 领取失败：你的等级还未达到54级呢！
+BREAK
+
+#IF
+large G76 31
+#ACT
+SENDMSG 19 领取失败：领取名额限制！
+BREAK
+
+#IF
+CHECK [47] 1
+#ACT
+SENDMSG 19 领取失败：你已经领取过本奖励！
+BREAK
+
+#IF
+CHECKLEVELEX > 53
+small G76 32
+check [47] 0
+#act
+set [47] 1
+INC G76 1
+give 祝福神油 15 1
+SENDMSG 7 恭喜你成功领取54级奖励【祝福神油】！
+SENDMSG 14 恭喜玩家【<$username>】成功领取54级奖励【祝福神油】！
+GOTO @MAIN
+Break
+
+
+[@4J57]
+#if
+large <$HFCOUNT> 0
+#act
+SENDMSG 19 已合区，无法领取！
+break
+
+#IF
+CHECKBAGSIZE 3
+#ACT
+#ELSEACT
+SENDMSG 19 包裹空间不足
+BREAK
+
+#IF
+CHECKLEVELEX < 57
+#ACT
+SENDMSG 19 领取失败：你的等级还未达到57级呢！
+BREAK
+
+#IF
+large G77 15
+#ACT
+SENDMSG 19 领取失败：领取名额限制！
+BREAK
+
+#IF
+CHECK [48] 1
+#ACT
+SENDMSG 19 领取失败：你已经领取过本奖励！
+BREAK
+
+#IF
+CHECKLEVELEX > 56
+small G77 16
+check [48] 0
+#act
+set [48] 1
+INC G77 1
+give 命魂宝箱 5 1
+SENDMSG 7 恭喜你成功领取57级奖励【命魂宝箱】！
+SENDMSG 14 恭喜玩家【<$username>】成功领取57级奖励【命魂宝箱】！
+GOTO @MAIN
+
+
+[@4J60]
+#if
+large <$HFCOUNT> 0
+#act
+SENDMSG 19 已合区，无法领取！
+break
+
+#IF
+CHECKBAGSIZE 3
+#ACT
+#ELSEACT
+SENDMSG 19 包裹空间不足
+BREAK
+
+#IF
+CHECKLEVELEX < 60
+#ACT
+SENDMSG 19 领取失败：你的等级还未达到60级呢！
+BREAK
+
+#IF
+large G78 7
+#ACT
+SENDMSG 19 领取失败：领取名额限制！
+BREAK
+
+#IF
+CHECK [49] 1
+#ACT
+SENDMSG 19 领取失败：你已经领取过本奖励！
+BREAK
+
+#IF
+CHECKLEVELEX > 59
+small G78 8
+check [49] 0
+#act
+set [49] 1
+INC G78 1
+give 爆率勋章(1.5倍) 1 1
+SENDMSG 7 恭喜你成功领取60级奖励【爆率勋章(1.5倍)】！
+SENDMSG 14 恭喜玩家【<$username>】成功领取60级奖励【爆率勋章(1.5倍)】！
+GOTO @MAIN
+
+
+[@4J63]
+#if
+large <$HFCOUNT> 0
+#act
+SENDMSG 19 已合区，无法领取！
+break
+
+#IF
+CHECKBAGSIZE 3
+#ACT
+#ELSEACT
+SENDMSG 19 包裹空间不足
+BREAK
+
+#IF
+CHECKLEVELEX < 63
+#ACT
+SENDMSG 19 领取失败：你的等级还未达到63级呢！
+BREAK
+
+#IF
+large G79 2
+#ACT
+SENDMSG 19 领取失败：领取名额限制！
+BREAK
+
+#IF
+CHECK [50] 1
+#ACT
+SENDMSG 19 领取失败：你已经领取过本奖励！
+BREAK
+
+#IF
+CHECKLEVELEX > 62
+small G79 3
+check [50] 0
+#act
+set [50] 1
+INC G79 1
+give 天地宝石(臻) 1 1
+SENDMSG 7 恭喜你成功领取63级奖励【天地宝石(臻)】！
+SENDMSG 14 恭喜玩家【<$username>】成功领取63级奖励【天地宝石(臻)】！
+GOTO @MAIN

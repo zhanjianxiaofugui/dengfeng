@@ -1,0 +1,377 @@
+[@main]
+#IF
+LARGE 2 $CLIENTFLAG
+#ELSEACT
+MOV S$0DUAN 移
+MOV S$0ZM 226:4500:1.1倍爆率牌,330|252:5000:1.2倍爆率牌,250|288:5500:1.3倍爆率牌,170|326:6000:1.4倍爆率牌,100|363:6500:1.5倍爆率牌,66|398:7000:1.6倍爆率牌,20|433:7500:1.7倍爆率牌,5
+MOV S$0TX <Frames|id=31|x=111.0|y=157.0|prefix=public/zp/z_|suffix=.png|count=
+MOV N$0ZM 1
+MOV S$1TX |loop=1|speed=1>
+#ACT
+MOV S$0DUAN 屁
+MOV S$0ZM 54:3150:1.1倍爆率牌,330|56:3150:1.2倍爆率牌,250|58:3150:1.3倍爆率牌,170|60:3150:1.4倍爆率牌,100|62:3150:1.5倍爆率牌,66|64:3750:1.6倍爆率牌,20|66:3900:1.7倍爆率牌,5
+MOV S$0TX <offx=|98|y=|-235|><!SPIC#323,50501,
+MOV N$0ZM 1
+MOV S$1TX ,50,0,0,0,0><|off>\
+
+#IF
+EQUAL 3 $TASK(11)
+#ACT
+DelayCall 200 @C_TASK_抽奖 1 MS
+#IF
+true
+#ACT
+
+GOTO @C_SAY_抽奖<$STR(S$0DUAN)>
+
+break
+
+
+[@C_TASK_抽奖]
+
+[@C_SAY_抽奖屁] NPC(64003)
+#IF
+EQUAL <$STR(S$0SAY)>
+#ELSEACT
+MOV S$1SAY <$STR(S$0SAY)>
+MOV S$0SAY
+#ACT
+MOV S$1SAY <$STR(S$0TX)>0<$STR(S$1TX)>
+
+
+#IF
+true
+#SAY
+<@@!BTN 3,63206,3,63206,3,63217,535,-25,关闭/@EXIT>\
+<offx=|280|y=|50|fontsize=|14|font=|0|><color=FBFF00 规则说明：><color=17FF00 1.每次转动需要扣除5000元宝！><|off>\
+<offx=|350|y=|10|fontsize=|14|font=|0|><color=17FF00 2.指针停留后获得对应爆率勋章><|off>\
+<offx=|350|y=|10|fontsize=|14|font=|0|><color=17FF00 3.多余的勋章可以合成更高级勋章！><|off>\
+
+<offx=|320|y=|15|fontsize=|14|font=|0|><合成牌(1.2倍)/@C_2_抽奖&1.1倍爆率牌~1.2倍爆率牌~2~10><|off>\
+<offx=|440|y=|-16|fontsize=|14|font=|0|><合成牌(1.3倍)/@C_2_抽奖&1.2倍爆率牌~1.3倍爆率牌~2~30><|off>\
+<offx=|320|y=|15|fontsize=|14|font=|0|><合成牌(1.4倍)/@C_2_抽奖&1.3倍爆率牌~1.4倍爆率牌~2~50><|off>\
+<offx=|440|y=|-15|fontsize=|14|font=|0|><合成牌(1.5倍)/@C_2_抽奖&1.4倍爆率牌~1.5倍爆率牌~2~100><|off>\
+<offx=|320|y=|15|fontsize=|14|font=|0|><合成牌(1.6倍)/@C_2_抽奖&1.5倍爆率牌~1.6倍爆率牌~2~200><|off>\
+<offx=|440|y=|-15|fontsize=|14|font=|0|><合成牌(1.7倍)/@C_2_抽奖&1.6倍爆率牌~1.7倍爆率牌~2~500><|off>\
+<offx=|320|y=|15|fontsize=|14|font=|0|><合成牌(1.8倍)/@C_2_抽奖&1.7倍爆率牌~1.8倍爆率牌~2~1000><|off>\
+<offx=|440|y=|-15|fontsize=|14|font=|0|><合成牌(1.9倍)/@C_2_抽奖&1.8倍爆率牌~1.9倍爆率牌~2~2000><|off>\
+<offx=|380|y=|15|fontsize=|14|font=|0|><合成牌(2.0倍)/@C_2_抽奖&1.9倍爆率牌~2.0倍爆率牌~2~5000><|off>\
+<offx=|300|y=|10|><@@!BTN 3,64601,3,64602,3,64602,0,0,开始抽奖/@C_0_抽奖><|off>\
+<offx=|340|y=|-30|fontsize=|14|font=|0|><color=FBFF00 开始抽奖><|off>\
+<offx=|450|y=|-25|fontsize=|14|font=|0|><color=~1.2倍爆率牌：需要2个1.1倍爆率牌+10元宝#0xFFFFFF00$1.3倍爆率牌：需要2个1.2倍爆率牌+30元宝#0xFFFFFF00$1.4倍爆率牌：需要2个1.3倍爆率牌+50元宝#0xFFFFFF00$1.5倍爆率牌：需要2个1.4倍爆率牌+100元宝#0xFFFFFF00$1.6倍爆率牌：需要2个1.5倍爆率牌+200元宝#0xFFFFFF00$1.7倍爆率牌：需要2个1.6倍爆率牌+500元宝#0xFFFFFF00$1.8倍爆率牌：需要2个1.7倍爆率牌+1000元宝#0xFFFFFF00$1.9倍爆率牌：需要2个1.8倍爆率牌+2000元宝#0xFFFFFF00$2.0倍爆率牌：需要2个1.9倍爆率牌+5000元宝#0xFFFFFF00$ 合成说明><|off>\
+
+<offx=|113|y=|-238|><@@!PIC 1.1倍爆率牌,1,0,0><|off>\
+<offx=|170|y=|-240|><@@!PIC 1.2倍爆率牌,1,0,0><|off>\
+<offx=|215|y=|-210|><@@!PIC 1.3倍爆率牌,1,0,0><|off>\
+<offx=|233|y=|-157|><@@!PIC 1.4倍爆率牌,1,0,0><|off>\
+<offx=|217|y=|-100|><@@!PIC 1.5倍爆率牌,1,0,0><|off>\
+<offx=|172|y=|-65|><@@!PIC 1.6倍爆率牌,1,0,0><|off>\
+<offx=|112|y=|-65|><@@!PIC 1.7倍爆率牌,1,0,0><|off>\
+<offx=|68|y=|-98|><@@!PIC 1.8倍爆率牌,1,0,0><|off>\
+<offx=|50|y=|-150|><@@!PIC 1.9倍爆率牌,1,0,0><|off>\
+<offx=|68|y=|-205|><@@!PIC 2.0倍爆率牌,1,0,0><|off>\
+<offx=|103|y=|-188|><@@!PIC2 3,64005,0,0><|off>\
+<offx=|-33|y=|-300|><@@!PIC2 3,64006,0,0><|off>\
+<$STR(S$1SAY)>
+
+<offx=|240|y=|-370|fontsize=|18|font=|0|><color=FBFF00 开心转盘><|off>\
+
+
+
+
+
+[@C_SAY_抽奖移]
+#IF
+EQUAL <$STR(S$0SAY)>
+#ELSEACT
+MOV S$1SAY <$STR(S$0SAY)>
+MOV S$0SAY
+#ACT
+MOV S$1SAY <$STR(S$0TX)>1<$STR(S$1TX)>
+
+#IF
+true
+#SAY
+<Img|children={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,ag,30,31,32,33}|x=78.0|y=63.0|bg=1|img=public/zp/bg.png|esc=0|move=1|loadDelay=0>
+<Button|id=0|x=560.0|y=-10.0|nimg=public/025.png|size=18|color=255|link=@exit>
+<Text|id=1|x=250.0|y=33.0|color=94|size=18|text=幸 运 大 转 盘>
+<Img|id=2|x=32.0|y=82.0|width=320|height=300|img=public/027.png|esc=0>
+<Img|id=3|x=-68.0|y=-20.0|img=public/zp/011.png|esc=0>
+<ItemShow|id=4|x=63.0|y=130.0|width=70|height=70|itemid=50559|itemcount=1|name=爆率勋章(1.1倍)|showtips=1|bgtype=1>
+<ItemShow|id=5|x=108.0|y=96.0|width=70|height=70|itemid=50550|itemcount=1|name=爆率勋章(1.1倍)|showtips=1|bgtype=1>
+<ItemShow|id=6|x=164.0|y=95.0|width=70|height=70|itemid=50551|itemcount=1|name=爆率勋章(1.2倍)|showtips=1|bgtype=1>
+<ItemShow|id=7|x=209.0|y=128.0|width=70|height=70|itemid=50552|itemcount=1|name=爆率勋章(1.3倍)|showtips=1|bgtype=1>
+<ItemShow|id=8|x=227.0|y=182.0|width=70|height=70|itemid=50553|itemcount=1|name=爆率勋章(1.4倍)|showtips=1|bgtype=1>
+<ItemShow|id=9|x=210.0|y=235.0|width=70|height=70|itemid=50554|itemcount=1|name=爆率勋章(1.5倍)|showtips=1|bgtype=1>
+<ItemShow|id=10|x=165.0|y=268.0|width=70|height=70|itemid=50555|itemcount=1|name=爆率勋章(1.6倍)|showtips=1|bgtype=1>
+<ItemShow|id=11|x=109.0|y=268.0|width=70|height=70|itemid=50556|itemcount=1|name=爆率勋章(1.7倍)|showtips=1|bgtype=1>
+<ItemShow|id=12|x=64.0|y=235.0|width=70|height=70|itemid=50557|itemcount=1|name=爆率勋章(1.8倍)|showtips=1|bgtype=1>
+<ItemShow|id=13|x=44.0|y=184.0|width=70|height=70|itemid=50558|itemcount=1|name=爆率勋章(1.9倍)|showtips=1|bgtype=1>
+<Frames|id=14|x=-20.0|y=49.0|count=10|suffix=.png|speed=10|prefix=public/zp/tx2/1_|loop=-1|scale=1>
+<Frames|id=15|x=116.0|y=163.0|count=10|suffix=.png|speed=10|prefix=public/zp/tx1/1_|loop=-1|scale=1>
+
+<Button|id=16|x=360.0|y=340.0|width=90|height=35|rotate=0|mimg=public/016.png|size=18|color=251|nimg=public/017.png|text=开始抽奖|link=@C_0_抽奖>
+<Button|id=33|x=470.0|y=340.0|width=90|height=35|rotate=0|mimg=public/016.png|size=18|color=249|nimg=public/017.png|text=回收勋章|link=@回收爆率牌>
+
+<RText|id=17|x=360.0|y=90.0|color=255|size=14|text=<1.每次转动需要扣除1根金条！/FCOLOR=250>>
+<RText|id=18|x=360.0|y=110.0|color=255|size=14|text=<2.指针停留后获得对应爆率勋章/FCOLOR=250>>
+<RText|id=19|x=360.0|y=130.0|color=255|size=14|text=<3.多余勋章可以合成更高级勋章！/FCOLOR=250>>
+<Img|id=20|x=346.0|y=161.0|width=230|img=public/024.png|esc=0>
+<Text|id=21|x=355.0|y=170.0|color=251|size=14|text=合成勋章1.2倍|link=@C_2_抽奖&2>
+<Text|id=22|x=475.0|y=170.0|color=251|size=14|text=合成勋章1.3倍|link=@C_2_抽奖&3>
+<Text|id=23|x=355.0|y=200.0|color=251|size=14|text=合成勋章1.4倍|link=@C_2_抽奖&4>
+<Text|id=24|x=475.0|y=200.0|color=251|size=14|text=合成勋章1.5倍|link=@C_2_抽奖&5>
+<Text|id=25|x=355.0|y=230.0|color=251|size=14|text=合成勋章1.6倍|link=@C_2_抽奖&6>
+<Text|id=26|x=475.0|y=230.0|color=251|size=14|text=合成勋章1.7倍|link=@C_2_抽奖&7>
+<Text|id=27|x=355.0|y=260.0|color=251|size=14|text=合成勋章1.8倍|link=@C_2_抽奖&8>
+<Text|id=28|x=475.0|y=260.0|color=251|size=14|text=合成勋章1.9倍|link=@C_2_抽奖&9>
+<Text|id=29|x=420.0|y=300.0|color=251|size=14|text=合成勋章2.0倍|link=@C_2_抽奖&10>
+<RText|id=30|x=210.0|y=350.0|color=255|size=16|text=<color=~
+爆率勋章(1.2倍)：需要2个爆率勋章(1.1倍)+金条*1#0xFFFFFF00$
+爆率勋章(1.3倍)：需要2个爆率勋章(1.2倍)+金条*2#0xFFFFFF00$
+爆率勋章(1.4倍)：需要2个爆率勋章(1.3倍)+金条*3#0xFFFFFF00$
+爆率勋章(1.5倍)：需要2个爆率勋章(1.4倍)+金条*5#0xFFFFFF00$
+爆率勋章(1.6倍)：需要2个爆率勋章(1.5倍)+金条*7#0xFFFFFF00$
+爆率勋章(1.7倍)：需要2个爆率勋章(1.6倍)+金砖*2#0xFFFFFF00$
+爆率勋章(1.8倍)：需要2个爆率勋章(1.7倍)+金砖*5#0xFFFFFF00$
+爆率勋章(1.9倍)：需要2个爆率勋章(1.8倍)+金盒*2#0xFFFFFF00$
+爆率勋章(2.0倍)：需要2个爆率勋章(1.9倍)+金盒*5#0xFFFFFF00$ 合成说明(点击查看)>><$STR(S$1SAY)>
+
+<ItemShow|id=32|x=358.0|y=280.0|width=70.0|height=70|itemid=50559|itemcount=1|name=爆率勋章(2.0倍)|showtips=1|bgtype=1>
+
+[@回收爆率牌2]
+#IF
+true
+#Act
+Goto @main
+
+[@回收爆率牌]
+#IF
+true
+#SAY
+<Img|children={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,ag,30,31,32,33}|x=78.0|y=63.0|bg=1|img=public/zp/bg.png|esc=0|move=1|loadDelay=0>
+<Button|id=0|x=560.0|y=-10.0|nimg=public/025.png|size=18|color=255|link=@exit>
+<Text|id=1|x=250.0|y=33.0|color=94|size=18|text=幸 运 大 转 盘>
+<Img|id=2|x=32.0|y=82.0|width=320|height=300|img=public/027.png|esc=0>
+<Img|id=3|x=-68.0|y=-20.0|img=public/zp/011.png|esc=0>
+<ItemShow|id=4|x=63.0|y=130.0|width=70.0|height=70|itemid=50559|itemcount=1|name=爆率勋章(1.1倍)|showtips=1|bgtype=1>
+<ItemShow|id=5|x=108.0|y=96.0|width=70.|height=70|itemid=50550|itemcount=1|name=爆率勋章(1.1倍)|showtips=1|bgtype=1>
+<ItemShow|id=6|x=164.0|y=95.0|width=70.|height=70|itemid=50551|itemcount=1|name=爆率勋章(1.2倍)|showtips=1|bgtype=1>
+<ItemShow|id=7|x=209.0|y=128.0|width=70.|height=70|itemid=50552|itemcount=1|name=爆率勋章(1.3倍)|showtips=1|bgtype=1>
+<ItemShow|id=8|x=227.0|y=182.0|width=70.|height=70|itemid=50553|itemcount=1|name=爆率勋章(1.4倍)|showtips=1|bgtype=1>
+<ItemShow|id=9|x=210.0|y=235.0|width=70.|height=70|itemid=50554|itemcount=1|name=爆率勋章(1.5倍)|showtips=1|bgtype=1>
+<ItemShow|id=10|x=165.0|y=268.0|width=70|height=70|itemid=50555|itemcount=1|name=爆率勋章(1.6倍)|showtips=1|bgtype=1>
+<ItemShow|id=11|x=109.0|y=268.0|width=70|height=70|itemid=50556|itemcount=1|name=爆率勋章(1.7倍)|showtips=1|bgtype=1>
+<ItemShow|id=12|x=64.0|y=235.0|width=70.|height=70|itemid=50557|itemcount=1|name=爆率勋章(1.8倍)|showtips=1|bgtype=1>
+<ItemShow|id=13|x=44.0|y=184.0|width=70.|height=70|itemid=50558|itemcount=1|name=爆率勋章(1.9倍)|showtips=1|bgtype=1>
+<Frames|id=14|x=-20.0|y=49.0|count=10|suffix=.png|speed=10|prefix=public/zp/tx2/1_|loop=-1|scale=1>
+<Frames|id=15|x=116.0|y=163.0|count=10|suffix=.png|speed=10|prefix=public/zp/tx1/1_|loop=-1|scale=1>
+
+;<Button|id=16|x=360.0|y=340.0|width=90|height=35|rotate=0|mimg=public/016.png|size=18|color=251|nimg=public/017.png|text=开始抽奖|link=@C_0_抽奖>
+<Button|id=33|x=420.0|y=340.0|width=90|height=35|rotate=0|mimg=public/016.png|size=18|color=254|nimg=public/017.png|text=返回合成|link=@回收爆率牌2>
+
+<RText|id=17|x=360.0|y=90.0|color=255|size=14|text=<1.每次转动需要扣除1根金条！/FCOLOR=250>>
+<RText|id=18|x=360.0|y=110.0|color=255|size=14|text=<2.指针停留后获得对应爆率勋章/FCOLOR=250>>
+<RText|id=19|x=360.0|y=130.0|color=255|size=14|text=<3.多余勋章可以合成更高级勋章！/FCOLOR=250>>
+<Img|id=20|x=346.0|y=161.0|width=230|img=public/024.png|esc=0>
+<Text|id=21|x=360.0|y=170.0|color=251|size=14|text=回收勋章(1.1倍)|link=@回收牌&1.1倍爆率牌>
+<Text|id=22|x=480.0|y=170.0|color=251|size=14|text=回收勋章(1.2倍)|link=@回收牌&1.2倍爆率牌>
+<Text|id=23|x=360.0|y=200.0|color=251|size=14|text=回收勋章(1.3倍)|link=@回收牌&1.3倍爆率牌>
+<Text|id=24|x=480.0|y=200.0|color=251|size=14|text=回收勋章(1.4倍)|link=@回收牌&1.4倍爆率牌>
+<Text|id=25|x=360.0|y=230.0|color=251|size=14|text=回收勋章(1.5倍)|link=@回收牌&1.5倍爆率牌>
+<Text|id=26|x=480.0|y=230.0|color=251|size=14|text=回收勋章(1.6倍)|link=@回收牌&1.6倍爆率牌>
+<Text|id=27|x=360.0|y=260.0|color=251|size=14|text=回收勋章(1.7倍)|link=@回收牌&1.7倍爆率牌>
+<Text|id=28|x=480.0|y=260.0|color=251|size=14|text=回收勋章(1.8倍)|link=@回收牌&1.8倍爆率牌>
+<Text|id=29|x=420.0|y=300.0|color=251|size=14|text=回收勋章(1.9倍)|link=@回收牌&1.9倍爆率牌>
+;<Text|id=32|x=480.0|y=300.0|color=251|size=14|text=回收牌(2.0倍)|link=@回收牌&2.0倍爆率牌>
+
+<RText|id=30|x=210.0|y=350.0|color=255|size=16|text=<color=~
+爆率勋章(1.1倍)：回收+100绑定元宝#0xFFFFFF00$
+爆率勋章(1.2倍)：回收+200绑定元宝#0xFFFFFF00$
+爆率勋章(1.3倍)：回收+300绑定元宝#0xFFFFFF00$
+爆率勋章(1.4倍)：回收+500绑定元宝#0xFFFFFF00$
+爆率勋章(1.5倍)：回收+1000绑定元宝#0xFFFFFF00$
+爆率勋章(1.6倍)：回收+2000绑定元宝#0xFFFFFF00$
+爆率勋章(1.7倍)：回收+3000绑定元宝#0xFFFFFF00$
+爆率勋章(1.8倍)：回收+10000绑定元宝#0xFFFFFF00$
+爆率勋章(1.9倍)：回收+20000绑定元宝#0xFFFFFF00$ 回收说明(点击查看)>><$STR(S$1SAY)>
+
+;<ItemShow|id=32|x=358.0|y=280.0|width=70.0|height=70|itemid=50559|itemcount=1|name=2.0倍爆率牌|showtips=1|bgtype=1>
+[@回收牌]
+#IF
+checkitem <$SCRIPTPARAM(1)> 1
+#ACT
+take <$SCRIPTPARAM(1)> 1
+ReadConfigFileItem ..\QuestDiary\配置文件\开心转盘回收配置.ini  开心转盘回收配置  <$SCRIPTPARAM(1)>  S$回收价格
+MONEY 绑定元宝 + <$STR(S$回收价格)>
+sendmsg 19 回收成功！
+#elseACT
+sendmsg 19 <$SCRIPTPARAM(1)>不足！
+[@C_0_抽奖]
+
+#IF
+LARGE <$LENGTH.$STR(S$0VE)> 2
+#ACT
+SENDMSG 19 系统开奖中，请稍后！
+SENDMSG 6 系统开奖中，请稍后！
+break
+
+#IF
+CheckBagSize 3
+POS $STR(S$0ZM) |
+#ELSEACT
+SENDMSG 19 包裹空位不足,请整理包裹后再来吧
+break
+#IF
+LARGE <$CustomValue(20)> 0
+#ACT
+MOV S$0ZM 54:3150:爆率勋章(1.1倍),529|56:3150:爆率勋章(1.2倍),300|58:3150:爆率勋章(1.3倍),100|60:3150:爆率勋章(1.4倍),50|62:3150:爆率勋章(1.5倍),15|64:3750:爆率勋章(1.6倍),5|66:3900:爆率勋章(1.7倍),1
+#elseACT
+MOV S$0ZM 54:3150:爆率勋章(1.1倍),529|56:3150:爆率勋章(1.2倍),300|58:3150:爆率勋章(1.3倍),100|60:3150:爆率勋章(1.4倍),50|62:3150:爆率勋章(1.5倍),15|64:3750:爆率勋章(1.6倍),5|66:3900:爆率勋章(1.7倍),1
+
+;#IF
+;CHECK [29] 0
+;LARGE <$CustomValue(20)> 0
+;#ACT
+;SET [29] 1
+;GETVALIDSTR $STR(S$0ZM) , S$1ZM S$2ZM
+;MOV S$0ZM_0
+;MOV S$0ZM_1
+;MOV S$0ZM_2
+;MOV S$0ZM_3
+;SPLIT $STR(S$1ZM) : S$0ZM
+;DelayCall 0 @C_1_抽奖
+;DelayCall <$INC.1.$STR(S$0ZM_1)> @C_1_抽奖 1 ms
+;MOV S$0VE $STR(S$0ZM_2)
+;MOV S$0SAY <$STR(S$0TX)><$STR(S$0ZM_0)><$STR(S$1TX)>
+;
+;GOTO @C_SAY_抽奖<$STR(S$0DUAN)>
+;break
+;#IF
+;CHECK [29] 0
+;CHECKLEVELEX > 47
+;#ACT
+;SET [29] 1
+;GETVALIDSTR $STR(S$0ZM) , S$1ZM S$2ZM
+;MOV S$0ZM_0
+;MOV S$0ZM_1
+;MOV S$0ZM_2
+;MOV S$0ZM_3
+;SPLIT $STR(S$1ZM) : S$0ZM
+;DelayCall 0 @C_1_抽奖
+;DelayCall <$INC.1.$STR(S$0ZM_1)> @C_1_抽奖 1 ms
+;MOV S$0VE $STR(S$0ZM_2)
+;MOV S$0SAY <$STR(S$0TX)><$STR(S$0ZM_0)><$STR(S$1TX)>
+;
+;GOTO @C_SAY_抽奖<$STR(S$0DUAN)>
+;break
+
+#IF
+checkitem 金条 1
+#ACT
+Take 金条 1
+MOV S$0VE 圈
+RandomStr <$STR(S$0ZM)> S$1ZM
+MOV S$0ZM_0
+MOV S$0ZM_1
+MOV S$0ZM_2
+MOV S$0ZM_3
+SPLIT $STR(S$1ZM) : S$0ZM
+MOV S$0SAY <$STR(S$0TX)><$STR(S$0ZM_0)><$STR(S$1TX)>
+DelayCall 0 @C_1_抽奖
+DelayCall <$INC.1.$STR(S$0ZM_1)> @C_1_抽奖 1 ms
+MOV S$0VE $STR(S$0ZM_2)
+GOTO @C_SAY_抽奖<$STR(S$0DUAN)>
+break
+#elseACT
+MOV S$0VE 圈
+messagebox 金条不足！
+break
+
+
+[@C_1_抽奖] NPC(50335)
+#IF
+POS ~<$STR(S$0VE)>~ 爆率勋章(
+#ELSEACT
+SENDMSG 19 ~<$STR(S$0VE)>~结果错了,联系管理员给你颁个小红花吧！
+MOV S$0VE 圈
+break
+#ACT
+MOV S$1VE <$STR(S$0VE)>
+GIVE <$STR(S$1VE)> 1 1
+;UpgradeUserItem $PARAM(10) 201 幸运转盘 中州
+
+#IFONE
+POS <$STR(S$1VE)> 1.5
+POS <$STR(S$1VE)> 1.6
+POS <$STR(S$1VE)> 1.7
+POS <$STR(S$1VE)> 1.8
+POS <$STR(S$1VE)> 1.9
+POS <$STR(S$1VE)> 2.0
+#ACT
+SENDMSG 14 【<$username>】祖坟冒青烟，转到了【<$STR(S$1VE)>】！
+SENDMSG 24 【<$username>】祖坟冒青烟，转到了【<$STR(S$1VE)>】！
+MOV S$0VE 圈
+#ELSEACT
+MOV S$0VE 圈
+
+#IF
+EQUAL 1 $CLIENTFLAG
+#ELSEACT
+break
+#ELSESAY
+<Img|x=411.0|y=176.0|width=400|height=200|rotate=0|bg=1|img=public/zp/014.png|esc=0>
+<Img|x=588.0|y=254.0|img=public/fuli/040.png|esc=0>
+<ItemShow|x=582.0|y=248.0|width=70|height=70|itemid=1|itemcount=1|name=<$STR(S$1VE)>|bgtype=1|showtips=1>
+<Button|x=483.0|y=326.0|width=110|height=35|mimg=public/012.png|nimg=public/013.png|color=251|size=18|text=再来一次|link=@C_0_抽奖>
+<Button|x=636.0|y=326.0|width=110|height=35|size=18|mimg=public/012.png|color=251|nimg=public/013.png|text=离开|link=@exit>
+#ACT
+break
+#SAY
+<offx=|35|y=|20|><@@!BTN 3,64601,3,64602,3,64602,0,100,再来一次/@C_0_抽奖><|off>\
+<offx=|62|y=|-30|fontsize=|18|font=|0|><color=FBFF00 再来一次><|off>\
+<offx=|175|y=|-44|><@@!BTN 3,64601,3,64602,3,64602,0,0,离开/@exit><|off>\
+<offx=|222|y=|-34|fontsize=|18|font=|0|><color=FBFF00 离开><|off>\
+<offx=|163|y=|-90|><@@!PIC <$STR(S$1VE)>,1,0,0><|off>\
+
+[@C_2_抽奖]
+#if
+True
+#ACt
+MOV S$合成材料需求 暂无|暂无|金条*1|金条*2|金条*3|金条*5|金条*7|金砖*2|金砖*5|金盒*2|金盒*5
+SPLIT <$STR(S$合成材料需求)> | S$合成材料需求分割
+#ifone
+Small <$SCRIPTPARAM(1)> 2
+Large <$SCRIPTPARAM(1)> 10
+#ACt
+sendmsg 7 数据错误！
+Break
+#elseACT
+SPLIT <$STR(S$合成材料需求分割_<$SCRIPTPARAM(1)>)> * S$合成材料需求分割细节
+
+#If
+Equal <$SCRIPTPARAM(1)> 10
+#ACt
+MOV S$目标勋章 爆率勋章(2.0倍)
+MOV S$需求勋章 爆率勋章(1.9倍)
+#elseACT
+MOV S$目标勋章 爆率勋章(1.<$SCRIPTPARAM(1)>倍)
+MOV N$需求勋章数字 <$SCRIPTPARAM(1)>
+DEC N$需求勋章数字 1
+MOV S$需求勋章 爆率勋章(1.<$STR(N$需求勋章数字)>倍)
+#Ifone
+!checkitem <$STR(S$需求勋章)> 2
+!checkitem <$STR(S$合成材料需求分割细节_0)> <$STR(S$合成材料需求分割细节_1)>
+#ACT
+sendmsg 7 材料不足错误！
+Break
+
+#IF
+TRUE
+#ACT
+Take <$STR(S$需求勋章)> 2
+Take <$STR(S$合成材料需求分割细节_0)> <$STR(S$合成材料需求分割细节_1)>
+GIVE <$STR(S$目标勋章)> 1 1
+SENDMSG 7 您本次消耗2个<$STR(S$需求勋章)>＋<$STR(S$合成材料需求分割细节_1)>个<$STR(S$合成材料需求分割细节_0)>合成1个<$STR(S$目标勋章)>。
+break
+

@@ -1,0 +1,332 @@
+[@main]
+#IF
+true
+#ACT
+QUERYVAL 1 0 14 @验证通过界面 请输入密令
+BREAK
+
+[@验证通过界面]
+#IF
+equal <$Str(S1)> 宇宙最强996
+#SAY
+\
+<>   <加1k充值/@充值>           <增加10w元宝/@元宝>            <增加技能/@给技能>\ \ \
+<>   <调整等级/@等级>           <附件材料/@加技能残章>        <清理包裹/@清理包裹>\ \ \
+<>   <逆魔装备/@装备nm>           <禁地装备/@装备jd>              <天空装备/@装备tk>\
+#elsesay
+\ \ \
+<>         who are you！
+<>         who are you！
+<>         who are you！
+
+[@清理包裹]
+#IF
+RANDOM 1
+#ACT
+GMEXECUTE 清除包裹 <$USERNAME>
+
+[@加技能残章]
+#IF
+RANDOM 1
+#ACT
+GIVE 包裹扩充符 80
+give 仓库扩充符 80
+give 月光宝盒(小) 1
+AddItemExp 月光宝盒(小) 1000000
+give 月光宝盒(中) 1
+AddItemExp 月光宝盒(中) 5000000
+give 月光宝盒(大) 1
+AddItemExp 月光宝盒(大) 20000000
+GIVE 命魂(未觉醒) 1
+GIVE 命魂石 999
+GIVE 黑曜石 999
+give 绿晶石 999
+give 五彩石 999
+money 金币 + 10000000
+
+[@加滋补丹]
+#IF
+RANDOM 1
+#ACT
+give 灵兽滋补丹 100
+
+[@转生]
+#IF
+RANDOM 1
+#ACT
+COLORNAME 1
+
+;===================================================================活动五
+
+[@给技能]
+#if
+CHECKJOB Warrior
+#act
+AddSkill 烈火剑法 4
+AddSkill 破盾斩 4
+AddSkill 怒斩天下 3
+
+#if
+CHECKJOB Wizard
+#act
+AddSkill 流星火雨 4
+AddSkill 狂龙紫电 4
+AddSkill 天怒惊雷 3
+
+
+#if
+CHECKJOB Taos
+#act
+AddSkill 强化骷髅术 4
+AddSkill 幽冥火咒 4
+AddSkill 火毒攻心剑 3
+
+
+[@灵兽技能]
+#if
+CHECKJOB Warrior
+#act
+AddSkill 翱风斩
+
+#if
+CHECKJOB Wizard
+#act
+AddSkill 纵雷诀
+
+#if
+CHECKJOB Taos
+#act
+AddSkill 毒凌波
+
+[@灵兽]
+#ACT
+GIVE 狮魔石 1 1
+UPGRADEUSERITEM <$param(10)> 88 = 1  ;避水
+UPGRADEUSERITEM <$param(10)> 8 = 1  ;颜色
+UPGRADEUSERITEM <$param(10)> 9 = 2  ;三转
+SETPETATTRIBUTE <$param(10)> 12 = 10 ;魔法躲避
+SETPETATTRIBUTE <$param(10)> 8 = 10 ;魔法命中
+SETPETATTRIBUTE <$param(10)> 5 = 5 ;中毒躲避
+SETPETATTRIBUTE <$param(10)> 10 = 55 ;防御下限
+SETPETATTRIBUTE <$param(10)> 11 = 55 ;防御上限
+SETPETATTRIBUTE <$param(10)> 6 = 55 ;魔防下限
+SETPETATTRIBUTE <$param(10)> 7 = 55 ;魔防上限
+SETPETATTRIBUTE <$param(10)> 9 = 10 ;躲避
+SETPETATTRIBUTE <$param(10)> 19 = 25 ;道术下限
+SETPETATTRIBUTE <$param(10)> 20 = 55 ;道术上限
+SETPETATTRIBUTE <$param(10)> 21 = 25 ;魔法下限
+SETPETATTRIBUTE <$param(10)> 22 = 55 ;魔法上限
+SETPETATTRIBUTE <$param(10)> 23 = 25 ;攻击下限
+SETPETATTRIBUTE <$param(10)> 24 = 55 ;攻击上限
+SETPETATTRIBUTE <$param(10)> 25 = 10 ;命中
+SETPETATTRIBUTE <$param(10)> 26 = 2  ;幸运
+SETPETATTRIBUTE <$param(10)> 28 = 2 ;麻痹几率
+SETPETATTRIBUTE <$param(10)> 29 = 2 ;暴击几率
+SETPETATTRIBUTE <$param(10)> 30 = 2 ;抗性
+SETPETATTRIBUTE <$param(10)> 2 = 300 ;资质
+SETPETATTRIBUTE <$param(10)> 3 = 6000 ;HP
+SETPETATTRIBUTE <$param(10)> 4 = 255 ;MP
+SETPETATTRIBUTE <$param(10)> 35 = 200  ;等级
+UPGRADEUSERITEM <$param(10)> 92 = 100  ;血脉纯洁
+UPGRADEUSERITEM <$param(10)> 93 = 2    ;魂佑
+UPGRADEUSERITEM <$param(10)> 94 = 0    ;强化
+SETPETATTRIBUTE <$param(10)> 1 = 255
+SETPETATTRIBUTE <$param(10)> 27 = 1   ;速度
+
+
+[@经验]
+#ACT
+CHANGEEXP + 3000000000
+
+[@材料]
+#IF
+TRUE
+#ACT
+give 装备精华 100
+give 禁地晶石 100
+
+[@装备nm]
+#IF
+CHECKJOB Warrior
+#ACT
+give 裁决 1
+give 战神(男) 1 
+give 战神(女) 1 
+give 黑铁头盔 1 
+give 绿色项链 1 
+give 猛士手镯 2 
+give 力量戒指 2 
+give 雷霆腰带 1 
+give 雷霆战靴 1
+BREAK
+
+#IF
+CHECKJOB Wizard
+#ACT
+give 骨玉 1
+give 恶魔长袍(男) 1
+give 恶魔长袍(女) 1
+give 道士头盔 1
+give 恶魔铃 1
+give 龙鳞手镯 2
+give 碧螺戒指 2
+give 魔龙法靴 1
+give 魔龙腰带 1
+BREAK
+
+
+#IF
+CHECKJOB Taos
+#ACT
+give 龙纹 1
+give 幽灵战甲(男) 1
+give 幽灵战甲(女) 1
+give 道士头盔 1
+give 灵魂项链 1
+give 三眼护腕 2
+give 泰坦戒指 2
+give 风云道靴 1
+give 风云腰带 1
+
+[@装备jd]
+#IF
+CHECKJOB Warrior
+#ACT
+give 雷霆怒斩 1
+give 圣战战甲 1 
+give 天魔战甲 1 
+give 圣战头盔 1 
+give 圣战项链 1 
+give 圣战手镯 2 
+give 圣战戒指 2 
+give 圣战腰带 1 
+give 圣战靴子 1 
+BREAK
+
+#IF
+CHECKJOB Wizard
+#ACT
+give 龙牙利刃 1
+give 法神披风 1
+give 法神羽衣 1
+give 法神头盔 1
+give 法神项链 1
+give 法神手镯 2
+give 法神戒指 2
+give 法神靴子 1
+give 法神腰带 1
+BREAK
+
+
+#IF
+CHECKJOB Taos
+#ACT
+give 逍遥无极扇 1
+give 天尊道袍 1
+give 天师道袍 1
+give 天尊头盔 1
+give 天尊项链 1
+give 天尊手镯 2
+give 天尊戒指 2
+give 天尊道靴 1
+give 天尊腰带 1
+
+[@装备tk]
+#IF
+CHECKJOB Warrior
+#ACT
+give 屠龙刀 1
+give 神武战甲 1
+give 神武战袍 1 
+give 神武头盔 1
+give 神武项链 1
+give 神武手镯 2
+give 神武戒指 2
+give 神武腰带 1
+give 神武战靴 1
+BREAK
+
+#IF
+CHECKJOB Wizard
+#ACT
+give 嗜魂 1
+give 幻魔披风 1
+give 幻魔羽衣 1
+give 法神头盔 1
+give 法神项链 1
+give 法神手镯 2
+give 法神戒指 2
+give 法神靴子 1
+give 法神腰带 1
+BREAK
+
+
+#IF
+CHECKJOB Taos
+#ACT
+give 倚天剑 1
+give 天玄道袍 1
+give 天玄道衣 1
+give 天玄头盔 1
+give 天玄项链 1
+give 天玄手镯 2
+give 天玄戒指 2
+give 天玄道靴 1
+give 天玄腰带 1
+
+[@声望]
+#IF
+TRUE
+#ACT
+CREDITPOINT + 100
+SENDMSG 7 声望+100..
+break
+
+[@等级]
+#IF
+TRUE
+#ACT
+ChangeLevel + 1
+SENDMSG 7 等级+1..
+break
+
+[@充值]
+#IF
+TRUE
+#ACT
+Calcvar HUMAN 累计充值 + 1000
+Savevar HUMAN 累计充值
+Calcvar HUMAN 每日充值 + 1000
+Savevar HUMAN 每日充值
+MONEY 11 + 1000
+SENDMSG 7 累计充值+1000..
+break
+
+
+[@累充积分]
+#IF
+TRUE
+#ACT
+CHANGECUSTOMVALUE 3 + 5000
+SENDMSG 7 累充积分充值+5000...
+break
+
+
+[@元宝]
+#IF
+TRUE
+#ACT
+MONEY 元宝 + 100000
+SENDMSG 7 元宝+100000...
+break
+
+
+[@金币]
+#IF
+TRUE
+#ACT
+MONEY 金币 + 100000
+CHANGECustomValue 45 = 0
+SENDMSG 7 金币+100000...
+break
+

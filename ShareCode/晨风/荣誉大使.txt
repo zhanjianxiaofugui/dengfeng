@@ -1,0 +1,521 @@
+[@main]
+#IF
+CheckVar Human 累计充值 > 299
+#ACT
+goto @平台入口
+#ELSEACT
+sendmsg 15 大侠，你当前实力无法窥视我的奥秘！
+
+
+
+[@平台入口]
+#IF
+EQUAL $CLIENTFLAG 1
+#ACT
+MOV S$记录第一档
+MOV S$记录第二档
+MOV S$记录第三档
+MOV S$记录第四档
+ReadConfigFileItem ..\QuestDiary\配置文件\荣誉大使.ini 荣誉大使  第一档<$JOB>领取  S$记录第一档
+ReadConfigFileItem ..\QuestDiary\配置文件\荣誉大使.ini 荣誉大使  第二档<$JOB>领取  S$记录第二档
+ReadConfigFileItem ..\QuestDiary\配置文件\荣誉大使.ini 荣誉大使  第三档<$JOB>领取  S$记录第三档
+ReadConfigFileItem ..\QuestDiary\配置文件\荣誉大使.ini 荣誉大使  第四档<$JOB>领取  S$记录第四档
+split <$STR(S$记录第一档)> | S$记录第一档
+split <$STR(S$记录第二档)> | S$记录第二档
+split <$STR(S$记录第三档)> | S$记录第三档
+split <$STR(S$记录第四档)> | S$记录第四档
+GOTO @端游界面
+#IF
+!EQUAL $CLIENTFLAG 1
+#ACT
+GOTO @荣誉大使初始化
+
+[@端游界面] NPC(13997)
+#IF
+true
+
+#SAY
+<@@!BTN 3,63206,3,63206,3,63217,610,-25,关闭/@EXIT>\
+<offx=|255|y=|10|fontsize=|18||font=|0|><color=ffe600  荣誉大使><|off>\
+
+;----第一档
+<offx=|0|y=|20|fontsize=|18||font=|0|><color=ffd400  名动江湖><|off>\
+<offx=|0|y=|10|fontsize=|16||font=|0|><color=00ff00  充值达到1000元><|off>\
+
+<offx=|160|y=|-40|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|240|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|320|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+
+<offx=|120|y=|-40|fontsize=|18||font=|0|><color=ffd400  〓><|off>\
+<offx=|210|y=|-40|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+<offx=|290|y=|-40|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+
+<offx=|380|y=|-40|fontsize=|16||font=|0|><color=77787b  名字变色：灰色><|off>\
+<offx=|380|y=|-25|fontsize=|16||font=|0|><color=d71345  双防+10%><|off>\
+
+;---按钮64213
+#if
+LARGE <$HUMAN(充值记录领取)> 0 
+#act
+#SAY
+<offx=|520|y=|-60|><@@!PIC2 3,64213,0,0><|off>\
+#if
+!LARGE <$HUMAN(充值记录领取)> 0
+#act
+#say
+<@@!BTN 3,64202,3,64201,3,64201,520,-50,/@领取记录奖励&1&1000&<$STR(S$记录第一档_1)>&<$STR(S$记录第一档_0)>&<$STR(S$记录第一档_3)>&<$STR(S$记录第一档_2)>&<$STR(S$记录第一档_5)>&<$STR(S$记录第一档_4)>>\
+<offx=|530|y=|-40|fontsize=|16||font=|0|><color=ffd400  点击晋升><|off>\
+
+#if
+true
+#say
+<offx=|170|y=|-40|></@@!PIC <$STR(S$记录第一档_0)>,1,0,0> <|off>\
+<offx=|250|y=|-40|></@@!PIC <$STR(S$记录第一档_2)>,1,0,0> <|off>\
+<offx=|330|y=|-40|></@@!PIC <$STR(S$记录第一档_4)>,1,0,0> <|off>\
+<offx=|200|y=|-10|fontsize=|12||font=|0|><color=fffffb  <$STR(S$记录第一档_1)>><|off>\
+<offx=|280|y=|-17|fontsize=|12||font=|0|><color=fffffb  <$STR(S$记录第一档_3)>><|off>\
+<offx=|360|y=|-17|fontsize=|12||font=|0|><color=fffffb  <$STR(S$记录第一档_5)>><|off>\
+
+#IF
+CheckVar Human 累计充值 < 1000 
+#Act
+MOV N$TEMP 1000
+DEC N$TEMP <$HUMAN(累计充值)>
+#SAY
+<offx=|530|y=|-20|fontsize=|14||font=|0|><color=ffd400  还差<$STR(N$TEMP)>元><|off>\
+
+;----第二档
+#IF
+CheckVar Human 累计充值 > 999
+#Act
+#SAY
+<offx=|0|y=|20|fontsize=|18||font=|0|><color=ffd400  把酒临风><|off>\
+<offx=|0|y=|10|fontsize=|16||font=|0|><color=00ff00  充值达到2000元><|off>\
+
+<offx=|160|y=|-40|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|240|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|320|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+
+<offx=|120|y=|-40|fontsize=|18||font=|0|><color=ffd400  〓><|off>\
+<offx=|210|y=|-40|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+<offx=|290|y=|-40|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+
+<offx=|380|y=|-40|fontsize=|16||font=|0|><color=00ff00  名字变色：绿色><|off>\
+<offx=|380|y=|-25|fontsize=|16||font=|0|><color=d71345  攻魔道+3%><|off>\
+
+;---按钮64213
+#if
+LARGE <$HUMAN(充值记录领取)> 1 
+#act
+#SAY
+<offx=|520|y=|-60|><@@!PIC2 3,64213,0,0><|off>\
+#if
+!LARGE <$HUMAN(充值记录领取)> 1
+#say
+<@@!BTN 3,64202,3,64201,3,64201,520,-50,/@领取记录奖励&2&2000&<$STR(S$记录第二档_1)>&<$STR(S$记录第二档_0)>&<$STR(S$记录第二档_3)>&<$STR(S$记录第二档_2)>&<$STR(S$记录第二档_5)>&<$STR(S$记录第二档_4)>>\
+<offx=|530|y=|-40|fontsize=|16||font=|0|><color=ffd400  点击晋升><|off>\
+
+#if
+true
+#say
+<offx=|170|y=|-40|></@@!PIC <$STR(S$记录第二档_0)>,1,0,0> <|off>\
+<offx=|250|y=|-40|></@@!PIC <$STR(S$记录第二档_2)>,1,0,0> <|off>\
+<offx=|330|y=|-40|></@@!PIC <$STR(S$记录第二档_4)>,1,0,0> <|off>\
+<offx=|200|y=|-10|fontsize=|12||font=|0|><color=fffffb  <$STR(S$记录第二档_1)>><|off>\
+<offx=|280|y=|-17|fontsize=|12||font=|0|><color=fffffb  <$STR(S$记录第二档_3)>><|off>\
+<offx=|360|y=|-17|fontsize=|12||font=|0|><color=fffffb  <$STR(S$记录第二档_5)>><|off>\
+
+#IF
+CheckVar Human 累计充值 < 2000 
+CheckVar Human 累计充值 > 999
+SMALL <$HUMAN(充值记录领取)> 2 
+#Act
+MOV N$TEMP 2000
+DEC N$TEMP <$HUMAN(累计充值)>
+#SAY
+<offx=|530|y=|-20|fontsize=|14||font=|0|><color=ffd400  还差<$STR(N$TEMP)>元><|off>\
+
+;----第三档
+#IF
+CheckVar Human 累计充值 > 1999
+#Act
+#SAY
+<offx=|0|y=|20|fontsize=|18||font=|0|><color=ffd400  凭栏听雨><|off>\
+<offx=|0|y=|10|fontsize=|16||font=|0|><color=00ff00  充值达到5000元><|off>\
+
+<offx=|160|y=|-40|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|240|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|320|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+
+<offx=|120|y=|-40|fontsize=|18||font=|0|><color=ffd400  〓><|off>\
+<offx=|210|y=|-40|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+<offx=|290|y=|-40|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+
+<offx=|380|y=|-40|fontsize=|16||font=|0|><color=ffd400  名字变色：紫色><|off>\
+<offx=|380|y=|-25|fontsize=|16||font=|0|><color=d71345  吸血+25><|off>\
+
+;---按钮64213
+#if
+LARGE <$HUMAN(充值记录领取)> 2
+#act
+#SAY
+<offx=|520|y=|-60|><@@!PIC2 3,64213,0,0><|off>\
+#if
+!LARGE <$HUMAN(充值记录领取)> 2
+#say
+<@@!BTN 3,64202,3,64201,3,64201,520,-50,/@领取记录奖励&3&5000&<$STR(S$记录第三档_1)>&<$STR(S$记录第三档_0)>&<$STR(S$记录第三档_3)>&<$STR(S$记录第三档_2)>&<$STR(S$记录第三档_5)>&<$STR(S$记录第三档_4)>>\
+<offx=|530|y=|-40|fontsize=|16||font=|0|><color=ffd400  点击晋升><|off>\
+
+#if
+true
+#say
+<offx=|170|y=|-40|></@@!PIC <$STR(S$记录第三档_0)>,1,0,0> <|off>\
+<offx=|250|y=|-40|></@@!PIC <$STR(S$记录第三档_2)>,1,0,0> <|off>\
+<offx=|330|y=|-40|></@@!PIC <$STR(S$记录第三档_4)>,1,0,0> <|off>\
+<offx=|200|y=|-10|fontsize=|12||font=|0|><color=fffffb  <$STR(S$记录第三档_1)>><|off>\
+<offx=|280|y=|-17|fontsize=|12||font=|0|><color=fffffb  <$STR(S$记录第三档_3)>><|off>\
+<offx=|360|y=|-17|fontsize=|12||font=|0|><color=fffffb  <$STR(S$记录第三档_5)>><|off>\
+
+#IF
+CheckVar Human 累计充值 < 5000 
+CheckVar Human 累计充值 > 1999
+SMALL <$HUMAN(充值记录领取)> 3 
+#Act
+MOV N$TEMP 5000
+DEC N$TEMP <$HUMAN(累计充值)>
+#SAY
+<offx=|530|y=|-20|fontsize=|14||font=|0|><color=ffd400  还差<$STR(N$TEMP)>元><|off>\
+
+;----第四档
+#IF
+CheckVar Human 累计充值 > 5000
+#Act
+#SAY
+<offx=|0|y=|20|fontsize=|18||font=|0|><color=ffd400  一醉轻王侯><|off>\
+<offx=|0|y=|10|fontsize=|16||font=|0|><color=00ff00  充值达到1000元><|off>\
+
+<offx=|160|y=|-40|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|240|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|320|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+
+<offx=|120|y=|-40|fontsize=|18||font=|0|><color=ffd400  〓><|off>\
+<offx=|210|y=|-40|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+<offx=|290|y=|-40|fontsize=|18||font=|0|><color=ffd400  ╋><|off>\
+
+<offx=|380|y=|-40|fontsize=|16||font=|0|><color=d71345  名字变色：七彩><|off>\
+<offx=|380|y=|-25|fontsize=|16||font=|0|><color=d71345  获得技能：><|off>\
+
+;---按钮64213
+#if
+LARGE <$HUMAN(充值记录领取)> 3
+#act
+#SAY
+<offx=|520|y=|-60|><@@!PIC2 3,64213,0,0><|off>\
+#if
+!LARGE <$HUMAN(充值记录领取)> 3
+#say
+<@@!BTN 3,64202,3,64201,3,64201,520,-50,/@领取记录奖励&4&10000&<$STR(S$记录第四档_1)>&<$STR(S$记录第四档_0)>&<$STR(S$记录第四档_3)>&<$STR(S$记录第四档_2)>&<$STR(S$记录第四档_5)>&<$STR(S$记录第四档_4)>>\
+<offx=|530|y=|-40|fontsize=|16||font=|0|><color=ffd400  点击晋升><|off>\
+#if
+true
+#say
+<offx=|170|y=|-40|></@@!PIC <$STR(S$记录第四档_0)>,1,0,0> <|off>\
+<offx=|250|y=|-40|></@@!PIC <$STR(S$记录第四档_2)>,1,0,0> <|off>\
+<offx=|330|y=|-40|></@@!PIC <$STR(S$记录第四档_4)>,1,0,0> <|off>\
+<offx=|200|y=|-10|fontsize=|12||font=|0|><color=fffffb  <$STR(S$记录第四档_1)>><|off>\
+<offx=|280|y=|-17|fontsize=|12||font=|0|><color=fffffb  <$STR(S$记录第四档_3)>><|off>\
+<offx=|360|y=|-17|fontsize=|12||font=|0|><color=fffffb  <$STR(S$记录第四档_5)>><|off>\
+
+<offx=|380|y=|-15|fontsize=|16||font=|0|><color=d71345  八方分影斩><|off>\
+
+#IF
+CheckVar Human 累计充值 < 10000
+CheckVar Human 累计充值 > 5000 
+SMALL <$HUMAN(充值记录领取)> 4
+#Act
+MOV N$TEMP 10000
+DEC N$TEMP <$HUMAN(累计充值)>
+#SAY
+<offx=|530|y=|-20|fontsize=|14||font=|0|><color=ffd400  还差<$STR(N$TEMP)>元><|off>\
+
+[@荣誉大使显示]
+#IF
+TRUE
+#SAY
+<Img|children={0,1,2,3,4,5,6,7,8,9,10,b110,b150,b200,b250,b300,b350,b400,b450,b500,b550,b600,b650}|a=0|x=0.0|y=0.0|width=700|height=445|scale9l=10|reset=1|scale9r=10|bg=1|move=0|scale9t=10|scale9b=10|img=public/bg_npc1.png|esc=1>
+<Button|id=0|x=653.0|y=-5.0|nimg=public/025.png|color=255|scale=1|link=@exit>
+<Text|id=1|a=0|x=309.0|y=22.0|tipsx=10|tipsy=80|color=253|size=18|text=荣誉大使>
+
+<$STR(S$充值记录显示)>
+[@荣誉大使初始化]
+#IF
+TRUE
+#Act
+ReadConfigFileItem ..\QuestDiary\配置文件\荣誉大使.ini 荣誉大使  主界面  S$主界面
+ReadConfigFileItem ..\QuestDiary\配置文件\荣誉大使.ini 荣誉大使  福利手游按钮  S$福利手游按钮
+split <$STR(S$福利手游按钮)> | S$福利手游按钮
+ReadConfigFileItem ..\QuestDiary\配置文件\荣誉大使.ini 荣誉大使  手游文字颜色  S$手游文字颜色
+ReadConfigFileItem ..\QuestDiary\配置文件\荣誉大使.ini 荣誉大使  第一档<$JOB>领取  S$记录第一档
+ReadConfigFileItem ..\QuestDiary\配置文件\荣誉大使.ini 荣誉大使  第二档<$JOB>领取  S$记录第二档
+ReadConfigFileItem ..\QuestDiary\配置文件\荣誉大使.ini 荣誉大使  第三档<$JOB>领取  S$记录第三档
+ReadConfigFileItem ..\QuestDiary\配置文件\荣誉大使.ini 荣誉大使  第四档<$JOB>领取  S$记录第四档
+split <$STR(S$主界面)> | S$主界面
+split <$STR(S$手游文字颜色)> | S$手游文字颜色
+split <$STR(S$记录第一档)> | S$记录第一档
+split <$STR(S$记录第二档)> | S$记录第二档
+split <$STR(S$记录第三档)> | S$记录第三档
+split <$STR(S$记录第四档)> | S$记录第四档
+
+
+MOV S$充值记录显示 <RText|id=b110|children={b111,b112,b113,b114,b115,b116,b117,b118,b119,b120,b121,b122,b123}|x=34.0|y=87.0|color=253|size=20|text=<名动江湖/FCOLOR=243>>
+INC S$充值记录显示 <Img|id=b111|children={b111a}|x=130.0|y=-15.0|width=60|height=60|scale=1|img=public/fuli/w.png|esc=0>
+INC S$充值记录显示 <ItemShow|id=b111a|x=-4.0|y=-5.0|itemid=1|itemcount=<$STR(S$记录第一档_1)>|name=<$STR(S$记录第一档_0)>|showtips=1|bgtype=1>
+INC S$充值记录显示 <Img|id=b112|children={b112a}|x=230.0|y=-15.0|width=60|height=60|scale=1|img=public/fuli/w.png|esc=0>
+INC S$充值记录显示 <ItemShow|id=b112a|x=-4.0|y=-5.0|itemid=1|itemcount=<$STR(S$记录第一档_3)>|name=<$STR(S$记录第一档_2)>|showtips=1|bgtype=1>
+INC S$充值记录显示 <Img|id=b113|children={b113a}|x=330.0|y=-15.0|width=60|height=60|scale=1|img=public/fuli/w.png|esc=0>
+INC S$充值记录显示 <ItemShow|id=b113a|x=-4.0|y=-5.0|itemid=1|itemcount=<$STR(S$记录第一档_5)>|name=<$STR(S$记录第一档_4)>|showtips=1|bgtype=1>
+INC S$充值记录显示 <RText|id=b114|x=0.0|y=30.0|color=253|size=16|text=<充值达到1000元/FCOLOR=250>>
+INC S$充值记录显示 <RText|id=b119|x=205.0|y=0.0|size=16|color=253|text=<╋/FCOLOR=243>>
+INC S$充值记录显示 <RText|id=b120|x=305.0|y=0.0|size=16|color=253|text=<╋/FCOLOR=243>>
+INC S$充值记录显示 <RText|id=b121|a=0|x=110.0|y=0|tipsx=10|tipsy=80|color=253|size=20|text=<〓/FCOLOR=243>>
+INC S$充值记录显示 <RText|id=b122|a=0|x=395.0|y=-10|tipsx=10|tipsy=80|color=253|size=16|text=<名字变色：灰色/FCOLOR=247>>
+INC S$充值记录显示 <RText|id=b123|a=0|x=395.0|y=10|tipsx=10|tipsy=80|color=253|size=16|text=<双防+10%/FCOLOR=249>>
+
+#IF
+CheckVar Human 累计充值 > 999
+#Act
+
+INC S$充值记录显示 <RText|id=b150|children={b151,b152,b153,b154,b155,b156,b157,b158,b159,b160,b161}|x=34.0|y=160.0|color=253|size=20|text=<把酒临风/FCOLOR=243>>
+
+INC S$充值记录显示 <Img|id=b151|children={b151a}|x=130.0|y=-15.0|width=60|height=60|scale=1|img=public/fuli/w.png|esc=0>
+INC S$充值记录显示 <ItemShow|id=b151a|x=-4.0|y=-5.0|itemid=1|itemcount=<$STR(S$记录第二档_1)>|name=<$STR(S$记录第二档_0)>|showtips=1|bgtype=1>
+INC S$充值记录显示 <Img|id=b152|children={b152a}|x=230.0|y=-15.0|width=60|height=60|scale=1|img=public/fuli/w.png|esc=0>
+
+INC S$充值记录显示 <ItemShow|id=b152a|x=-4.0|y=-5.0|itemid=1|itemcount=<$STR(S$记录第二档_3)>|name=<$STR(S$记录第二档_2)>|showtips=1|bgtype=1>
+INC S$充值记录显示 <Img|id=b153|children={b153a}|x=330.0|y=-15.0|width=60|height=60|scale=1|img=public/fuli/w.png|esc=0>
+
+INC S$充值记录显示 <ItemShow|id=b153a|x=-4.0|y=-5.0|itemid=1|itemcount=<$STR(S$记录第二档_5)>|name=<$STR(S$记录第二档_4)>|showtips=1|bgtype=1>
+;INC S$充值记录显示 <Button|id=b154|x=365.0|y=20.0|pimg=public/fuli/64202.png|mimg=public/fuli/64202.png|scale=1|color=149|size=16|nimg=public/fuli/64201.png|text=领取奖励|link=@领取累计奖励>
+INC S$充值记录显示 <RText|id=b155|x=0.0|y=30.0|color=253|size=16|text=<充值达到2000元/FCOLOR=250>>
+INC S$充值记录显示 <RText|id=b156|x=205.0|y=0.0|size=16|color=253|text=<╋/FCOLOR=243>>
+INC S$充值记录显示 <RText|id=b157|x=305.0|y=0.0|size=16|color=253|text=<╋/FCOLOR=243>>
+INC S$充值记录显示 <RText|id=b158|a=0|x=110.0|y=0|tipsx=10|tipsy=80|color=253|size=20|text=<〓/FCOLOR=243>>
+INC S$充值记录显示 <RText|id=b159|a=0|x=395.0|y=-10|tipsx=10|tipsy=80|color=253|size=16|text=<名字变色：绿色/FCOLOR=250>>
+INC S$充值记录显示 <RText|id=b160|a=0|x=395.0|y=10|tipsx=10|tipsy=80|color=253|size=16|text=<攻魔道+3%/FCOLOR=249>>
+
+#IF
+CheckVar Human 累计充值 > 1999
+#Act
+INC S$充值记录显示 <RText|id=b200|children={b201,b202,b203,b204,b205,b206,b207,b208,b209,b210,b211}|x=34.0|y=233.0|color=253|size=20|text=<凭栏听雨/FCOLOR=243>>
+INC S$充值记录显示 <Img|id=b201|children={b201a}|x=130.0|y=-15.0|width=60|height=60|scale=1|img=public/fuli/w.png|esc=0>
+
+INC S$充值记录显示 <ItemShow|id=b201a|x=-4.0|y=-5.0|itemid=1|itemcount=<$STR(S$记录第三档_1)>|name=<$STR(S$记录第三档_0)>|showtips=1|bgtype=1>
+INC S$充值记录显示 <Img|id=b202|children={b202a}|x=230.0|y=-15.0|width=60|height=60|scale=1|img=public/fuli/w.png|esc=0>
+
+INC S$充值记录显示 <ItemShow|id=b202a|x=-4.0|y=-5.0|itemid=1|itemcount=<$STR(S$记录第三档_3)>|name=<$STR(S$记录第三档_2)>|showtips=1|bgtype=1>
+INC S$充值记录显示 <Img|id=b203|children={b203a}|x=330.0|y=-15.0|width=60|height=60|scale=1|img=public/fuli/w.png|esc=0>
+
+INC S$充值记录显示 <ItemShow|id=b203a|x=-4.0|y=-5.0|itemid=1|itemcount=<$STR(S$记录第三档_5)>|name=<$STR(S$记录第三档_4)>|showtips=1|bgtype=1>
+;INC S$充值记录显示 <Button|id=b204|x=365.0|y=20.0|pimg=public/fuli/64202.png|mimg=public/fuli/64202.png|scale=1|color=149|size=16|nimg=public/fuli/64201.png|text=领取奖励|link=@领取累计奖励>
+INC S$充值记录显示 <RText|id=b205|x=0.0|y=30.0|color=253|size=16|text=<充值达到5000元/FCOLOR=250>>
+INC S$充值记录显示 <RText|id=b206|x=205.0|y=0.0|size=16|color=253|text=<╋/FCOLOR=243>>
+INC S$充值记录显示 <RText|id=b207|x=305.0|y=0.0|size=16|color=253|text=<╋/FCOLOR=243>>
+INC S$充值记录显示 <RText|id=b208|a=0|x=110.0|y=0|tipsx=10|tipsy=80|color=253|size=20|text=<〓/FCOLOR=243>>
+
+INC S$充值记录显示 <RText|id=b209|a=0|x=395.0|y=-10|tipsx=10|tipsy=80|color=253|size=16|text=<名字变色：紫色/FCOLOR=253>>
+INC S$充值记录显示 <RText|id=b210|a=0|x=395.0|y=10|tipsx=10|tipsy=80|color=253|size=16|text=<吸血+25/FCOLOR=249>>
+#IF
+CheckVar Human 累计充值 > 5000
+#Act
+INC S$充值记录显示 <RText|id=b250|children={b251,b252,b253,b254,b255,b256,b257,b258,b259,b260,b261,b262}|x=34.0|y=306.0|color=253|size=20|text=<一醉轻王侯/FCOLOR=243>>
+;INC S$充值记录显示 <RText|id=b251|x=134.0|y=0.0|color=253|size=20|text=<名字七彩，获得技能+八方分影斩，尽请期待！/FCOLOR=254>>
+;INC S$充值记录显示 <RText|id=b255|x=0.0|y=30.0|color=253|size=16|text=<条件未知/FCOLOR=250>>
+;二合才看得到1w的档位
+#IF
+CheckVar Human 累计充值 > 5000
+#Act
+INC S$充值记录显示 <Img|id=b251|children={b251a}|x=130.0|y=-15.0|width=60|height=60|scale=1|img=public/fuli/w.png|esc=0>
+INC S$充值记录显示 <ItemShow|id=b251a|x=-4.0|y=-5.0|itemid=1|itemcount=<$STR(S$记录第四档_1)>|name=<$STR(S$记录第四档_0)>|showtips=1|bgtype=1>
+INC S$充值记录显示 <Img|id=b252|children={b252a}|x=230.0|y=-15.0|width=60|height=60|scale=1|img=public/fuli/w.png|esc=0>
+
+INC S$充值记录显示 <ItemShow|id=b252a|x=-4.0|y=-5.0|itemid=1|itemcount=<$STR(S$记录第四档_3)>|name=<$STR(S$记录第四档_2)>|showtips=1|bgtype=1>
+INC S$充值记录显示 <Img|id=b253|children={b253a}|x=330.0|y=-15.0|width=60|height=60|scale=1|img=public/fuli/w.png|esc=0>
+
+INC S$充值记录显示 <ItemShow|id=b253a|x=-4.0|y=-5.0|itemid=1|itemcount=<$STR(S$记录第四档_5)>|name=<$STR(S$记录第四档_4)>|showtips=1|bgtype=1>
+;INC S$充值记录显示 <Button|id=b254|x=365.0|y=20.0|pimg=public/fuli/64202.png|mimg=public/fuli/64202.png|scale=1|color=149|size=16|nimg=public/fuli/64201.png|text=领取奖励|link=@领取累计奖励>
+INC S$充值记录显示 <RText|id=b255|x=0.0|y=30.0|color=253|size=16|text=<需要充值10000元/FCOLOR=250>>
+INC S$充值记录显示 <RText|id=b256|x=205.0|y=0.0|size=16|color=253|text=<╋/FCOLOR=243>>
+INC S$充值记录显示 <RText|id=b257|x=305.0|y=0.0|size=16|color=253|text=<╋/FCOLOR=243>>
+INC S$充值记录显示 <RText|id=b258|a=0|x=110.0|y=0|tipsx=10|tipsy=80|color=253|size=20|text=<〓/FCOLOR=243>>
+
+INC S$充值记录显示 <RText|id=b259|a=0|x=395.0|y=-10|tipsx=10|tipsy=80|color=253|size=16|text=<名字变色：七彩/FCOLOR=249>>
+
+#IF
+EQUAL <$JOB> 战士
+CheckVar Human 累计充值 > 1999
+#Act
+INC S$充值记录显示 <RText|id=b260|a=0|x=395.0|y=10|tipsx=10|tipsy=80|color=253|size=14|text=<获得技能：/FCOLOR=249>>
+INC S$充值记录显示 <RText|id=b262|a=0|x=395.0|y=25|tipsx=10|tipsy=80|color=253|size=14|text=<八方分影斩/FCOLOR=249>>
+#IF
+EQUAL <$JOB> 道士
+CheckVar Human 累计充值 > 1999
+#Act
+INC S$充值记录显示 <RText|id=b260|a=0|x=395.0|y=10|tipsx=10|tipsy=80|color=253|size=14|text=<幽冥火咒威力提高10%/FCOLOR=249>>
+INC S$充值记录显示 <RText|id=b262|a=0|x=395.0|y=25|tipsx=10|tipsy=80|color=253|size=14|text=<伤害转移增加10%/FCOLOR=249>>
+#IF
+EQUAL <$JOB> 法师
+CheckVar Human 累计充值 > 1999
+#Act
+INC S$充值记录显示 <RText|id=b260|a=0|x=395.0|y=10|tipsx=10|tipsy=80|color=253|size=14|text=<狂龙紫电威力提高10%/FCOLOR=249>>
+INC S$充值记录显示 <RText|id=b262|a=0|x=395.0|y=25|tipsx=10|tipsy=80|color=253|size=14|text=<人物血量+200/FCOLOR=249>>
+#IF
+CheckVar Human 累计充值 > 999
+LARGE <$HUMAN(充值记录领取)> 0  
+#Act
+INC S$充值记录显示 <Img|id=b115|x=540.0|y=-10.0|img=public/fuli/ylq.png>
+
+#IF
+CheckVar Human 累计充值 > 999
+Equal <$HUMAN(充值记录领取)> 0  
+#Act
+INC S$充值记录显示 <Button|id=b115|x=540.0|y=-5.0|pimg=public/fuli/64202.png|mimg=public/fuli/64202.png|scale=1|color=149|size=16|nimg=public/fuli/64201.png|text=点击晋升|link=@领取记录奖励&1&1000&<$STR(S$记录第一档_1)>&<$STR(S$记录第一档_0)>&<$STR(S$记录第一档_3)>&<$STR(S$记录第一档_2)>&<$STR(S$记录第一档_5)>&<$STR(S$记录第一档_4)>>
+
+#IF
+CheckVar Human 累计充值 < 1000 
+#Act
+MOV N$TEMP 1000
+DEC N$TEMP <$HUMAN(累计充值)>
+INC S$充值记录显示 <RText|id=b115|x=540.0|y=25.0|color=255|size=18|text=<还差/FCOLOR=250><<$STR(N$TEMP)>/FCOLOR=249><元/FCOLOR=250>>
+INC S$充值记录显示 <RText|id=b116|x=550.0|y=0.0|color=255|size=18|text=<点击晋升/FCOLOR=250>>
+
+
+#IF
+CheckVar Human 累计充值 > 1999
+LARGE <$HUMAN(充值记录领取)> 1  
+#Act
+INC S$充值记录显示 <Img|id=b154|x=540.0|y=-10.0|img=public/fuli/ylq.png>
+
+#IF
+CheckVar Human 累计充值 > 1999
+Equal <$HUMAN(充值记录领取)> 1  
+#Act
+INC S$充值记录显示 <Button|id=b154|x=540.0|y=-5.0|pimg=public/fuli/64202.png|mimg=public/fuli/64202.png|scale=1|color=149|size=16|nimg=public/fuli/64201.png|text=点击晋升|link=@领取记录奖励&2&2000&<$STR(S$记录第二档_1)>&<$STR(S$记录第二档_0)>&<$STR(S$记录第二档_3)>&<$STR(S$记录第二档_2)>&<$STR(S$记录第二档_5)>&<$STR(S$记录第二档_4)>>
+
+#IF
+CheckVar Human 累计充值 > 1999
+SMALL <$HUMAN(充值记录领取)> 1  
+#Act
+INC S$充值记录显示 <RText|id=b154|x=555.0|y=25.0|color=255|size=18|text=<已达标/FCOLOR=250>>
+INC S$充值记录显示 <RText|id=b161|x=550.0|y=0.0|color=255|size=18|text=<点击晋升/FCOLOR=249>>
+#IF
+CheckVar Human 累计充值 < 2000 
+CheckVar Human 累计充值 > 999
+SMALL <$HUMAN(充值记录领取)> 2 
+#Act
+MOV N$TEMP 2000
+DEC N$TEMP <$HUMAN(累计充值)>
+INC S$充值记录显示 <RText|id=b154|x=540.0|y=25.0|color=255|size=18|text=<还差/FCOLOR=250><<$STR(N$TEMP)>/FCOLOR=249><元/FCOLOR=250>>
+INC S$充值记录显示 <RText|id=b161|x=550.0|y=0.0|color=255|size=18|text=<点击晋升/FCOLOR=249>>
+
+#IF
+CheckVar Human 累计充值 > 4999
+LARGE <$HUMAN(充值记录领取)> 2  
+#Act
+INC S$充值记录显示 <Img|id=b204|x=540.0|y=-10.0|img=public/fuli/ylq.png>
+
+#IF
+CheckVar Human 累计充值 > 4999
+EQUAL <$HUMAN(充值记录领取)> 2  
+#Act
+INC S$充值记录显示 <Button|id=b204|x=540.0|y=-5.0|pimg=public/fuli/64202.png|mimg=public/fuli/64202.png|scale=1|color=149|size=16|nimg=public/fuli/64201.png|text=点击晋升|link=@领取记录奖励&3&5000&<$STR(S$记录第三档_1)>&<$STR(S$记录第三档_0)>&<$STR(S$记录第三档_3)>&<$STR(S$记录第三档_2)>&<$STR(S$记录第三档_5)>&<$STR(S$记录第三档_4)>>
+
+#IF
+CheckVar Human 累计充值 > 4999
+SMALL <$HUMAN(充值记录领取)> 2 
+#Act
+INC S$充值记录显示 <RText|id=b204|x=555.0|y=25.0|color=255|size=18|text=<已达标/FCOLOR=250>>
+INC S$充值记录显示 <RText|id=b211|x=550.0|y=0.0|color=255|size=18|text=<点击晋升/FCOLOR=249>>
+
+#IF
+CheckVar Human 累计充值 < 5000 
+CheckVar Human 累计充值 > 1999
+SMALL <$HUMAN(充值记录领取)> 3 
+#Act
+MOV N$TEMP 5000
+DEC N$TEMP <$HUMAN(累计充值)>
+INC S$充值记录显示 <RText|id=b204|x=540.0|y=25.0|color=255|size=18|text=<还差/FCOLOR=250><<$STR(N$TEMP)>/FCOLOR=249><元/FCOLOR=250>>
+INC S$充值记录显示 <RText|id=b211|x=550.0|y=0.0|color=255|size=18|text=<点击晋升/FCOLOR=249>>
+
+#IF
+CheckVar Human 累计充值 > 5000
+LARGE <$HUMAN(充值记录领取)> 3  
+#Act
+INC S$充值记录显示 <Img|id=b254|x=540.0|y=-10.0|img=public/fuli/ylq.png>
+
+#IF
+CheckVar Human 累计充值 > 9999
+EQUAL <$HUMAN(充值记录领取)> 3  
+#Act
+INC S$充值记录显示 <Button|id=b254|x=540.0|y=-5.0|pimg=public/fuli/64202.png|mimg=public/fuli/64202.png|scale=1|color=149|size=16|nimg=public/fuli/64201.png|text=点击晋升|link=@领取记录奖励&4&10000&<$STR(S$记录第四档_1)>&<$STR(S$记录第四档_0)>&<$STR(S$记录第四档_3)>&<$STR(S$记录第四档_2)>&<$STR(S$记录第四档_5)>&<$STR(S$记录第四档_4)>>
+
+#IF
+CheckVar Human 累计充值 > 9999
+SMALL <$HUMAN(充值记录领取)> 3 
+#Act
+INC S$充值记录显示 <RText|id=b254|x=555.0|y=25.0|color=255|size=18|text=<已达标/FCOLOR=250>>
+INC S$充值记录显示 <RText|id=b261|x=550.0|y=0.0|color=255|size=18|text=<点击晋升/FCOLOR=249>>
+
+#IF
+CheckVar Human 累计充值 < 10000
+CheckVar Human 累计充值 > 5000 
+SMALL <$HUMAN(充值记录领取)> 4
+#Act
+MOV N$TEMP 10000
+DEC N$TEMP <$HUMAN(累计充值)>
+INC S$充值记录显示 <RText|id=b254|x=540.0|y=0.0|color=255|size=18|text=<还差/FCOLOR=250><<$STR(N$TEMP)>/FCOLOR=249><元/FCOLOR=250>>
+
+#if
+True
+#Act
+GOTO @荣誉大使显示
+
+[@领取记录奖励]
+#IF
+small <$HUMAN(累计充值)> <$SCRIPTPARAM(2)>
+#ACT
+MESSAGEBOX 累计充值不足<$SCRIPTPARAM(2)>!
+BREAK
+
+#IF
+Large <$SCRIPTPARAM(2)> 2000
+Small <$HFCOUNT> 1
+#ACT
+MESSAGEBOX 时机未到！！！
+BREAK
+#IF
+true
+#ACT
+MOV N$TEMP <$HUMAN(充值记录领取)>
+INC N$TEMP 1
+;sendmsg 6 <$HUMAN(充值记录领取)>
+#IF
+checkitem <$SCRIPTPARAM(4)> <$SCRIPTPARAM(3)>
+checkitem <$SCRIPTPARAM(6)> <$SCRIPTPARAM(5)>
+checkitem <$SCRIPTPARAM(8)> <$SCRIPTPARAM(7)>
+#ELSEACT
+sendmsg 15 材料不足，请检查材料！
+break
+#IF
+EQUAL N$TEMP <$SCRIPTPARAM(1)>
+#ACT
+TAKE <$SCRIPTPARAM(4)> <$SCRIPTPARAM(3)>
+TAKE <$SCRIPTPARAM(6)> <$SCRIPTPARAM(5)>
+TAKE <$SCRIPTPARAM(8)> <$SCRIPTPARAM(7)>
+Calcvar HUMAN 充值记录领取 + 1
+Savevar HUMAN 充值记录领取 
+#CALL [\封号系统\在线封号.txt] @临时封号
+GOTO @平台入口
+break
+#elseact
+sendmsg 15 还有低级荣誉没有领取，请按顺序领取！
+Break

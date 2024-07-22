@@ -1,0 +1,63 @@
+[@main]
+#IF
+TRUE
+#ACT
+goto @命运更换界面
+
+
+
+[@命运更换界面]
+#IF
+TRUE
+#SAY
+<Img|children={0,1,2,3,4,5,6,7}|x=294.0|y=146.0|rotate=0|esc=0|img=public/052.png|move=1|loadDelay=0|bg=1>
+<Button|id=0|x=472.0|y=-4.0|nimg=public/025.png|size=18|color=255|link=@exit>
+<RText|id=1|x=268.0|y=15.0|color=243|size=18|text=<《运9命运更换》/FCOLOR=243>>
+<RText|id=2|x=215.0|y=45.0|color=255|size=16|text=<由于游戏内容更新，导致部分玩家/FCOLOR=255>>
+<RText|id=3|x=215.0|y=75.0|color=255|size=16|text=<领取开荒礼包中的/FCOLOR=255><命运/FCOLOR=250><武器/FCOLOR=255>>
+<RText|id=4|x=215.0|y=105.0|color=255|size=16|text=<没有/FCOLOR=255><运9/FCOLOR=250><属性/FCOLOR=255>>
+<RText|id=5|x=215.0|y=135.0|color=255|size=16|text=<你可以在我这里/FCOLOR=255><更换/FCOLOR=254><新的/FCOLOR=255><运9/FCOLOR=250><命运武器/FCOLOR=255>>
+<RText|id=6|x=215.0|y=165.0|color=255|size=16|text=<请将你要/FCOLOR=255><更换的命运/FCOLOR=250><放置于/FCOLOR=255><包裹中/FCOLOR=254>>
+<Button|id=7|x=289.0|y=216.0|scale=1|pimg=public/an_npc2.png|color=255|size=18|nimg=public/an_npc1.png|text=开始更换|link=@开始更换命运>
+
+
+
+[@开始更换命运]
+#IF
+CheckBagSize 2
+#ELSEACT
+SENDMSG 19 你的包裹空间不足！
+break
+
+#IF
+checkjob warrior
+#ACT
+MOV S$命运武器名 命运1
+
+#IF
+checkjob wizard
+#ACT
+MOV S$命运武器名 命运2
+
+#IF
+checkjob taoist
+#ACT
+MOV S$命运武器名 命运3
+
+#IFONE
+CHECKITEM 命运1
+CHECKITEM 命运2
+CHECKITEM 命运3
+#ACT
+take 命运1 1
+take 命运2 1
+take 命运3 1
+give <$STR(S$命运武器名)> 1 1
+UPGRADEUSERITEM $PARAM(10) 6 + 9
+sendmsg 7 你成功更换了1件新的运9命运，助你开荒星空大陆!
+sendmsg 19 你成功更换了1件新的运9命运，助你开荒星空大陆!
+break
+#elseact
+sendmsg 7 [更换失败]：请将旧的命运放置于包裹中
+SENDMSG 19 [更换失败]：请将旧的命运放置于包裹中！
+break

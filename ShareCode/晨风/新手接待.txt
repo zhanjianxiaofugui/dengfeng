@@ -1,0 +1,72 @@
+[@main]
+#if
+equal $clientflag 1
+#act
+goto @pc端界面
+#elseact
+goto @手游界面
+
+[@pc端界面] NPC(65105)
+#IF
+TRUE
+#SAY
+<@@!BTN 3,63206,3,63206,3,63217,455,-25,关闭/@EXIT>\
+
+<offx=|150|y=|-25|fontsize=|26|font=|1|><COLOR=8552a1 接待使者><color=FFAE00 Hot~><|off>\
+
+<offx=|0|y=|10|fontsize=|16|font=|0|><COLOR=fffffb 欢迎来到><color=00ff00 许仙大陆>在你面前的将是一个陌生、新奇的<color=d71345 全新世界><|off>\
+<offx=|0|y=|20|fontsize=|16|font=|0|><color=fffffb 在这个世界中历险，需要你拥有足够的><color=d71345 智慧>与<color=d71345 胆识><|off>\
+<offx=|0|y=|20|fontsize=|16|font=|0|><COLOR=fffffb 在你经历并享受这些乐趣之前，你必须拥有><color=d71345 强健>的<color=d71345 体魄！><|off>\
+<offx=|0|y=|20|fontsize=|16|font=|0|><COLOR=fffffb 让我来看看你是什么职业，我好告诉你如何生存下去。><|off>\
+
+<@@!BTN 3,64305,3,64304,3,64304,140,25,/@游戏开始>\
+<offx=|150|y=|-30|fontsize=|16|font=|0|><COLOR=00ff00 前往新手训练营><|off>\
+
+
+[@手游界面]
+#IF
+True
+#SAY
+\ 
+<Img|x=200.0|y=82.0|width=437|height=245|esc=0|bg=1|img=public/048.png|scale=1.1>
+<RText|x=384.0|y=95.0|color=251|size=18|text=<接待使者/FCOLOR=253><Hot~/FCOLOR=251>>
+<Button|x=631.0|y=78.0|color=255|size=18|nimg=public/025.png|link=@exit>
+<RText|x=215.0|y=127.0|color=255|size=16|text=<欢迎来到/FCOLOR=255><许仙大陆/FCOLOR=250><，在你面前的将是一个陌生、新奇的/FCOLOR=255><全新世界/FCOLOR=249><。/FCOLOR=255>>
+<RText|x=214.0|y=157.0|color=255|size=16|text=<在这个世界中历险，需要你拥有足够的/FCOLOR=255><智慧/FCOLOR=249><与/FCOLOR=255><胆识/FCOLOR=249><。/FCOLOR=255>>
+<RText|x=214.0|y=188.0|color=255|size=16|text=<在你经历并享受这些乐趣之前，你必须拥有/FCOLOR=255><强健/FCOLOR=249><的体魄！/FCOLOR=255>>
+<Img|x=255.0|y=259.0|width=380|esc=0|img=public/024.png|scale=1>
+<RText|x=213.0|y=220.0|color=255|size=16|text=<让我来看看你是什么职业，我好告诉你如何生存下去。/FCOLOR=255>>
+#If
+SMALL G3 1801
+#ACt
+MOV N$TEMP 1800
+DEC N$TEMP <$STR(G3)>
+#If
+Large G3 1800
+#SAY
+<Button|x=368.0|y=284.0|width=110|height=30|mimg=public/029.png|pimg=public/029.png|color=250|nimg=public/028.png|size=14|text=前往新手训练营|link=@游戏开始>
+#elseSAY
+<TIMETIPS|x=368|y=284|color=249|size=18|time=<$STR(N$TEMP)>>
+<RText|x=445.0|y=284.0|color=255|size=18|text=<后开区/FCOLOR=255>>
+
+
+[@游戏开始]
+#IF
+CheckLevelEx < 35
+#ACT
+give 随机神石 1 1
+give 回城石 1 1
+CHOOSEPOS 0 473 221 <$PARAM(10)>
+mapmove XRJD 45 50 5
+goto @刷鹿检测
+#ELSEACT
+mapmove 2 225 443 3
+MESSAGEBOX 你的等级不适合进入新手训练营！
+BREAK
+
+[@刷鹿检测]
+#IF
+CheckMapMonNameCountEx XRJD 45 50 300 鹿 < 60
+#ACT
+MonGenEx XRJD 45 50 鹿 80 80
+BREAK

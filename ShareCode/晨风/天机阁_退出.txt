@@ -1,0 +1,5 @@
+[@main]
+#IF
+#act
+mapmove 2 222 443 2
+break

@@ -1,0 +1,5 @@
+[@main]
+#IF
+TRUE
+#ACT
+#CALL [\大哥新加\天元心法.txt] @开始天元心法

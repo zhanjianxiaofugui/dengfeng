@@ -1,0 +1,527 @@
+[@main]
+#IF
+#ACT
+MOV S$顶部文字 武器升级
+MOV N$当前物品升级等级 -1
+MOV S$当前物品序列号
+MOV S$判断最高级FLAG 0
+MOV S$物品与职业不符flag -1
+GOTO @升级道具初始化
+;Goto @手游武器升级界面
+
+[@选择平台入口]
+#IF
+EQUAL $CLIENTFLAG 1
+#ACT
+GOTO @端游武器升级界面
+#IF
+!EQUAL $CLIENTFLAG 1
+#ACT
+GOTO @手游武器升级界面
+
+;-----------------------------------------------------------------------
+[@端游武器升级界面] NPC(63632)
+#IF
+!EQUAL <$STR(S$判断最高级FLAG)> 0
+#SAY
+<@@!BTN 3,63206,3,63206,3,63217,420,-25,关闭/@EXIT>\
+<offx=|177|y=|-15|fontsize=|18||font=|0|><color=ffd400  武器升级><|off>\
+<offx=|190|y=|60|><@@!PIC2 3,60309,0,0><|off>\
+<offx=|70|y=|80|fontsize=|24||font=|0|><color=ef4136  当前武器已升至最高级！><|off>\
+<offx=|200|y=|-140|></@@!PIC <$STR(S$武器升级物品名称)>,1,0,0> <|off>\
+
+#IF
+EQUAL <$STR(S$判断最高级FLAG)> 0
+EQUAL <$STR(S$物品与职业不符flag)> 1
+#SAY
+<@@!BTN 3,63206,3,63206,3,63217,420,-25,关闭/@EXIT>\
+<offx=|177|y=|-15|fontsize=|18||font=|0|><color=ffd400  武器升级><|off>\
+<offx=|190|y=|60|><@@!PIC2 3,60309,0,0><|off>\
+<offx=|10|y=|80|fontsize=|18||font=|0|><color=ef4136  当前穿戴的武器与职业不符，请更换武器后再次尝试!><|off>\
+<offx=|200|y=|-140|></@@!PIC <$STR(S$武器升级物品名称)>,1,0,0> <|off>\
+
+
+;----特效
+;<!SPIC 图包编号,图片在图包中的位置,图片张数,间隔(毫秒),X,Y,MODE,Num>
+;<offx=|180|y=|-30|fontsize=|18||font=|0|><@@!SPIC 3,50501,20,2000,50,-90,3,1><|off>\
+
+;----标题
+#IF
+EQUAL <$STR(S$判断最高级FLAG)> 0
+!EQUAL <$STR(S$物品与职业不符flag)> 1
+#SAY
+<@@!BTN 3,63206,3,63206,3,63217,420,-25,关闭/@EXIT>\
+<offx=|177|y=|-15|fontsize=|18||font=|0|><color=ffd400  武器升级><|off>\
+
+;----道具框-60309，22403
+<offx=|190|y=|30|><@@!PIC2 3,60309,0,0><|off>\
+
+<offx=|40|y=|140|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|190|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+<offx=|340|y=|-50|><@@!PIC2 3,60316,0,0><|off>\
+;----文本 <$STR(N$武器升级当前成功率)>
+<offx=|30|y=|-180|fontsize=|18||font=|0|><color=ffd400  当前属性：><color=00ff00 <$STR(N$当前物品升级等级)>><|off>\
+<offx=|280|y=|-180|fontsize=|18||font=|0|><color=ffd400  下级属性: ><color=00ff00 <$STR(N$当前物品升级等级)>><|off>\
+<offx=|30|y=|-130|fontsize=|18||font=|0|><color=ffd400  <$STR(S$显示属性名称2)>: <$STR(N$显示属性值2)>><|off>\
+<offx=|280|y=|-130|fontsize=|18||font=|0|><color=ffd400  <$STR(S$显示属性名称2)>> <color=00ff00 <$STR(N$升级显示属性值2)>><|off>\
+<offx=|140|y=|30|fontsize=|18||font=|0|><color=ffd400  升级成功概率> <color=ef4136 <$STR(N$武器升级当前成功率)>%> <|off>\
+
+
+----加号（33049）升级按钮（60381，60382）
+<offx=|110|y=|-100|><@@!PIC2 3,33049,0,0><|off>\
+<offx=|270|y=|-100|><@@!PIC2 3,33049,0,0><|off>\
+
+<@@!BTN 3,60381,3,60382,3,60382,160,30,/@升级开始>\
+
+;----物品 武器升级消耗分割
+<offx=|200|y=|-350|></@@!PIC <$STR(S$武器升级物品名称)>,1,0,0> <|off>\
+
+<offx=|50|y=|-152|></@@!PIC <$STR(S$武器升级消耗分割_0)>,1,0,0> <|off>\
+<offx=|200|y=|-152|></@@!PIC <$STR(S$武器升级消耗分割_2)>,1,0,0> <|off>\
+<offx=|350|y=|-152|></@@!PIC <$STR(S$武器升级消耗分割_4)>,1,0,0> <|off>\
+<offx=|80|y=|-120|fontsize=|12||font=|0|><color=fffffb  <$STR(S$武器升级消耗分割_1)>><|off>\
+<offx=|230|y=|-120|fontsize=|12||font=|0|><color=fffffb  <$STR(S$武器升级消耗分割_3)>><|off>\
+<offx=|380|y=|-120|fontsize=|12||font=|0|><color=fffffb  <$STR(S$武器升级消耗分割_5)>><|off>\
+<offx=|180|y=|-30|fontsize=|18||font=|0|><color=ffd400 开始升级><|off>\
+
+;----强化保底提示
+#IF
+Large <$STR(N$目标物品升级等级)> 6
+EQUAL <$STR(S$判断最高级FLAG)> 0
+!EQUAL <$STR(S$物品与职业不符flag)> 1
+#SAY
+<offx=|40|y=|30|fontsize=|18||font=|0|><color=ffd400  已失败次数:><color=ef4136 <$HUMAN(装备升级失败次数<$STR(N$目标物品升级等级)>)>> <color=ffd400 次>           <color=00ff00 <$STR(S$保底配置分割_1)>> <color=ffd400 次保底>  <|off>\
+
+;-----------------------------------------------------------------------
+[@手游武器升级界面]
+#IF
+!EQUAL $CLIENTFLAG 1
+!EQUAL <$STR(S$判断最高级FLAG)> 0
+#SAY
+<Img|children={21,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22}|x=370.0|y=20.0|width=400|height=600|img=public/huishou/2.png|esc=0|move=0|loadDelay=0|bg=1>
+<Button|id=1|x=353.0|y=-8.0|nimg=public/025.png|size=18|color=255|link=@exit>
+<RText|id=2|x=160.0|y=23.0|size=20|color=149|text=<{$STR(S$顶部文字)}/FCOLOR=125>>
+<Img|id=21|x=165.0|y=125.0|width=70|height=70|img=public/hecheng/60316.png>
+
+<EquipShow|id=3|x=165.0|y=125.0|width=70|height=70|index=1|showtips=1|img=public/1900000651_3.png>
+<Button|id=4|x=145.0|y=468.0|width=110|height=40|mimg=public/013.png|pimg=public/012.png|color=250|nimg=public/013.png|size=14|text=转移升级|link=@转移升级>
+<RText|id=6|x=100.0|y=323.0|size=20|color=149|text=<当前武器已升至最高级！/FCOLOR=250>>
+#IF
+!EQUAL $CLIENTFLAG 1
+EQUAL <$STR(S$物品与职业不符flag)> 1
+#SAY
+<Img|children={21,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22}|x=370.0|y=20.0|width=400|height=600|img=public/huishou/2.png|esc=0|move=0|loadDelay=0|bg=1>
+<Button|id=1|x=353.0|y=-8.0|nimg=public/025.png|size=18|color=255|link=@exit>
+<RText|id=2|x=160.0|y=23.0|size=20|color=149|text=<{$STR(S$顶部文字)}/FCOLOR=125>>
+<Img|id=21|x=165.0|y=125.0|width=70|height=70|img=public/hecheng/60316.png>
+
+<EquipShow|id=3|x=165.0|y=125.0|width=70|height=70|index=1|showtips=1|img=public/1900000651_3.png>
+;<Button|id=4|x=145.0|y=468.0|width=110|height=40|mimg=public/wuqishengji/a12.png|pimg=public/wuqishengji/a11.png|color=250|nimg=public/wuqishengji/a12.png|size=14|text=转移升级|link=@转移升级>
+<RText|id=6|x=18.0|y=323.0|size=20|color=149|text=<武器与职业不符，请更换武器后再次尝试!/FCOLOR=249>>
+
+#IF
+!EQUAL $CLIENTFLAG 1
+EQUAL <$STR(S$判断最高级FLAG)> 0
+!EQUAL <$STR(S$物品与职业不符flag)> 1
+#SAY
+<Img|children={21,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22}|x=370.0|y=20.0|width=400|height=600|img=public/huishou/2.png|esc=0|move=0|loadDelay=0|bg=1>
+<Button|id=1|x=353.0|y=-8.0|nimg=public/025.png|size=18|color=255|link=@exit>
+<RText|id=2|x=160.0|y=23.0|size=20|color=149|text=<{$STR(S$顶部文字)}/FCOLOR=125>>
+<Img|id=21|x=165.0|y=125.0|width=70|height=70|img=public/hecheng/60316.png>
+
+<EquipShow|id=3|x=165.0|y=125.0|width=70|height=70|index=1|showtips=1|img=public/1900000651_3.png>
+<Button|id=4|x=145.0|y=468.0|width=110|height=40|mimg=public/013.png|pimg=public/012.png|color=250|nimg=public/013.png|size=14|text=开始升级|link=@升级开始>
+
+
+<RText|id=6|x=30.0|y=223.0|size=20|color=149|text=<当前属性：/FCOLOR=125><+<$STR(N$当前物品升级等级)>/FCOLOR=250>>
+<RText|id=7|x=30.0|y=263.0|size=20|color=149|text=<<$STR(S$显示属性名称2)>：<$STR(N$显示属性值2)>/FCOLOR=125>>
+;<RText|id=8|x=30.0|y=303.0|size=20|color=149|text=<<$STR(S$显示属性名称2)>：<$STR(N$显示属性值2)>/FCOLOR=125>>
+
+
+<RText|id=9|x=240.0|y=223.0|size=20|color=149|text=<下级属性：/FCOLOR=125><+<$STR(N$目标物品升级等级)>/FCOLOR=250>>
+<RText|id=10|x=240.0|y=263.0|size=20|color=149|text=<<$STR(S$显示属性名称2)>：/FCOLOR=125><<$STR(N$升级显示属性值2)>/FCOLOR=250>>
+;<RText|id=11|x=240.0|y=303.0|size=20|color=149|text=<<$STR(S$显示属性名称2)>：/FCOLOR=125><<$STR(N$升级显示属性值2)>/FCOLOR=250>>
+<RText|id=12|x=110.0|y=430.0|size=20|color=149|text=<升级成功概率：/FCOLOR=125><<$STR(N$武器升级当前成功率)>%/FCOLOR=249>>
+
+<Img|id=13|x=56.0|y=370.0|img=public/hecheng/60316.png>
+<Img|id=14|x=174.0|y=370.0|img=public/hecheng/60316.png>
+<Img|id=15|x=292.0|y=370.0|img=public/hecheng/60316.png>
+
+<ItemShow|id=16|x=46.0|y=362.0|width=70|height=70|itemid=1|itemcount=<$STR(S$武器升级消耗分割_1)>|name=<$STR(S$武器升级消耗分割_0)>|showtips=1|bgtype=1>
+<ItemShow|id=17|x=166.0|y=362.0|width=70|height=70|itemid=1|itemcount=<$STR(S$武器升级消耗分割_3)>|name=<$STR(S$武器升级消耗分割_2)>|showtips=1|bgtype=1>
+<ItemShow|id=18|x=282.0|y=360.0|width=70|height=70|itemid=1|itemcount=<$STR(S$武器升级消耗分割_5)>|name=<$STR(S$武器升级消耗分割_4)>|showtips=1|bgtype=1>
+
+<Img|id=19|x=120.0|y=376.0|width=40|height=40|img=public/hecheng/btn_plus_1.png>
+<Img|id=20|x=241.0|y=376.0|width=40|height=40|img=public/hecheng/btn_plus_1.png>
+
+#IF
+Large <$STR(N$目标物品升级等级)> 6
+EQUAL <$STR(S$判断最高级FLAG)> 0
+!EQUAL <$STR(S$物品与职业不符flag)> 1
+#SAY
+<RText|id=22|x=85.0|y=520.0|size=20|color=149|text=<失败次数：/FCOLOR=125><<$HUMAN(装备升级失败次数<$STR(N$目标物品升级等级)>)>/FCOLOR=249><次，<$STR(S$保底配置分割_1)>次保底/FCOLOR=125>>
+
+[@转移升级]
+#IF
+True
+#Act
+#CALL [\大哥新加\武器升级转移.txt] @武器升级转移
+
+[@升级道具初始化]
+;缺个最大值判断
+#IF
+True
+#Act
+;sendmsg 6 <$PARAM(0)>当前操作物品序列号<$PARAM(1)>当前状态1=放入2=拿出<$PARAM(2)>当前操作的物品框编号
+;MOV S$当前物品序列号 <$PARAM(0)>
+MOV N$当前物品升级等级 <$ITEMINFO[$USEITEMMAKEINDEX(1)].VALUEEX(172)>
+MOV N$目标物品升级等级 <$ITEMINFO[$USEITEMMAKEINDEX(1)].VALUEEX(172)>
+INC N$目标物品升级等级 1
+MOV S$武器升级物品名称 <$ITEMINFO[$USEITEMMAKEINDEX(1)].name>
+MOV S$保底配置
+MOV S$保底配置分割_0
+MOV S$保底配置分割_1
+MOV S$物品与职业不符flag -1
+
+;sendmsg 6 <$STR(N$目标物品升级等级)>
+#IF
+Large N$目标物品升级等级 10
+#Act
+MOV N$目标物品升级等级 10
+#IF
+True
+#Act
+ReadConfigFileItem ..\QuestDiary\配置文件\武器升级.ini  武器升级概率  <$STR(N$目标物品升级等级)>  S$武器升级概率
+ReadConfigFileItem ..\QuestDiary\配置文件\武器升级.ini  武器升级消耗  <$STR(N$目标物品升级等级)>  S$武器升级消耗
+
+split <$STR(S$武器升级概率)> | S$武器升级概率分割
+split <$STR(S$武器升级消耗)> | S$武器升级消耗分割
+
+
+MOV N$武器升级当前成功率 <$STR(S$武器升级概率分割_0)> 
+Goto @分职业表现
+MOV S$战士武器列表 铜锤|裁决|雷霆怒斩|屠龙刀|黄金屠龙刀
+MOV S$法师武器列表 魔法权杖|骨玉|龙牙利刃|嗜魂|黄金嗜魂
+MOV S$道士武器列表 无极|龙纹|逍遥无极扇|倚天剑|黄金倚天剑
+#IF
+checkjob warrior
+!Pos <$STR(S$战士武器列表)> <$STR(S$武器升级物品名称)>
+#ACT
+SENDMSG 15 当前武器与职业不符，请更换武器再次尝试！
+MOV S$物品与职业不符flag 1
+goto @选择平台入口
+Break
+#IF
+checkjob wizard
+!Pos <$STR(S$法师武器列表)> <$STR(S$武器升级物品名称)>
+#ACT
+SENDMSG 15 当前武器与职业不符，请更换武器再次尝试！
+MOV S$物品与职业不符flag 1
+goto @选择平台入口
+Break
+
+#IF
+checkjob taoist
+!Pos <$STR(S$道士武器列表)> <$STR(S$武器升级物品名称)>
+#ACT
+SENDMSG 15 当前武器与职业不符，请更换武器再次尝试！
+MOV S$物品与职业不符flag 1
+goto @选择平台入口
+Break
+
+#IF
+Large <$STR(N$目标物品升级等级)>  6
+#Act
+ReadConfigFileItem ..\QuestDiary\配置文件\武器升级.ini  保底配置  <$STR(N$目标物品升级等级)>  S$保底配置
+split <$STR(S$保底配置)> | S$保底配置分割
+
+#IF
+!Equal <$STR(S$武器升级物品名称)> 黄金屠龙刀
+!Equal <$STR(S$武器升级物品名称)> 黄金嗜魂
+!Equal <$STR(S$武器升级物品名称)> 黄金倚天剑
+LARGE N$当前物品升级等级 6
+#Act
+SENDMSG 15 当前武器已升到最高级！
+MOV S$判断最高级FLAG 1
+goto @选择平台入口
+Break
+#IF
+LARGE N$当前物品升级等级 9
+#Act
+SENDMSG 15 当前武器已升到最高级！
+MOV S$判断最高级FLAG 1
+goto @选择平台入口
+Break
+#IF
+TRUE
+#ACT
+goto @选择平台入口
+
+[@分职业表现]
+#IF
+checkjob warrior
+#ACT
+;战士
+MOV S$显示属性名称1 攻击上限
+MOV S$显示属性名称2 攻击上限
+
+MOV N$显示属性值1 <$ITEMINFO[$USEITEMMAKEINDEX(1)].DC1>
+MOV N$显示属性值2 <$ITEMINFO[$USEITEMMAKEINDEX(1)].DC2>
+
+MOV N$升级显示属性值1 <$ITEMINFO[$USEITEMMAKEINDEX(1)].DC1>
+MOV N$升级显示属性值2 <$ITEMINFO[$USEITEMMAKEINDEX(1)].DC2>
+
+INC N$升级显示属性值1 <$STR(S$武器升级概率分割_1)>
+INC N$升级显示属性值2 <$STR(S$武器升级概率分割_2)>
+#IF
+checkjob wizard
+#ACT
+;法师
+MOV S$显示属性名称1 魔法上限
+MOV S$显示属性名称2 魔法上限
+
+MOV N$显示属性值1 <$ITEMINFO[$USEITEMMAKEINDEX(1)].MC1>
+MOV N$显示属性值2 <$ITEMINFO[$USEITEMMAKEINDEX(1)].MC2>
+
+MOV N$升级显示属性值1 <$ITEMINFO[$USEITEMMAKEINDEX(1)].MC1>
+MOV N$升级显示属性值2 <$ITEMINFO[$USEITEMMAKEINDEX(1)].MC2>
+
+INC N$升级显示属性值1 <$STR(S$武器升级概率分割_1)>
+INC N$升级显示属性值2 <$STR(S$武器升级概率分割_2)>
+#IF
+checkjob taoist
+#ACT
+;道士
+MOV S$显示属性名称1 道术上限
+MOV S$显示属性名称2 道术上限
+
+MOV N$显示属性值1 <$ITEMINFO[$USEITEMMAKEINDEX(1)].SC1>
+MOV N$显示属性值2 <$ITEMINFO[$USEITEMMAKEINDEX(1)].SC2>
+
+MOV N$升级显示属性值1 <$ITEMINFO[$USEITEMMAKEINDEX(1)].SC1>
+MOV N$升级显示属性值2 <$ITEMINFO[$USEITEMMAKEINDEX(1)].SC2>
+
+INC N$升级显示属性值1 <$STR(S$武器升级概率分割_1)>
+INC N$升级显示属性值2 <$STR(S$武器升级概率分割_2)>
+[@升级开始]
+
+;判断最大级
+#IF
+!Equal S$武器升级物品名称 黄金屠龙刀
+!Equal S$武器升级物品名称 黄金嗜魂
+!Equal S$武器升级物品名称 黄金倚天剑
+LARGE N$当前物品升级等级 6
+#Act
+SENDMSG 15 当前武器已升到最高级！
+goto @升级道具初始化
+
+Break
+#IF
+LARGE N$当前物品升级等级 9
+#Act
+SENDMSG 15 当前武器已升到最高级！
+goto @升级道具初始化
+
+Break
+;判断消耗
+#IF
+TRUE
+#ACT
+MOV N$判断flag 0
+MOV N$下标1 0
+MOV N$下标2 1
+MOV N$是否满足升级消耗 -1
+
+FOR N$判断flag > 0
+Goto @消耗判断
+INC N$下标1 2
+INC N$下标2 2
+EndFor
+#IF
+LARGE N$是否满足升级消耗 0
+#Act
+goto @升级道具初始化
+Break
+
+;扣除材料
+#IF
+TRUE
+#ACT
+MOV N$判断flag 0
+MOV N$下标1 0
+MOV N$下标2 1
+FOR N$判断flag > 0
+Goto @扣除消耗
+INC N$下标1 2
+INC N$下标2 2
+EndFor
+
+;保底判断
+;-------必失败
+#IF
+large <$STR(N$目标物品升级等级)> 6
+!EQUAL S$保底配置分割_0
+SMALL <$HUMAN(装备升级必失败次数<$STR(N$目标物品升级等级)>)> <$STR(S$保底配置分割_0)>
+#ACT
+CalcVar Human 装备升级必失败次数<$STR(N$目标物品升级等级)> + 1
+SaveVar Human 装备升级必失败次数<$STR(N$目标物品升级等级)>
+CalcVar Human 装备升级失败次数<$STR(N$目标物品升级等级)> + 1
+SaveVar Human 装备升级失败次数<$STR(N$目标物品升级等级)>
+SENDMSG 15 升级失败！
+Goto @强化失败特效
+goto @升级道具初始化
+BREAK
+
+;开始随机
+#IF
+Random <$STR(N$武器升级当前成功率)> 100
+#ACT
+Goto @强化成功特效
+goto @执行升级
+goto @升级道具初始化
+break
+
+#IF
+TRUE
+#ACT
+MOV N$保底次数 <$STR(S$保底配置分割_1)>
+DEC N$保底次数 1
+#IF
+!EQUAL S$保底配置分割_1
+large <$STR(N$目标物品升级等级)> 6
+EQUAL <$HUMAN(装备升级失败次数<$STR(N$目标物品升级等级)>)> <$STR(N$保底次数)>
+#ACT
+Goto @强化成功特效
+goto @执行升级
+goto @升级道具初始化
+break
+#IF
+large <$STR(N$目标物品升级等级)> 6
+#ACT
+CalcVar Human 装备升级失败次数<$STR(N$目标物品升级等级)> + 1
+SaveVar Human 装备升级失败次数<$STR(N$目标物品升级等级)>
+#IF
+TRUE
+#ACT
+SENDMSG 15 升级失败！
+Goto @强化失败特效
+goto @升级道具初始化
+
+[@强化成功特效]
+#If
+TRUE
+#Act
+MOV S$TEMP <Frames|UiLevel=1|x=-380.0|y=-320.0|suffix=.png|count=11|prefix=public/texiao/qh_|loop=-1|scale=1|speed=12>
+SendUi 105 <$STR(S$TEMP)>
+DELAYCALL 1 @删除UI
+[@强化失败特效]
+#If
+TRUE
+#Act
+MOV S$TEMP <Frames|UiLevel=1|x=-380.0|y=-320.0|suffix=.png|count=11|prefix=public/texiao/qhsb_|loop=-1|scale=1|speed=12>
+SendUi 105 <$STR(S$TEMP)>
+DELAYCALL 1 @删除UI
+
+[@删除UI]
+#IF
+TRUE
+#Act
+SendUi 105 close
+[@执行升级]
+#IF
+TRUE
+#ACT
+UpgradeUserItem 1 172 + 1
+CalcVar Human 装备升级必失败次数<$STR(N$目标物品升级等级)> = 0
+SaveVar Human 装备升级必失败次数<$STR(N$目标物品升级等级)>
+CalcVar Human 装备升级失败次数<$STR(N$目标物品升级等级)> = 0
+SaveVar Human 装备升级失败次数<$STR(N$目标物品升级等级)>
+SENDMSG 15 恭喜升级成功！
+#IF
+checkjob warrior
+#ACT
+;战士
+UpgradeUserItem 1 0 + <$STR(S$武器升级概率分割_1)>
+UpgradeUserItem 1 1 + <$STR(S$武器升级概率分割_2)>
+#IF
+checkjob wizard
+#ACT
+;法师
+UpgradeUserItem 1 2 + <$STR(S$武器升级概率分割_1)>
+UpgradeUserItem 1 3 + <$STR(S$武器升级概率分割_2)>
+#IF
+checkjob taoist
+#ACT
+;道士
+UpgradeUserItem 1 4 + <$STR(S$武器升级概率分割_1)>
+UpgradeUserItem 1 5 + <$STR(S$武器升级概率分割_2)>
+
+
+
+[@扣除消耗]
+#IF
+EQUAL S$武器升级消耗分割_<$STR(N$下标1)>
+#Act
+MOV N$判断flag 2
+BREAK
+
+#IF
+!EQUAL <$STR(S$武器升级消耗分割_<$STR(N$下标1)>)> 元宝 
+#Act
+TAKE <$STR(S$武器升级消耗分割_<$STR(N$下标1)>)> <$STR(S$武器升级消耗分割_<$STR(N$下标2)>)>
+break
+
+#IF
+TRUE
+#ACT
+MOV N$临时总消耗 <$STR(S$武器升级消耗分割_<$STR(N$下标2)>)>
+
+#IF
+CHECKMONEY 绑定元宝 < <$STR(S$武器升级消耗分割_<$STR(N$下标2)>)>
+#ACT
+DEC N$临时总消耗 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+#ELSEACT
+MONEY 绑定元宝 - <$STR(N$临时总消耗)>
+break
+
+#IF
+large <$STR(N$临时总消耗)> 0
+;CHECKMONEY 绑定元宝 < <$STR(N$确定数量2)>
+#ACT
+MONEY 元宝 - <$STR(N$临时总消耗)>
+Break
+
+
+
+[@消耗判断]
+#IF
+EQUAL S$武器升级消耗分割_<$STR(N$下标1)>
+#Act
+MOV N$判断flag 1
+BREAK
+#IF
+!EQUAL S$武器升级消耗分割_<$STR(N$下标1)>
+!EQUAL <$STR(S$武器升级消耗分割_<$STR(N$下标1)>)> 元宝 
+!CHECKITEM <$STR(S$武器升级消耗分割_<$STR(N$下标1)>)> <$STR(S$武器升级消耗分割_<$STR(N$下标2)>)>
+#ACT
+SENDMSG 15 对不起,您没有{$STR(S$武器升级消耗分割_<$STR(N$下标2)>)}个{$STR(S$武器升级消耗分割_<$STR(N$下标1)>)},无法升级{$STR(S$武器升级物品名称)}。
+MOV N$是否满足升级消耗 1
+MOV N$判断flag 1
+BREAK
+
+#IF
+!EQUAL S$武器升级消耗分割_<$STR(N$下标1)>
+EQUAL <$STR(S$武器升级消耗分割_<$STR(N$下标1)>)> 元宝 
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+#IF
+!EQUAL S$武器升级消耗分割_<$STR(N$下标1)>
+EQUAL <$STR(S$武器升级消耗分割_<$STR(N$下标1)>)> 元宝 
+SMALL N$货币  <$STR(S$武器升级消耗分割_<$STR(N$下标2)>)>
+#ACT
+SENDMSG 15 对不起,您没有{$STR(S$武器升级消耗分割_<$STR(N$下标2)>)}个{$STR(S$武器升级消耗分割_<$STR(N$下标1)>)},无法升级{$STR(S$武器升级物品名称)}。
+MOV N$是否满足升级消耗 1
+MOV N$判断flag 1
+BREAK

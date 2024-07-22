@@ -1,0 +1,38 @@
+[@main]
+#if
+equal $clientflag 1
+#act
+goto @pc界面
+#elseact
+goto @手游界面
+
+[@pc界面]
+#if
+true
+#say
+<offx=|-10|y=|-5|fontsize=|14||font=|0|><color=ffd400 　                老区转新区说明><|off>\
+<offx=|10|y=|5|fontsize=|14||font=|0|><color=ffd400 为方便老区玩家转新区，特制定转区规则如下：><|off>\
+<offx=|10|y=|5|fontsize=|14||font=|0|><color=ffd400   老区玩家充值≥100，则可申请将充值额度转至新区><|off>\\
+<offx=|10|y=|5|fontsize=|14||font=|0|><color=ffd400   注：老区玩家转区后，转区角色将会永久封禁><|off>\\
+<offx=|10|y=|5|fontsize=|14||font=|0|><color=ffd400   具体转区规则请联系客服咨询><|off>\
+
+[@手游界面]
+#IF
+TRUE
+#SAY
+<Button|id=0|x=433.0|y=0.0|nimg=public/025.png|color=255|scale=1|link=@exit>
+<Img|x=0.0|y=1.0|width=480|height=300|reset=1|esc=1|bg=1|move=0|img=public/hecheng/60259.png|loadDelay=1|_localZOrder=-2|show=0>
+<RText|id=10|x=20.0|y=20.0|color=161|size=15|text=　老区转新区说明：>
+<RText|id=11|x=20.0|y=50.0|color=161|size=15|text=为方便老区玩家转新区，特制定转区规则如下：>
+<RText|id=12|x=20.0|y=80.0|color=161|size=15|text=老区玩家充值≥100，则可申请将充值额度转至新区>
+<RText|id=13|x=200.0|y=170.0|color=161|size=15|text=<$str(S$4)>>
+<RText|id=14|x=20.0|y=140.0|color=161|size=15|text=注：老区玩家转区后，转区角色将会永久封禁>
+<RText|id=15|x=200.0|y=230.0|color=161|size=15|text=<$str(S$6)>>
+<RText|id=16|x=20.0|y=200.0|color=161|size=15|text=　　　具体转区规则请联系客服咨询>
+<RText|id=17|x=200.0|y=290.0|color=161|size=15|text=<$str(S$8)>>
+<RText|id=18|x=200.0|y=320.0|color=161|size=15|text=<$str(S$9)>>
+<RText|id=19|x=200.0|y=350.0|color=161|size=15|text=<$str(S$10)>>
+<RText|id=20|x=200.0|y=380.0|color=161|size=15|text=<$str(S$11)>>
+<RText|id=21|x=200.0|y=410.0|color=161|size=15|text=<$str(S$12)>>
+<RText|id=22|x=200.0|y=440.0|color=161|size=15|text=<$str(S$13)>>
+<RText|id=23|x=200.0|y=470.0|color=161|size=15|text=<$str(S$14)>>

@@ -1,0 +1,304 @@
+[@main]
+#if
+equal $CLIENTFLAG 1
+#act
+goto @端游界面
+#elseact
+goto @手游界面
+
+[@端游界面] NPC(65106)
+#IF
+true
+#ACT
+#SAY
+<@@!BTN 3,63206,3,63206,3,63217,535,-25,关闭/@EXIT>\
+<offx=|180|y=|-5|fontsize=|20|font=|0|><color=FFAE00      召唤宝宝><|off>\
+<@@!BTN 3,63307,3,63306,3,63306,400,55,/@goumai1>\
+<@@!BTN 3,63307,3,63306,3,63306,400,30,/@goumai2>\
+<@@!BTN 3,63307,3,63306,3,63306,400,30,/@goumai3>\
+<@@!BTN 3,63307,3,63306,3,63306,400,30,/@goumai4>\
+<offx=|15|y=|-240|fontsize=|18|font=|0|><color=FFAE00 36级可购买:>  <color=FFAE00 (鲨鱼王)>   <color=FFAE00 免疫魔法攻击><|off>\
+<offx=|15|y=|-170|fontsize=|18|font=|0|><color=FFAE00 44级可购买:>  <color=FFAE00 (狼　妖)>   <color=FFAE00 免疫物理攻击><|off>\
+<offx=|15|y=|-100|fontsize=|18|font=|0|><color=FFAE00 48级可购买:>  <color=FFAE00 (猛魔统领)>   <color=FFAE00 免疫无敌双防><|off>\
+<offx=|15|y=|-30|fontsize=|18|font=|0|><color=FFAE00 52级可购买:>  <color=FFAE00 (御前侍卫)>   <color=FFAE00 无敌双防攻速超屌><|off>\
+<offx=|420|y=|-240|fontsize=|18|font=|0|><color=FFAE00 50 元宝1只><|off>\
+<offx=|420|y=|-170|fontsize=|18|font=|0|><color=FFAE00 100元宝1只><|off>\
+<offx=|420|y=|-100|fontsize=|18|font=|0|><color=FFAE00 150元宝1只><|off>\
+<offx=|420|y=|-30|fontsize=|18|font=|0|><color=FFAE00 200元宝1只><|off>\
+
+
+[@手游界面]
+;<>                           <=====/FCOLOR=253><法师召唤/FCOLOR=253><=====/FCOLOR=253>\
+<>  <36级购买/FCOLOR=70><(鲨鱼王　)/FCOLOR=250>， 免疫魔法攻击       <[50 元宝1只]/@goumai1>\ \
+<>  <44级购买/FCOLOR=70><(狼　妖　)/FCOLOR=250>， 免疫物理攻击       <[100元宝1只]/@goumai2>\ \
+<>  <48级购买/FCOLOR=70><(猛魔统领)/FCOLOR=250>， 免疫无敌双防       <[150元宝1只]/@goumai3>\ \
+<>  <52级购买/FCOLOR=70><(御前侍卫)/FCOLOR=250>， 无敌双防攻速超屌   <[200元宝1只]/@goumai4>\ \
+;<>  <我是屌丝.我想去未知暗殿召唤/FCOLOR=254>  <进入未知暗殿/@fm12>
+
+[@gofdg1]
+#IF
+TRUE
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+
+#IFONE
+SMALL N$货币 500
+CHECKSKILL 心灵召唤 < 2
+#ACT
+messagebox [失败]:你已经学习过此技能或者你元宝不足！
+break
+
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 500
+#ACT
+MONEY 绑定元宝 - 500
+#ELSEACT
+MOV N$剩余 500
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+#If
+; CHECKGAMEGOLD > 499
+; CHECKSKILL 心灵召唤 > 1
+TRUE
+#act
+; GAMEGOLD -500
+ADDSKILL 心灵召唤 3
+MESSAGEBOX 修练心灵召唤成功.
+BREAK
+; #ELSEACT
+; messagebox [失败]:你已经学习过此技能或者你元宝不足！
+; break
+
+[@goumai1]
+#IF
+CHECKSLAVECOUNT > 4
+#ACT
+MESSAGEBOX 【操作失败】：\　\你的宝宝数量超过5个。.!
+break
+#elseact
+goto @GM1
+break
+[@GM1]
+#if
+!CHECKJOB wizard
+#act
+MESSAGEBOX 【操作失败】：\　\只有法师才能在我这里购买宝宝..!
+break
+#if
+CHECKLEVELEX < 36
+#act
+MESSAGEBOX 【操作失败】：\　\你的等级不足..!
+break
+
+#IF
+TRUE
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+
+#IF
+SMALL N$货币 50
+#ACT
+MESSAGEBOX 【操作失败】：\　\元宝不足.不能购买..!
+break
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 50
+#ACT
+MONEY 绑定元宝 - 50
+#ELSEACT
+MOV N$剩余 50
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+#if
+; CHECKGAMEGOLD > 49
+TRUE
+#act
+; GAMEGOLD - 50
+RecallMob 沙鱼王0 0 180 0
+; #ELSEACT
+; MESSAGEBOX 【操作失败】：\　\元宝不足.不能购买..!
+; break
+
+[@goumai2]
+#IF
+CHECKSLAVECOUNT > 4
+#ACT
+MESSAGEBOX 【操作失败】：\　\你的宝宝数量超过5个。.!
+break
+#elseact
+goto @GM2
+break
+[@GM2]
+#if
+!CHECKJOB wizard
+#act
+MESSAGEBOX 【操作失败】：\　\只有法师才能在我这里购买宝宝..!
+break
+#if
+CHECKLEVELEX < 44
+#act
+MESSAGEBOX 【操作失败】：\　\你的等级不足..!
+break
+
+
+#IF
+TRUE
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+
+#IF
+SMALL N$货币 100
+#ACT
+MESSAGEBOX 【操作失败】：\　\元宝不足.不能购买..!
+break
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 100
+#ACT
+MONEY 绑定元宝 - 100
+#ELSEACT
+MOV N$剩余 100
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+#if
+; CHECKGAMEGOLD > 99
+TRUE
+#act
+; GAMEGOLD - 100
+RecallMob 狼妖0 0 180 0
+; #ELSEACT
+; MESSAGEBOX 【操作失败】：\　\元宝不足.不能购买..!
+; break
+
+[@goumai3]
+#IF
+CHECKSLAVECOUNT > 4
+#ACT
+MESSAGEBOX 【操作失败】：\　\你的宝宝数量超过5个。.!
+break
+#elseact
+goto @GM23
+break
+[@GM23]
+#if
+!CHECKJOB wizard
+#act
+MESSAGEBOX 【操作失败】：\　\只有法师才能在我这里购买宝宝..!
+break
+#if
+CHECKLEVELEX < 48
+#act
+MESSAGEBOX 【操作失败】：\　\你的等级不足..!
+break
+
+#IF
+TRUE
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+
+#IF
+SMALL N$货币 150
+#ACT
+MESSAGEBOX 【操作失败】：\　\元宝不足.不能购买..!
+break
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 150
+#ACT
+MONEY 绑定元宝 - 150
+#ELSEACT
+MOV N$剩余 150
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+
+#if
+; CHECKGAMEGOLD > 149
+TRUE
+#act
+; GAMEGOLD - 150
+RecallMob 猛魔统领0 0 180 0
+; #ELSEACT
+; MESSAGEBOX 【操作失败】：\　\元宝不足.不能购买..!
+; break
+
+[@goumai4]
+#IF
+CHECKSLAVECOUNT > 4
+#ACT
+MESSAGEBOX 【操作失败】：\　\你的宝宝数量超过5个。.!
+break
+#elseact
+goto @GM24
+break
+[@GM24]
+#if
+!CHECKJOB wizard
+#act
+MESSAGEBOX 【操作失败】：\　\只有法师才能在我这里购买宝宝..!
+break
+#if
+CHECKLEVELEX < 52
+#act
+MESSAGEBOX 【操作失败】：\　\你的等级不足..!
+break
+
+#IF
+TRUE
+#ACT
+MOV N$货币 <$BINDGAMEGOLD>
+INC N$货币 <$GAMEGOLD>
+
+#IF
+SMALL N$货币 200
+#ACT
+MESSAGEBOX 【操作失败】：\　\元宝不足.不能购买..!
+break
+
+;扣元宝,优先扣绑定元宝
+#IF
+!CHECKMONEY 绑定元宝 < 200
+#ACT
+MONEY 绑定元宝 - 200
+#ELSEACT
+MOV N$剩余 200
+DEC N$剩余 <$BINDGAMEGOLD>
+MONEY 绑定元宝 - <$BINDGAMEGOLD>
+MONEY 元宝 - <$STR(N$剩余)>
+
+
+#if
+; CHECKGAMEGOLD > 199
+TRUE
+#act
+; GAMEGOLD - 200
+RecallMob 御前侍卫 0 180 0
+; #ELSEACT
+; MESSAGEBOX 【操作失败】：\　\元宝不足.不能购买..!
+; break
+
+[@fm12]
+#if
+#act
+mapmove 4 240 198
+
+[@AD12] 
+#if
+#act
+mapmove 11 223 274
