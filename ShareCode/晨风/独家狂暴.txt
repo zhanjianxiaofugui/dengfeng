@@ -1,5 +1,0 @@
-[@main]
-#if
-true
-#act
-#CALL [\顶部按钮\狂暴之力.txt] @狂暴之力

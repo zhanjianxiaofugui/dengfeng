@@ -1,5 +1,0 @@
-[@main]
-#if
-true
-#act
-#CALL [\大哥新加\我的特权.txt] @开始特权输出

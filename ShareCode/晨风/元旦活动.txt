@@ -1,6 +1,0 @@
-[@main]
-#IF
-TRUE
-#ACT
-;元旦活动CALL
-#CALL [\大哥新加\元旦活动界面.txt] @元旦活动界面

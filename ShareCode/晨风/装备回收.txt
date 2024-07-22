@@ -1,5 +1,0 @@
-[@main]
-#if
-true
-#act
-#CALL [\GD\GN\H_主城回收.txt] @H_主城回收

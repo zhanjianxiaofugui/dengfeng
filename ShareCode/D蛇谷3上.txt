@@ -1,9 +1,0 @@
-[@main]
-#IF
-CheckUserGap < 5
-#ACT
-MAPMOVE N002 130 372
-Break
-#ELSEACT
-SENDMSG 19 ÄãÀëµÄÌ«Ô¶ÁË£¬´«ËÍÊ§°Ü£¡
-BREAK

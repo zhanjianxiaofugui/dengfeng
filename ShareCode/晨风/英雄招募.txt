@@ -1,9 +1,0 @@
-[@main]
-#IF
-!Equal $CLIENTFLAG 1
-#ACT
-#CALL [\大哥新加\行会招募\手游行会招募.txt] @手游行会招募
-BREAK
-#ELSEACT
-#CALL [\大哥新加\行会招募\端游行会招募.txt] @端游行会招募
-BREAK

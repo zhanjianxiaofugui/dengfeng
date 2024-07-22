@@ -1,5 +1,0 @@
-[@main]
-#IF
-TRUE
-#ACT
-#CALL [\大哥新加\幸运项链合成.txt] @幸运项链合成
